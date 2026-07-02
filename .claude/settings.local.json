@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(host-spawn npm *)"
+    ]
+  }
+}
