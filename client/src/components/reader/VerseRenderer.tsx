@@ -1,0 +1,28 @@
+import { useReaderStore } from '../../stores/useReaderStore';
+
+export interface Verse {
+  verse: number;
+  text: string;
+}
+
+export function VerseRenderer({ verse }: { verse: Verse }) {
+  const selection = useReaderStore((s) => s.selection);
+  const selectVerse = useReaderStore((s) => s.selectVerse);
+  const selected = selection !== null && verse.verse >= selection.start && verse.verse <= selection.end;
+
+  return (
+    <span
+      onClick={(e) => selectVerse(verse.verse, e.shiftKey)}
+      className={`cursor-pointer rounded px-0.5 transition-colors duration-150 ${
+        selected
+          ? 'bg-gold-soft/40 dark:bg-gold/30'
+          : 'hover:bg-parchment-200/70 dark:hover:bg-parchment-700/60'
+      }`}
+    >
+      <sup className="mr-1 select-none font-sans text-[0.65em] font-semibold text-gold">
+        {verse.verse}
+      </sup>
+      {verse.text}{' '}
+    </span>
+  );
+}

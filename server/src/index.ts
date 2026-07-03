@@ -3,7 +3,10 @@ import './env.js';
 import cors from 'cors';
 import express, { type NextFunction, type Request, type Response } from 'express';
 import { ZodError } from 'zod';
+import { contextRouter } from './routes/context.js';
 import { meRouter } from './routes/me.js';
+import { scriptureRouter } from './routes/scripture.js';
+import { versionsRouter } from './routes/versions.js';
 
 const app = express();
 app.use(cors());
@@ -14,6 +17,9 @@ app.get('/api/health', (_req, res) => {
 });
 
 app.use('/api', meRouter);
+app.use('/api', scriptureRouter);
+app.use('/api', versionsRouter);
+app.use('/api', contextRouter);
 
 app.use((_req, res) => {
   res.status(404).json({ error: 'Not found' });

@@ -1,8 +1,8 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from './lib/AuthContext';
 import { isFirebaseConfigured } from './lib/firebase';
-import Home from './pages/Home';
 import Login from './pages/Login';
+import Read from './pages/Read';
 
 function SetupNotice() {
   return (
@@ -45,7 +45,7 @@ export default function App() {
         path="/"
         element={
           <RequireAuth>
-            <Home />
+            <Read />
           </RequireAuth>
         }
       />

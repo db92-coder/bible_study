@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-parchment font-sans text-ink antialiased;
+    @apply bg-parchment font-sans text-ink antialiased dark:bg-parchment-900 dark:text-ink-invert;
   }
 }
