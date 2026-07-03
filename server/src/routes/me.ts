@@ -10,23 +10,32 @@ meRouter.get('/me', verifyFirebaseToken, async (req, res, next) => {
     let profile = null;
 
     if (supabase) {
-      const existing = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('firebase_uid', uid)
-        .maybeSingle();
-      if (existing.error) throw existing.error;
-
-      if (existing.data) {
-        profile = existing.data;
-      } else {
-        const inserted = await supabase
+      // Profile bootstrap is best-effort: a missing table (migration not yet
+      // applied) shouldn't break sign-in.
+      try {
+        const existing = await supabase
           .from('profiles')
-          .insert({ firebase_uid: uid, display_name: name ?? email ?? 'Reader' })
-          .select()
-          .single();
-        if (inserted.error) throw inserted.error;
-        profile = inserted.data;
+          .select('*')
+          .eq('firebase_uid', uid)
+          .maybeSingle();
+        if (existing.error) throw existing.error;
+
+        if (existing.data) {
+          profile = existing.data;
+        } else {
+          const inserted = await supabase
+            .from('profiles')
+            .insert({ firebase_uid: uid, display_name: name ?? email ?? 'Reader' })
+            .select()
+            .single();
+          if (inserted.error) throw inserted.error;
+          profile = inserted.data;
+        }
+      } catch (err) {
+        console.warn(
+          '[scribe] profile lookup/insert failed (has the migration been applied?):',
+          err instanceof Error ? err.message : err,
+        );
       }
     }
 
