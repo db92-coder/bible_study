@@ -4,7 +4,7 @@
   "outputDirectory": "client/dist",
   "regions": ["syd1"],
   "rewrites": [
-    { "source": "/api/:path*", "destination": "/api" },
-    { "source": "/:path((?!api).*)", "destination": "/index.html" }
+    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
