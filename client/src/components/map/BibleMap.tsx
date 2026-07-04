@@ -157,7 +157,6 @@ export function BibleMap({ places, journeys, selectedPlace, onSelectPlace }: Bib
       map.remove();
       mapRef.current = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Update marker data + fit bounds when the place set changes
