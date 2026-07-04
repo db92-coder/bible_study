@@ -62,7 +62,9 @@ export default function Notes() {
     <div className="flex h-screen flex-col dark:bg-parchment-900">
       <TopBar onToggleSidebar={() => {}} />
       <div className="flex min-h-0 flex-1">
-        <aside className="flex w-96 shrink-0 flex-col border-r border-parchment-300 bg-parchment-50 dark:border-parchment-700 dark:bg-parchment-800">
+        <aside
+          className={`${editorVisible ? 'hidden md:flex' : 'flex'} w-full shrink-0 flex-col border-r border-parchment-300 bg-parchment-50 md:w-96 dark:border-parchment-700 dark:bg-parchment-800`}
+        >
           <div className="flex items-center gap-2 border-b border-parchment-300 p-3 dark:border-parchment-700">
             <input
               value={search}
@@ -100,9 +102,20 @@ export default function Notes() {
           </div>
         </aside>
 
-        <main className="min-w-0 flex-1 p-5">
+        <main className={`${editorVisible ? 'block' : 'hidden md:block'} min-w-0 flex-1 p-5`}>
           {editorVisible ? (
-            <NoteEditor
+            <>
+              <button
+                onClick={() => {
+                  setSelected(null);
+                  setCreating(false);
+                  setSearchParams({}, { replace: true });
+                }}
+                className="mb-3 text-sm text-ink-faint hover:underline md:hidden"
+              >
+                ← All notes
+              </button>
+              <NoteEditor
               key={selected?.id ?? 'new'}
               note={selected}
               initialAnchor={initialAnchor}
@@ -112,6 +125,7 @@ export default function Notes() {
               onSave={handleSave}
               onDelete={selected ? handleDelete : undefined}
             />
+            </>
           ) : (
             <div className="flex h-full items-center justify-center">
               <div className="text-center">

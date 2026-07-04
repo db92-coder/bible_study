@@ -36,6 +36,10 @@ export default function Read() {
   return (
     <ThreePanelLayout context={<PassageContextPanel />}>
       <BibleReader />
+      {/* Context panel inline on screens too narrow for the third column */}
+      <div className="border-t border-parchment-300 bg-parchment-50 xl:hidden dark:border-parchment-700 dark:bg-parchment-800">
+        <PassageContextPanel />
+      </div>
     </ThreePanelLayout>
   );
 }

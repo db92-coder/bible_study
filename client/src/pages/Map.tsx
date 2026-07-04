@@ -99,7 +99,7 @@ export default function MapPage() {
 
         {/* Journey legend */}
         {journeys.length > 0 && (
-          <div className="pointer-events-auto absolute right-4 top-16 rounded-xl border border-parchment-300 bg-parchment-50/95 px-4 py-3 shadow-lg backdrop-blur dark:border-parchment-700 dark:bg-parchment-800/95">
+          <div className="pointer-events-auto absolute right-4 top-16 hidden rounded-xl border border-parchment-300 bg-parchment-50/95 px-4 py-3 shadow-lg backdrop-blur md:block dark:border-parchment-700 dark:bg-parchment-800/95">
             <h4 className="text-xs font-semibold uppercase tracking-widest text-ink-faint">
               Journeys
             </h4>

@@ -29,7 +29,7 @@ export function EraTimelineSlider({
         step={1}
         value={index}
         onChange={(e) => onChange(ERA_STOPS[Number(e.target.value)])}
-        className="mt-2 w-64 max-w-full accent-gold"
+        className="mt-2 w-48 max-w-full accent-gold sm:w-64"
         aria-label="Filter places by era"
       />
       <div className="mt-1 flex justify-between text-[0.6rem] text-ink-faint">

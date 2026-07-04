@@ -96,19 +96,21 @@ export default function Connections() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search connections…"
-              className="ml-auto w-56 rounded-lg border border-parchment-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-gold dark:border-parchment-700 dark:bg-parchment-800 dark:text-ink-invert"
+              className="w-full rounded-lg border border-parchment-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-gold sm:ml-auto sm:w-56 dark:border-parchment-700 dark:bg-parchment-800 dark:text-ink-invert"
             />
           </div>
 
-          <div className="mt-4 rounded-2xl border border-parchment-300 bg-parchment-50 p-4 dark:border-parchment-700 dark:bg-parchment-800">
+          <div className="mt-4 overflow-x-auto rounded-2xl border border-parchment-300 bg-parchment-50 p-4 dark:border-parchment-700 dark:bg-parchment-800">
             {seeded.isLoading ? (
               <div className="h-64 animate-pulse rounded-xl bg-parchment-200 dark:bg-parchment-700" />
             ) : (
-              <ArcDiagram
-                connections={filtered}
-                selectedId={selected?.id ?? null}
-                onSelect={setSelected}
-              />
+              <div className="min-w-[720px]">
+                <ArcDiagram
+                  connections={filtered}
+                  selectedId={selected?.id ?? null}
+                  onSelect={setSelected}
+                />
+              </div>
             )}
           </div>
 

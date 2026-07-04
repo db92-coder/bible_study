@@ -1,6 +1,8 @@
 import MDEditor from '@uiw/react-md-editor';
 import { useEffect, useState } from 'react';
-import type { Note, NoteInput } from '../../lib/notesApi';
+import { useNavigate } from 'react-router-dom';
+import { createNode, TYPE_COLORS } from '../../lib/graphApi';
+import { noteAnchorLabel, type Note, type NoteInput } from '../../lib/notesApi';
 import { VerseAnchorPicker, type VerseAnchor } from './VerseAnchorPicker';
 
 interface NoteEditorProps {
@@ -14,9 +16,11 @@ interface NoteEditorProps {
 }
 
 export function NoteEditor({ note, initialAnchor, initialTitle, dark, saving, onSave, onDelete }: NoteEditorProps) {
+  const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [tagsText, setTagsText] = useState('');
+  const [addingToGraph, setAddingToGraph] = useState(false);
   const [anchor, setAnchor] = useState<VerseAnchor>({
     book: null,
     chapter: null,
@@ -34,6 +38,29 @@ export function NoteEditor({ note, initialAnchor, initialTitle, dark, saving, on
         : (initialAnchor ?? { book: null, chapter: null, verse_start: null, verse_end: null }),
     );
   }, [note, initialAnchor, initialTitle]);
+
+  async function addToGraph() {
+    const anchorRef = noteAnchorLabel({
+      book: anchor.book,
+      chapter: anchor.chapter,
+      verse_start: anchor.verse_start,
+      verse_end: anchor.verse_end,
+    });
+    const type = anchorRef ? 'verse' : 'idea';
+    setAddingToGraph(true);
+    try {
+      await createNode({
+        label: title.trim() || anchorRef || 'Note',
+        type,
+        body_md: body,
+        verse_ref: anchorRef,
+        color: TYPE_COLORS[type],
+      });
+      navigate('/graph');
+    } finally {
+      setAddingToGraph(false);
+    }
+  }
 
   function handleSave() {
     onSave({
@@ -76,6 +103,14 @@ export function NoteEditor({ note, initialAnchor, initialTitle, dark, saving, on
           placeholder="tags, comma, separated"
           className="flex-1 rounded-lg border border-parchment-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-ink-invert"
         />
+        <button
+          onClick={addToGraph}
+          disabled={addingToGraph || (!title.trim() && !body.trim() && !anchor.book)}
+          title="Create a knowledge-graph node from this note"
+          className="rounded-lg border border-parchment-300 px-3 py-1.5 text-sm text-teal transition hover:border-gold disabled:opacity-50 dark:border-parchment-700 dark:text-gold-soft"
+        >
+          {addingToGraph ? 'Adding…' : 'Add to graph'}
+        </button>
         {note && onDelete && (
           <button
             onClick={onDelete}

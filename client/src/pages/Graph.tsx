@@ -133,7 +133,7 @@ export default function Graph() {
     <div className="flex h-screen flex-col dark:bg-parchment-900">
       <TopBar onToggleSidebar={() => {}} />
 
-      <div className="flex items-center gap-2 border-b border-parchment-300 bg-parchment-50 px-4 py-2 dark:border-parchment-700 dark:bg-parchment-800">
+      <div className="flex flex-wrap items-center gap-2 border-b border-parchment-300 bg-parchment-50 px-4 py-2 dark:border-parchment-700 dark:bg-parchment-800">
         <button
           onClick={handleNewNode}
           className="rounded-lg bg-teal px-3 py-1.5 text-sm font-medium text-white transition hover:bg-teal-deep dark:bg-gold dark:text-parchment-900"
@@ -145,7 +145,7 @@ export default function Graph() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search nodes… ( / )"
-          className="w-56 rounded-lg border border-parchment-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-ink-invert"
+          className="w-40 rounded-lg border border-parchment-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-gold sm:w-56 dark:border-parchment-700 dark:bg-parchment-900 dark:text-ink-invert"
         />
         <div className="ml-2 flex items-center gap-1.5">
           {ALL_TYPES.map((t) => {
@@ -220,7 +220,7 @@ export default function Graph() {
         </div>
 
         {selected && (
-          <aside className="w-96 shrink-0 border-l border-parchment-300 bg-parchment-50 dark:border-parchment-700 dark:bg-parchment-800">
+          <aside className="absolute inset-y-0 right-0 z-10 w-full max-w-96 border-l border-parchment-300 bg-parchment-50 shadow-xl md:static md:shrink-0 md:shadow-none dark:border-parchment-700 dark:bg-parchment-800">
             <NodeEditor
               key={selected.id}
               node={selected}
