@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from './lib/AuthContext';
 import { isFirebaseConfigured } from './lib/firebase';
 import Connections from './pages/Connections';
+import Culture from './pages/Culture';
 import Graph from './pages/Graph';
 import Login from './pages/Login';
 import MapPage from './pages/Map';
@@ -91,6 +92,14 @@ export default function App() {
         element={
           <RequireAuth>
             <Graph />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/culture"
+        element={
+          <RequireAuth>
+            <Culture />
           </RequireAuth>
         }
       />
