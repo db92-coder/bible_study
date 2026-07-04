@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { to: '/map', label: 'Map' },
   { to: '/notes', label: 'Notes' },
   { to: '/plans', label: 'Plans' },
+  { to: '/connections', label: 'Connections' },
 ];
 
 export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {

@@ -1,0 +1,2142 @@
+[
+ {
+  "id": "p1",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Messianic",
+  "title": "Seed of the Woman",
+  "description": "The proto-evangelium — the first gospel. God promises that a descendant of Eve will crush the serpent (Satan), though at personal cost. The virgin birth fulfils 'her offspring' (not 'his').",
+  "significance": "Jesus's death and resurrection crushed Satan's power (Hebrews 2:14), yet Jesus suffered ('bruised his heel') at the cross.",
+  "source_text": "I will put enmity between you and the woman, and between your offspring and her offspring; he shall bruise your head, and you shall bruise his heel.",
+  "ot": {
+   "label": "Genesis 3:15",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 3
+    }
+   ]
+  },
+  "nt": {
+   "label": "Hebrews 2:14; Romans 16:20; Galatians 4:4",
+   "refs": [
+    {
+     "book": "Hebrews",
+     "chapter": 2
+    },
+    {
+     "book": "Romans",
+     "chapter": 16
+    },
+    {
+     "book": "Galatians",
+     "chapter": 4
+    }
+   ]
+  }
+ },
+ {
+  "id": "p2",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Covenant",
+  "title": "Blessing to All Nations through Abraham",
+  "description": "God promises Abraham that through his lineage every nation on earth will be blessed. This is foundational to the entire Bible's storyline.",
+  "significance": "Jesus, a descendant of Abraham, brought salvation to all nations (Galatians 3:8, 16).",
+  "source_text": "In you all the families of the earth shall be blessed.",
+  "ot": {
+   "label": "Genesis 12:1–3",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 12
+    }
+   ]
+  },
+  "nt": {
+   "label": "Galatians 3:8, 16; Matthew 1:1",
+   "refs": [
+    {
+     "book": "Galatians",
+     "chapter": 3
+    },
+    {
+     "book": "Matthew",
+     "chapter": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "p3",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Messianic",
+  "title": "Sceptre from Judah",
+  "description": "Jacob's deathbed prophecy that the royal line — and the Messiah — would come through the tribe of Judah.",
+  "significance": "Jesus is 'the Lion of the tribe of Judah' (Revelation 5:5) and 'King of kings'.",
+  "source_text": "The sceptre shall not depart from Judah, nor the ruler's staff from between his feet, until tribute comes to him; and to him shall be the obedience of the peoples.",
+  "ot": {
+   "label": "Genesis 49:10",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 49
+    }
+   ]
+  },
+  "nt": {
+   "label": "Revelation 5:5; Matthew 1:2–3; Luke 3:33",
+   "refs": [
+    {
+     "book": "Revelation",
+     "chapter": 5
+    },
+    {
+     "book": "Matthew",
+     "chapter": 1
+    },
+    {
+     "book": "Luke",
+     "chapter": 3
+    }
+   ]
+  }
+ },
+ {
+  "id": "p4",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Messianic",
+  "title": "Star Out of Jacob",
+  "description": "Balaam's involuntary prophecy of a coming royal figure from Israel who would rule over the nations.",
+  "significance": "The Magi followed a star to find Jesus (Matthew 2:2); Jesus calls Himself 'the bright morning star' (Revelation 22:16).",
+  "source_text": "A star shall come out of Jacob, and a sceptre shall rise out of Israel.",
+  "ot": {
+   "label": "Numbers 24:17",
+   "refs": [
+    {
+     "book": "Numbers",
+     "chapter": 24
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 2:2; Revelation 22:16",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 2
+    },
+    {
+     "book": "Revelation",
+     "chapter": 22
+    }
+   ]
+  }
+ },
+ {
+  "id": "p5",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Messianic",
+  "title": "Prophet Like Moses",
+  "description": "Moses foretells that God would raise up another prophet in his mould — a deliverer, mediator between God and man, and lawgiver.",
+  "significance": "Peter identifies Jesus as this prophet (Acts 3:22). Jesus is the mediator of the New Covenant (Hebrews 9:15).",
+  "source_text": "The LORD your God will raise up for you a prophet like me from among you, from your brothers — it is to him you shall listen.",
+  "ot": {
+   "label": "Deuteronomy 18:15–19",
+   "refs": [
+    {
+     "book": "Deuteronomy",
+     "chapter": 18
+    }
+   ]
+  },
+  "nt": {
+   "label": "Acts 3:22–23; John 5:46; Hebrews 9:15",
+   "refs": [
+    {
+     "book": "Acts",
+     "chapter": 3
+    },
+    {
+     "book": "John",
+     "chapter": 5
+    },
+    {
+     "book": "Hebrews",
+     "chapter": 9
+    }
+   ]
+  }
+ },
+ {
+  "id": "p6",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Covenant",
+  "title": "Davidic Covenant",
+  "description": "God promises David an eternal dynasty. One of David's descendants will reign forever — a promise that transcends Solomon.",
+  "significance": "Jesus is called 'Son of David' 17 times in the NT. He sits on David's throne forever (Luke 1:32–33).",
+  "source_text": "I will raise up your offspring after you… and I will establish his kingdom. He shall build a house for my name, and I will establish the throne of his kingdom forever.",
+  "ot": {
+   "label": "2 Samuel 7:12–16",
+   "refs": [
+    {
+     "book": "2 Samuel",
+     "chapter": 7
+    }
+   ]
+  },
+  "nt": {
+   "label": "Luke 1:32–33; Acts 2:29–31; Revelation 22:16",
+   "refs": [
+    {
+     "book": "Luke",
+     "chapter": 1
+    },
+    {
+     "book": "Acts",
+     "chapter": 2
+    },
+    {
+     "book": "Revelation",
+     "chapter": 22
+    }
+   ]
+  }
+ },
+ {
+  "id": "p7",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Messianic",
+  "title": "Son of God, Anointed King",
+  "description": "A royal psalm describing the nations raging against God's anointed (Messiah). God installs His Son as King on Zion. All kings are warned to bow before Him.",
+  "significance": "Acts 4:25–27 identifies this with Jesus. At His baptism God says 'This is my beloved Son' (Matthew 3:17).",
+  "source_text": "You are my Son; today I have begotten you. Ask of me, and I will make the nations your heritage.",
+  "ot": {
+   "label": "Psalm 2:1–12",
+   "refs": [
+    {
+     "book": "Psalms",
+     "chapter": 2
+    }
+   ]
+  },
+  "nt": {
+   "label": "Acts 4:25–27; Matthew 3:17; Hebrews 1:5",
+   "refs": [
+    {
+     "book": "Acts",
+     "chapter": 4
+    },
+    {
+     "book": "Matthew",
+     "chapter": 3
+    },
+    {
+     "book": "Hebrews",
+     "chapter": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "p8",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Resurrection",
+  "title": "No Corruption in the Grave",
+  "description": "David writes of one whose body would not decompose — impossible for David himself (Acts 2:29). This points to a bodily resurrection.",
+  "significance": "Peter's Pentecost sermon identifies this with Jesus's resurrection (Acts 2:29–31).",
+  "source_text": "For you will not abandon my soul to Sheol, or let your holy one see corruption.",
+  "ot": {
+   "label": "Psalm 16:8–11",
+   "refs": [
+    {
+     "book": "Psalms",
+     "chapter": 16
+    }
+   ]
+  },
+  "nt": {
+   "label": "Acts 2:29–31; Acts 13:35",
+   "refs": [
+    {
+     "book": "Acts",
+     "chapter": 2
+    },
+    {
+     "book": "Acts",
+     "chapter": 13
+    }
+   ]
+  }
+ },
+ {
+  "id": "p9",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Suffering",
+  "title": "Crucifixion in Detail",
+  "description": "Written ~1000 years before crucifixion was invented, this psalm describes in precise detail the physical and emotional experience of the cross — pierced hands and feet, thirst, exposed bones, mocking crowds, divided clothing.",
+  "significance": "Jesus quotes v.1 from the cross (Matthew 27:46); soldiers cast lots for His clothing (John 19:24).",
+  "source_text": "My God, my God, why have you forsaken me?… They have pierced my hands and feet… they divide my garments among them, and for my clothing they cast lots.",
+  "ot": {
+   "label": "Psalm 22:1–31",
+   "refs": [
+    {
+     "book": "Psalms",
+     "chapter": 22
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 27:35, 46; John 19:24, 28; Luke 23:35",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 27
+    },
+    {
+     "book": "John",
+     "chapter": 19
+    },
+    {
+     "book": "Luke",
+     "chapter": 23
+    }
+   ]
+  }
+ },
+ {
+  "id": "p10",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Crucifixion",
+  "title": "Not a Bone Broken",
+  "description": "A promise of divine protection that also foreshadows the Passover lamb requirement (Exodus 12:46) and points to the Messiah.",
+  "significance": "The soldiers did not break Jesus's legs (John 19:33, 36), an event John explicitly connects to this scripture.",
+  "source_text": "He keeps all his bones; not one of them is broken.",
+  "ot": {
+   "label": "Psalm 34:20",
+   "refs": [
+    {
+     "book": "Psalms",
+     "chapter": 34
+    }
+   ]
+  },
+  "nt": {
+   "label": "John 19:33, 36; Exodus 12:46",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 19
+    },
+    {
+     "book": "Exodus",
+     "chapter": 12
+    }
+   ]
+  }
+ },
+ {
+  "id": "p11",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Betrayal",
+  "title": "Betrayed by a Close Friend",
+  "description": "A Davidic lament that Jesus applies to Himself and Judas at the Last Supper.",
+  "significance": "Judas Iscariot, who shared meals with Jesus, betrayed Him for 30 pieces of silver (John 13:18).",
+  "source_text": "Even my close friend in whom I trusted, who ate my bread, has lifted his heel against me.",
+  "ot": {
+   "label": "Psalm 41:9",
+   "refs": [
+    {
+     "book": "Psalms",
+     "chapter": 41
+    }
+   ]
+  },
+  "nt": {
+   "label": "John 13:18; Matthew 26:21–25",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 13
+    },
+    {
+     "book": "Matthew",
+     "chapter": 26
+    }
+   ]
+  }
+ },
+ {
+  "id": "p12",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Suffering",
+  "title": "Vinegar Offered to Drink",
+  "description": "A messianic psalm of suffering that includes the detail of sour wine offered to the sufferer.",
+  "significance": "Jesus was offered vinegar (sour wine) while on the cross (Matthew 27:48; John 19:28–30).",
+  "source_text": "They gave me poison for food, and for my thirst they gave me sour wine to drink.",
+  "ot": {
+   "label": "Psalm 69:20–21",
+   "refs": [
+    {
+     "book": "Psalms",
+     "chapter": 69
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 27:48; John 19:28–30",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 27
+    },
+    {
+     "book": "John",
+     "chapter": 19
+    }
+   ]
+  }
+ },
+ {
+  "id": "p13",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Messianic",
+  "title": "Lord at God's Right Hand / Priest after Melchizedek",
+  "description": "The most-quoted OT passage in the NT. David calls his own descendant 'Lord' — only possible if the Messiah is divine. He is both eternal King and eternal High Priest.",
+  "significance": "Jesus quotes this to confound the Pharisees (Matthew 22:44). Hebrews 5–7 extensively unpacks the Melchizedek priesthood.",
+  "source_text": "The LORD says to my Lord: 'Sit at my right hand, until I make your enemies your footstool.' You are a priest forever after the order of Melchizedek.",
+  "ot": {
+   "label": "Psalm 110:1–4",
+   "refs": [
+    {
+     "book": "Psalms",
+     "chapter": 110
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 22:44; Acts 2:34; Hebrews 5:6; Hebrews 7",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 22
+    },
+    {
+     "book": "Acts",
+     "chapter": 2
+    },
+    {
+     "book": "Hebrews",
+     "chapter": 5
+    },
+    {
+     "book": "Hebrews",
+     "chapter": 7
+    }
+   ]
+  }
+ },
+ {
+  "id": "p14",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Birth",
+  "title": "Virgin Birth",
+  "description": "Isaiah gives King Ahaz a sign: a virgin (almah / parthenos in LXX) will conceive. 'Immanuel' means 'God with us' — pointing to the divine nature of the child.",
+  "significance": "Mary, a virgin, conceived Jesus by the Holy Spirit (Matthew 1:18–23). Matthew explicitly cites this prophecy.",
+  "source_text": "Behold, the virgin shall conceive and bear a son, and shall call his name Immanuel.",
+  "ot": {
+   "label": "Isaiah 7:14",
+   "refs": [
+    {
+     "book": "Isaiah",
+     "chapter": 7
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 1:18–23; Luke 1:27, 31, 35",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 1
+    },
+    {
+     "book": "Luke",
+     "chapter": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "p15",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Messianic",
+  "title": "Wonderful Counsellor, Prince of Peace",
+  "description": "Isaiah gives the Messiah four compound divine names: Wonderful Counsellor, Mighty God, Everlasting Father, Prince of Peace — an unmistakable claim to divinity.",
+  "significance": "Jesus fulfils every title: His wisdom astounds (Luke 2:47); He performs miracles as Mighty God; His reign is eternal.",
+  "source_text": "For to us a child is born, to us a son is given; and the government shall be upon his shoulder, and his name shall be called Wonderful Counsellor, Mighty God, Everlasting Father, Prince of Peace.",
+  "ot": {
+   "label": "Isaiah 9:6–7",
+   "refs": [
+    {
+     "book": "Isaiah",
+     "chapter": 9
+    }
+   ]
+  },
+  "nt": {
+   "label": "Luke 2:11; John 14:27; Revelation 11:15",
+   "refs": [
+    {
+     "book": "Luke",
+     "chapter": 2
+    },
+    {
+     "book": "John",
+     "chapter": 14
+    },
+    {
+     "book": "Revelation",
+     "chapter": 11
+    }
+   ]
+  }
+ },
+ {
+  "id": "p16",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Messianic",
+  "title": "Branch from Jesse",
+  "description": "After the Assyrian destruction, the royal tree of Jesse would appear 'cut down' — yet a new branch (the Messiah) would sprout. The seven-fold Spirit would rest on Him.",
+  "significance": "Jesus descended from Jesse/David when the dynasty had 'lost the throne.' The Spirit descended on Him at baptism (Luke 3:21–22).",
+  "source_text": "There shall come forth a shoot from the stump of Jesse, and a branch from his roots shall bear fruit. And the Spirit of the LORD shall rest upon him.",
+  "ot": {
+   "label": "Isaiah 11:1–2",
+   "refs": [
+    {
+     "book": "Isaiah",
+     "chapter": 11
+    }
+   ]
+  },
+  "nt": {
+   "label": "Luke 3:21–23, 31; Romans 15:12",
+   "refs": [
+    {
+     "book": "Luke",
+     "chapter": 3
+    },
+    {
+     "book": "Romans",
+     "chapter": 15
+    }
+   ]
+  }
+ },
+ {
+  "id": "p17",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Forerunner",
+  "title": "Voice in the Wilderness",
+  "description": "A herald would prepare the way for God Himself. The imagery is of an ancient king who would send a messenger ahead to prepare the road.",
+  "significance": "All four Gospels apply this to John the Baptist (Matthew 3:3; Mark 1:3; Luke 3:4–6; John 1:23).",
+  "source_text": "A voice cries: 'In the wilderness prepare the way of the LORD; make straight in the desert a highway for our God.'",
+  "ot": {
+   "label": "Isaiah 40:3–5",
+   "refs": [
+    {
+     "book": "Isaiah",
+     "chapter": 40
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 3:3; Mark 1:3; Luke 3:4–6; John 1:23",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 3
+    },
+    {
+     "book": "Mark",
+     "chapter": 1
+    },
+    {
+     "book": "Luke",
+     "chapter": 3
+    },
+    {
+     "book": "John",
+     "chapter": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "p18",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Suffering",
+  "title": "Beaten, Spat Upon, Mocked",
+  "description": "The third Servant Song describes voluntary submission to humiliation — flogging, beard-pulling, and spitting.",
+  "significance": "Jesus was flogged, spat upon, and mocked before the crucifixion (Matthew 26:67; 27:26, 30).",
+  "source_text": "I gave my back to those who strike, and my cheeks to those who pull out the beard; I hid not my face from disgrace and spitting.",
+  "ot": {
+   "label": "Isaiah 50:6",
+   "refs": [
+    {
+     "book": "Isaiah",
+     "chapter": 50
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 26:67; 27:26, 30; Mark 14:65",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 26
+    },
+    {
+     "book": "Mark",
+     "chapter": 14
+    }
+   ]
+  }
+ },
+ {
+  "id": "p19",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Suffering",
+  "title": "Suffering Servant",
+  "description": "The climactic fourth Servant Song, written ~700 BC. It describes in remarkable detail a substitutionary death: rejected, silent before accusers, buried with the rich, suffering on behalf of others' sins.",
+  "significance": "The Ethiopian eunuch asks 'About whom does the prophet say this?' Philip answers: Jesus (Acts 8:32–35).",
+  "source_text": "He was wounded for our transgressions; he was crushed for our iniquities; upon him was the chastisement that brought us peace, and with his stripes we are healed.",
+  "ot": {
+   "label": "Isaiah 52:13–53:12",
+   "refs": [
+    {
+     "book": "Isaiah",
+     "chapter": 52
+    }
+   ]
+  },
+  "nt": {
+   "label": "Acts 8:32–35; 1 Peter 2:24–25; Romans 4:25",
+   "refs": [
+    {
+     "book": "Acts",
+     "chapter": 8
+    },
+    {
+     "book": "1 Peter",
+     "chapter": 2
+    },
+    {
+     "book": "Romans",
+     "chapter": 4
+    }
+   ]
+  }
+ },
+ {
+  "id": "p20",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Ministry",
+  "title": "Good News to the Poor",
+  "description": "A messianic manifesto describing a Spirit-anointed servant whose mission is liberation and proclamation.",
+  "significance": "Jesus reads this text in the Nazareth synagogue and declares 'Today this Scripture has been fulfilled in your hearing' (Luke 4:18–21).",
+  "source_text": "The Spirit of the Lord GOD is upon me, because the LORD has anointed me to bring good news to the poor; he has sent me to bind up the brokenhearted, to proclaim liberty to the captives.",
+  "ot": {
+   "label": "Isaiah 61:1–2",
+   "refs": [
+    {
+     "book": "Isaiah",
+     "chapter": 61
+    }
+   ]
+  },
+  "nt": {
+   "label": "Luke 4:18–21",
+   "refs": [
+    {
+     "book": "Luke",
+     "chapter": 4
+    }
+   ]
+  }
+ },
+ {
+  "id": "p21",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Birth",
+  "title": "Rachel Weeping for Her Children",
+  "description": "Originally written of the Babylonian exile, Matthew sees a deeper fulfilment in Herod's slaughter of the innocents.",
+  "significance": "Herod's massacre of infant boys in Bethlehem (Matthew 2:16–18).",
+  "source_text": "A voice is heard in Ramah, lamentation and bitter weeping. Rachel is weeping for her children; she refuses to be comforted, because they are no more.",
+  "ot": {
+   "label": "Jeremiah 31:15",
+   "refs": [
+    {
+     "book": "Jeremiah",
+     "chapter": 31
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 2:16–18",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 2
+    }
+   ]
+  }
+ },
+ {
+  "id": "p22",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Birth",
+  "title": "Born in Bethlehem",
+  "description": "Micah names the precise birthplace of the Messiah: Bethlehem Ephrathah (to distinguish it from another Bethlehem). The phrase 'from ancient days' implies the pre-existence of the Messiah.",
+  "significance": "Jesus was born in Bethlehem (Matthew 2:1). The chief priests quote this text to Herod (Matthew 2:5–6).",
+  "source_text": "But you, O Bethlehem Ephrathah, who are too little to be among the clans of Judah, from you shall come forth for me one who is to be ruler in Israel, whose coming forth is from of old, from ancient days.",
+  "ot": {
+   "label": "Micah 5:2",
+   "refs": [
+    {
+     "book": "Micah",
+     "chapter": 5
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 2:1, 5–6; Luke 2:4–7",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 2
+    },
+    {
+     "book": "Luke",
+     "chapter": 2
+    }
+   ]
+  }
+ },
+ {
+  "id": "p23",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Triumphal Entry",
+  "title": "King Entering on a Donkey",
+  "description": "In a world where kings rode warhorses, this king would arrive on a donkey — a picture of humility and peace.",
+  "significance": "Jesus's triumphal entry into Jerusalem (Matthew 21:1–9; John 12:14–15).",
+  "source_text": "Rejoice greatly, O daughter of Zion! Shout aloud, O daughter of Jerusalem! Behold, your king is coming to you; righteous and having salvation is he, humble and mounted on a donkey, on a colt, the foal of a donkey.",
+  "ot": {
+   "label": "Zechariah 9:9",
+   "refs": [
+    {
+     "book": "Zechariah",
+     "chapter": 9
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 21:1–9; John 12:14–15",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 21
+    },
+    {
+     "book": "John",
+     "chapter": 12
+    }
+   ]
+  }
+ },
+ {
+  "id": "p24",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Betrayal",
+  "title": "Thirty Pieces of Silver",
+  "description": "Written 500 years before: thirty pieces of silver (the price of a slave), returned to the Temple, used to buy a potter's field.",
+  "significance": "Judas's exact betrayal price, returned to the Temple, used to buy the potter's field (Matthew 26:15; 27:3–10).",
+  "source_text": "So they weighed out as my wages thirty pieces of silver. Then the LORD said to me, 'Throw it to the potter' — the lordly price at which I was priced by them. So I took the thirty pieces of silver and threw them into the house of the LORD, to the potter.",
+  "ot": {
+   "label": "Zechariah 11:12–13",
+   "refs": [
+    {
+     "book": "Zechariah",
+     "chapter": 11
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 26:15; 27:3–10",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 26
+    }
+   ]
+  }
+ },
+ {
+  "id": "p25",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Crucifixion",
+  "title": "They Will Look on Me Whom They Pierced",
+  "description": "God Himself speaks in the first person ('on me') yet the one pierced is a separate figure — a remarkable hint at the Trinity and the divine nature of the crucified one.",
+  "significance": "Jesus was pierced by a spear on the cross (John 19:34, 37).",
+  "source_text": "And I will pour out on the house of David and the inhabitants of Jerusalem a spirit of grace and pleas for mercy, so that, when they look on me, on him whom they have pierced, they shall mourn for him.",
+  "ot": {
+   "label": "Zechariah 12:10",
+   "refs": [
+    {
+     "book": "Zechariah",
+     "chapter": 12
+    }
+   ]
+  },
+  "nt": {
+   "label": "John 19:34, 37; Revelation 1:7",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 19
+    },
+    {
+     "book": "Revelation",
+     "chapter": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "p26",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Betrayal",
+  "title": "Strike the Shepherd, Sheep Scattered",
+  "description": "God refers to the shepherd as 'the man who stands next to me' — His equal — and commands a sword against him. The result is the scattering of his flock.",
+  "significance": "Jesus quotes this at Gethsemane, predicting His disciples would flee (Matthew 26:31; Mark 14:27).",
+  "source_text": "Awake, O sword, against my shepherd, against the man who stands next to me, declares the LORD of hosts. Strike the shepherd, and the sheep will be scattered.",
+  "ot": {
+   "label": "Zechariah 13:7",
+   "refs": [
+    {
+     "book": "Zechariah",
+     "chapter": 13
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 26:31; Mark 14:27",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 26
+    },
+    {
+     "book": "Mark",
+     "chapter": 14
+    }
+   ]
+  }
+ },
+ {
+  "id": "p27",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Forerunner",
+  "title": "My Messenger Will Prepare the Way",
+  "description": "The last prophetic book before 400 years of silence promises a forerunner, and that 'the Lord' Himself would come to the Temple.",
+  "significance": "John the Baptist prepared the way; Jesus cleansed the Temple and taught there (Mark 1:2–4; Matthew 21:12).",
+  "source_text": "Behold, I send my messenger, and he will prepare the way before me. And the Lord whom you seek will suddenly come to his temple; and the messenger of the covenant in whom you delight, behold, he is coming.",
+  "ot": {
+   "label": "Malachi 3:1",
+   "refs": [
+    {
+     "book": "Malachi",
+     "chapter": 3
+    }
+   ]
+  },
+  "nt": {
+   "label": "Mark 1:2–4; Luke 7:27; Matthew 21:12",
+   "refs": [
+    {
+     "book": "Mark",
+     "chapter": 1
+    },
+    {
+     "book": "Luke",
+     "chapter": 7
+    },
+    {
+     "book": "Matthew",
+     "chapter": 21
+    }
+   ]
+  }
+ },
+ {
+  "id": "p28",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Forerunner",
+  "title": "Elijah Before the Day of the Lord",
+  "description": "The very last verses of the OT promise an 'Elijah' figure before the day of judgment — building the bridge to the NT.",
+  "significance": "Jesus identifies John the Baptist as the Elijah who was to come (Matthew 11:14; 17:10–13).",
+  "source_text": "Behold, I will send you Elijah the prophet before the great and awesome day of the LORD comes.",
+  "ot": {
+   "label": "Malachi 4:5–6",
+   "refs": [
+    {
+     "book": "Malachi",
+     "chapter": 4
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 11:14; 17:10–13; Luke 1:17",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 11
+    },
+    {
+     "book": "Luke",
+     "chapter": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "p29",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Timeline",
+  "title": "Seventy Weeks — Messiah Cut Off",
+  "description": "Daniel's 70-weeks prophecy gives a precise timetable from the decree to rebuild Jerusalem to the Messiah's death. Many scholars calculate this lands squarely in the 1st century AD.",
+  "significance": "From Artaxerxes' decree (445 BC) to Jesus's triumphal entry calculates to 69 prophetic weeks; then the Messiah was 'cut off' — crucified.",
+  "source_text": "Know therefore and understand that from the going out of the word to restore and build Jerusalem to the coming of an anointed one, a prince, there shall be seven weeks. Then for sixty-two weeks it shall be built again… And after the sixty-two weeks, an anointed one shall be cut off and shall have nothing.",
+  "ot": {
+   "label": "Daniel 9:25–26",
+   "refs": [
+    {
+     "book": "Daniel",
+     "chapter": 9
+    }
+   ]
+  },
+  "nt": {
+   "label": "Nehemiah 2:1–8; Luke 19:41–44; Matthew 27:50",
+   "refs": [
+    {
+     "book": "Nehemiah",
+     "chapter": 2
+    },
+    {
+     "book": "Luke",
+     "chapter": 19
+    },
+    {
+     "book": "Matthew",
+     "chapter": 27
+    }
+   ]
+  }
+ },
+ {
+  "id": "p30",
+  "kind": "prophecy",
+  "group": "Prophecy",
+  "category": "Ministry",
+  "title": "My Servant, Justice to the Nations",
+  "description": "The first of Isaiah's four Servant Songs presents the Servant as chosen, Spirit-filled, gentle, and on a mission to the entire world — not just Israel.",
+  "significance": "Matthew 12:18–21 applies this directly to Jesus's ministry, specifically His quiet, healing work and withdrawal from conflict.",
+  "source_text": "Behold my servant, whom I uphold, my chosen, in whom my soul delights; I have put my Spirit upon him; he will bring forth justice to the nations. He will not cry aloud or lift up his voice, or make it heard in the street.",
+  "ot": {
+   "label": "Isaiah 42:1–4",
+   "refs": [
+    {
+     "book": "Isaiah",
+     "chapter": 42
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 12:18–21",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 12
+    }
+   ]
+  }
+ },
+ {
+  "id": "c1",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "Adam and Christ",
+  "description": "Adam is called a 'type of the one who was to come' (Romans 5:14). Adam brought death through disobedience in a garden; Christ brought life through obedience in a garden (Gethsemane). Adam was the first man; Christ is the last Adam.",
+  "significance": "The entire human story is structured around two men: in Adam all die, in Christ all are made alive (1 Cor 15:22).",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 2–3",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 2
+    }
+   ]
+  },
+  "nt": {
+   "label": "Romans 5:12–21; 1 Corinthians 15:45",
+   "refs": [
+    {
+     "book": "Romans",
+     "chapter": 5
+    },
+    {
+     "book": "1 Corinthians",
+     "chapter": 15
+    }
+   ]
+  }
+ },
+ {
+  "id": "c2",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "Noah's Ark and Salvation",
+  "description": "Noah and his family were saved from divine judgment by entering the ark — the only place of safety. All outside perished. Peter explicitly compares the ark's waters to baptism and salvation.",
+  "significance": "The ark is a type of Christ: the only refuge from judgment, sufficient for all who enter.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 6–9",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 6
+    }
+   ]
+  },
+  "nt": {
+   "label": "1 Peter 3:20–21; Hebrews 11:7",
+   "refs": [
+    {
+     "book": "1 Peter",
+     "chapter": 3
+    },
+    {
+     "book": "Hebrews",
+     "chapter": 11
+    }
+   ]
+  }
+ },
+ {
+  "id": "c3",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "Isaac: The Willing Sacrifice",
+  "description": "Abraham's 'only son' (of promise), whom he loved, was to be sacrificed on Mount Moriah — the same region as Golgotha. Isaac carried the wood up the mountain. A substitute ram was provided at the last moment. Abraham received him back as 'from the dead' (Hebrews 11:19).",
+  "significance": "God did not spare His own Son (Romans 8:32) — a direct echo of Genesis 22:16. Isaac's resurrection foreshadows Christ's.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 22",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 22
+    }
+   ]
+  },
+  "nt": {
+   "label": "Hebrews 11:17–19; John 3:16",
+   "refs": [
+    {
+     "book": "Hebrews",
+     "chapter": 11
+    },
+    {
+     "book": "John",
+     "chapter": 3
+    }
+   ]
+  }
+ },
+ {
+  "id": "c4",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "Joseph: Betrayed and Exalted",
+  "description": "Joseph was his father's beloved son, sent to his brothers who rejected and sold him for silver. He was falsely accused, imprisoned, then exalted to the right hand of the ruler — and ultimately saved the very people who rejected him.",
+  "significance": "Nearly every detail of Joseph's life mirrors Christ's: betrayal for silver, unjust trial, exaltation, and salvation of his people.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 37–50",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 37
+    }
+   ]
+  },
+  "nt": {
+   "label": "Acts 7:9–10; John 1:11",
+   "refs": [
+    {
+     "book": "Acts",
+     "chapter": 7
+    },
+    {
+     "book": "John",
+     "chapter": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "c5",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "Moses: The Deliverer",
+  "description": "Moses was a mediator between God and Israel, delivered his people from slavery through mighty signs, gave the law, fasted 40 days twice on a mountain, and interceded when God's wrath threatened the nation.",
+  "significance": "Jesus is the prophet greater than Moses (Hebrews 3:3), mediating a better covenant and delivering from a greater bondage.",
+  "source_text": null,
+  "ot": {
+   "label": "Exodus 2–34",
+   "refs": [
+    {
+     "book": "Exodus",
+     "chapter": 2
+    }
+   ]
+  },
+  "nt": {
+   "label": "Deuteronomy 18:15; Hebrews 3:1–6",
+   "refs": [
+    {
+     "book": "Deuteronomy",
+     "chapter": 18
+    },
+    {
+     "book": "Hebrews",
+     "chapter": 3
+    }
+   ]
+  }
+ },
+ {
+  "id": "c6",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "The Passover Lamb",
+  "description": "A lamb without blemish, slaughtered at twilight, its blood on the doorposts causing the angel of death to 'pass over' the household. No bone was to be broken (Exodus 12:46). The whole family ate it in haste with unleavened bread.",
+  "significance": "John the Baptist calls Jesus 'the Lamb of God who takes away the sin of the world.' Paul says 'Christ, our Passover lamb, has been sacrificed' (1 Cor 5:7).",
+  "source_text": null,
+  "ot": {
+   "label": "Exodus 12",
+   "refs": [
+    {
+     "book": "Exodus",
+     "chapter": 12
+    }
+   ]
+  },
+  "nt": {
+   "label": "1 Corinthians 5:7; John 1:29; John 19:36",
+   "refs": [
+    {
+     "book": "1 Corinthians",
+     "chapter": 5
+    },
+    {
+     "book": "John",
+     "chapter": 1
+    },
+    {
+     "book": "John",
+     "chapter": 19
+    }
+   ]
+  }
+ },
+ {
+  "id": "c7",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "Manna: Bread from Heaven",
+  "description": "God sent bread from heaven daily in the wilderness to sustain Israel. Jesus directly applies this to Himself in John 6, declaring Himself the true bread from heaven.",
+  "significance": "The manna sustained physical life; Jesus sustains eternal life. 'I am the bread of life; whoever comes to me shall not hunger' (John 6:35).",
+  "source_text": null,
+  "ot": {
+   "label": "Exodus 16",
+   "refs": [
+    {
+     "book": "Exodus",
+     "chapter": 16
+    }
+   ]
+  },
+  "nt": {
+   "label": "John 6:31–35, 48–51",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 6
+    }
+   ]
+  }
+ },
+ {
+  "id": "c8",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "The Bronze Serpent",
+  "description": "Israelites bitten by serpents would live if they looked at a bronze serpent lifted on a pole. Jesus uses this as His own metaphor: 'As Moses lifted up the serpent in the wilderness, so must the Son of Man be lifted up, that whoever believes in him may have eternal life.'",
+  "significance": "Looking in faith at the crucified Christ brings healing from the deadly serpent-bite of sin.",
+  "source_text": null,
+  "ot": {
+   "label": "Numbers 21:4–9",
+   "refs": [
+    {
+     "book": "Numbers",
+     "chapter": 21
+    }
+   ]
+  },
+  "nt": {
+   "label": "John 3:14–15",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 3
+    }
+   ]
+  }
+ },
+ {
+  "id": "c9",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "The Tabernacle",
+  "description": "The Tabernacle was the dwelling of God among His people, with a progression from outer court (sacrifice), to Holy Place (worship), to Holy of Holies (God's presence). Every element — the veil, the ark, the lampstand, the showbread — points to Christ.",
+  "significance": "John 1:14 says Jesus 'tabernacled among us.' The veil torn at His death opened the Holy of Holies to all believers (Hebrews 10:19–20).",
+  "source_text": null,
+  "ot": {
+   "label": "Exodus 25–40",
+   "refs": [
+    {
+     "book": "Exodus",
+     "chapter": 25
+    }
+   ]
+  },
+  "nt": {
+   "label": "John 1:14; Hebrews 9–10",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 1
+    },
+    {
+     "book": "Hebrews",
+     "chapter": 9
+    }
+   ]
+  }
+ },
+ {
+  "id": "c10",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "The High Priest",
+  "description": "The High Priest was the sole mediator who entered the Holy of Holies once a year with blood to atone for the people's sins. He bore the names of the twelve tribes on his breastplate.",
+  "significance": "Jesus is our great High Priest who entered the true Holy of Holies (heaven) with His own blood, offering a once-for-all atonement (Hebrews 9:12).",
+  "source_text": null,
+  "ot": {
+   "label": "Leviticus 16; Exodus 28",
+   "refs": [
+    {
+     "book": "Leviticus",
+     "chapter": 16
+    },
+    {
+     "book": "Exodus",
+     "chapter": 28
+    }
+   ]
+  },
+  "nt": {
+   "label": "Hebrews 4:14–5:10; 7:23–28",
+   "refs": [
+    {
+     "book": "Hebrews",
+     "chapter": 4
+    }
+   ]
+  }
+ },
+ {
+  "id": "c11",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "The Day of Atonement",
+  "description": "Yom Kippur involved two goats: one slain as a sin offering, its blood sprinkled in the Holy of Holies; one released into the wilderness as the 'scapegoat' bearing the people's sins away. Together they picture full atonement.",
+  "significance": "Jesus was both goats: He died as the sacrifice and as our scapegoat bore our sins 'outside the camp' (Hebrews 13:12–13).",
+  "source_text": null,
+  "ot": {
+   "label": "Leviticus 16",
+   "refs": [
+    {
+     "book": "Leviticus",
+     "chapter": 16
+    }
+   ]
+  },
+  "nt": {
+   "label": "Hebrews 9:1–14; 10:1–14",
+   "refs": [
+    {
+     "book": "Hebrews",
+     "chapter": 9
+    }
+   ]
+  }
+ },
+ {
+  "id": "c12",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "Melchizedek: Priest-King",
+  "description": "Melchizedek appears suddenly as king of Salem and priest of God Most High, with no recorded genealogy or death. Abraham paid him tithes, establishing his superiority over the Levitical system (which hadn't yet existed).",
+  "significance": "Hebrews 7 shows Jesus holds a priesthood greater than Levi's — eternal, based not on ancestry but on the power of an indestructible life.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 14:18–20; Psalm 110:4",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 14
+    },
+    {
+     "book": "Psalms",
+     "chapter": 110
+    }
+   ]
+  },
+  "nt": {
+   "label": "Hebrews 5–7",
+   "refs": [
+    {
+     "book": "Hebrews",
+     "chapter": 5
+    }
+   ]
+  }
+ },
+ {
+  "id": "c13",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "Jonah: Three Days and Resurrection",
+  "description": "Jonah spent three days in the belly of the great fish and was 'resurrected' to fulfil his mission of proclaiming repentance to the Gentiles (Nineveh).",
+  "significance": "Jesus called Jonah 'the sign': 'For just as Jonah was three days and three nights in the belly of the great fish, so will the Son of Man be three days and three nights in the heart of the earth' (Matthew 12:40).",
+  "source_text": null,
+  "ot": {
+   "label": "Jonah 1–2",
+   "refs": [
+    {
+     "book": "Jonah",
+     "chapter": 1
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 12:39–41; Luke 11:29–30",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 12
+    },
+    {
+     "book": "Luke",
+     "chapter": 11
+    }
+   ]
+  }
+ },
+ {
+  "id": "c14",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "David: The Shepherd-King",
+  "description": "David was a shepherd from Bethlehem, anointed king, conquered Israel's great enemy Goliath through seemingly weak means, composed the Psalms, and established an eternal dynasty. He was 'a man after God's heart.'",
+  "significance": "Jesus is the Son of David, the Good Shepherd who gave His life for the sheep, born in Bethlehem, who defeated the great enemy (death) through apparent weakness.",
+  "source_text": null,
+  "ot": {
+   "label": "1 Samuel 16–2 Samuel 24",
+   "refs": [
+    {
+     "book": "1 Samuel",
+     "chapter": 16
+    }
+   ]
+  },
+  "nt": {
+   "label": "Ezekiel 34:23; John 10:11; Acts 13:22",
+   "refs": [
+    {
+     "book": "Ezekiel",
+     "chapter": 34
+    },
+    {
+     "book": "John",
+     "chapter": 10
+    },
+    {
+     "book": "Acts",
+     "chapter": 13
+    }
+   ]
+  }
+ },
+ {
+  "id": "c15",
+  "kind": "connection",
+  "group": "Type & Shadow",
+  "category": "type",
+  "title": "Boaz: The Kinsman-Redeemer",
+  "description": "Boaz, a wealthy kinsman, had the right and responsibility to redeem (buy back) the land and marry the widow Ruth. He willingly paid the full price of redemption at the city gate, restoring Ruth's family line.",
+  "significance": "Jesus is our kinsman-redeemer: He became human (kin to us), paid the full price of redemption on the cross, and married His bride (the Church) — restoring all that was lost.",
+  "source_text": null,
+  "ot": {
+   "label": "Ruth 2–4",
+   "refs": [
+    {
+     "book": "Ruth",
+     "chapter": 2
+    }
+   ]
+  },
+  "nt": {
+   "label": "Ephesians 1:7; Galatians 4:4–5; Revelation 5:9",
+   "refs": [
+    {
+     "book": "Ephesians",
+     "chapter": 1
+    },
+    {
+     "book": "Galatians",
+     "chapter": 4
+    },
+    {
+     "book": "Revelation",
+     "chapter": 5
+    }
+   ]
+  }
+ },
+ {
+  "id": "c16",
+  "kind": "connection",
+  "group": "Covenant",
+  "category": "covenant",
+  "title": "The Adamic Covenant",
+  "description": "God's original covenant of life with Adam: creation mandate (be fruitful, fill, subdue), stewardship of Eden, and the one prohibition. After the Fall, God added the promise of a Redeemer (3:15) and cursed the ground.",
+  "significance": "Establishes the problem (sin, death) that the entire Bible addresses, and plants the first seed of redemption.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 1:28–30; 3:15–19",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 1
+    }
+   ]
+  },
+  "nt": {
+   "label": "Romans 5:12–19; Revelation 22:1–5",
+   "refs": [
+    {
+     "book": "Romans",
+     "chapter": 5
+    },
+    {
+     "book": "Revelation",
+     "chapter": 22
+    }
+   ]
+  }
+ },
+ {
+  "id": "c17",
+  "kind": "connection",
+  "group": "Covenant",
+  "category": "covenant",
+  "title": "The Noahic Covenant",
+  "description": "After the Flood, God established an unconditional covenant with all creation: never again to destroy the earth by water. The rainbow is the sign. It covers all flesh, not just believers.",
+  "significance": "Shows God's patience and common grace toward all creation, preserving the world until redemption is complete.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 6:18; 9:8–17",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 6
+    }
+   ]
+  },
+  "nt": {
+   "label": "Isaiah 54:9; 2 Peter 3:5–7",
+   "refs": [
+    {
+     "book": "Isaiah",
+     "chapter": 54
+    },
+    {
+     "book": "2 Peter",
+     "chapter": 3
+    }
+   ]
+  }
+ },
+ {
+  "id": "c18",
+  "kind": "connection",
+  "group": "Covenant",
+  "category": "covenant",
+  "title": "The Abrahamic Covenant",
+  "description": "God called Abraham and made three promises: land (Canaan), seed (a nation and ultimately the Messiah), and blessing (to all nations). Confirmed by a covenant ceremony (Genesis 15) where God alone passed through — unconditional.",
+  "significance": "Paul shows this covenant was about faith, not law, and that Gentile believers are Abraham's true children through Christ (Galatians 3:29).",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 12; 15; 17; 22",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 12
+    }
+   ]
+  },
+  "nt": {
+   "label": "Galatians 3:6–29; Romans 4",
+   "refs": [
+    {
+     "book": "Galatians",
+     "chapter": 3
+    },
+    {
+     "book": "Romans",
+     "chapter": 4
+    }
+   ]
+  }
+ },
+ {
+  "id": "c19",
+  "kind": "connection",
+  "group": "Covenant",
+  "category": "covenant",
+  "title": "The Mosaic (Sinai) Covenant",
+  "description": "A conditional covenant between God and Israel at Sinai — blessings for obedience, curses for disobedience (Deuteronomy 28). The Law was given as a national constitution and revealed sin's seriousness.",
+  "significance": "Paul calls the Law 'our guardian until Christ came' (Galatians 3:24). It was never meant to justify, but to reveal the need for a Saviour.",
+  "source_text": null,
+  "ot": {
+   "label": "Exodus 19–24; Deuteronomy",
+   "refs": [
+    {
+     "book": "Exodus",
+     "chapter": 19
+    }
+   ]
+  },
+  "nt": {
+   "label": "Galatians 3:19–25; Hebrews 8–9; 2 Corinthians 3",
+   "refs": [
+    {
+     "book": "Galatians",
+     "chapter": 3
+    },
+    {
+     "book": "Hebrews",
+     "chapter": 8
+    },
+    {
+     "book": "2 Corinthians",
+     "chapter": 3
+    }
+   ]
+  }
+ },
+ {
+  "id": "c20",
+  "kind": "connection",
+  "group": "Covenant",
+  "category": "covenant",
+  "title": "The Davidic Covenant",
+  "description": "God promised David an eternal dynasty: a son on his throne forever. This goes beyond Solomon, whose kingdom divided and eventually fell, to a greater Son who will reign over all creation eternally.",
+  "significance": "Jesus is the fulfillment: born of David's line, He is the eternal King whose kingdom will never end (Luke 1:33).",
+  "source_text": null,
+  "ot": {
+   "label": "2 Samuel 7:12–16; Psalm 89; 132",
+   "refs": [
+    {
+     "book": "2 Samuel",
+     "chapter": 7
+    },
+    {
+     "book": "Psalms",
+     "chapter": 89
+    }
+   ]
+  },
+  "nt": {
+   "label": "Luke 1:32–33; Acts 2:29–36; Revelation 22:16",
+   "refs": [
+    {
+     "book": "Luke",
+     "chapter": 1
+    },
+    {
+     "book": "Acts",
+     "chapter": 2
+    },
+    {
+     "book": "Revelation",
+     "chapter": 22
+    }
+   ]
+  }
+ },
+ {
+  "id": "c21",
+  "kind": "connection",
+  "group": "Covenant",
+  "category": "covenant",
+  "title": "The New Covenant",
+  "description": "Promised by Jeremiah ~600 BC: God would write His law on hearts, not stone; would be everyone's God; would forgive sins completely. Ezekiel adds the promise of a new spirit and heart.",
+  "significance": "Jesus inaugurated this covenant at the Last Supper: 'This cup is the new covenant in my blood.' Every believer now has direct access to God and the Spirit dwelling within.",
+  "source_text": null,
+  "ot": {
+   "label": "Jeremiah 31:31–34; Ezekiel 36:26–27",
+   "refs": [
+    {
+     "book": "Jeremiah",
+     "chapter": 31
+    },
+    {
+     "book": "Ezekiel",
+     "chapter": 36
+    }
+   ]
+  },
+  "nt": {
+   "label": "Luke 22:20; Hebrews 8:6–13; 2 Corinthians 3:6",
+   "refs": [
+    {
+     "book": "Luke",
+     "chapter": 22
+    },
+    {
+     "book": "Hebrews",
+     "chapter": 8
+    },
+    {
+     "book": "2 Corinthians",
+     "chapter": 3
+    }
+   ]
+  }
+ },
+ {
+  "id": "c22",
+  "kind": "connection",
+  "group": "Theme",
+  "category": "theme",
+  "title": "The Scarlet Thread: Blood and Redemption",
+  "description": "From Abel's first animal sacrifice to Rahab's scarlet cord to the blood on the Passover doorpost, a crimson thread runs through scripture: life is in the blood, and blood covers sin. The scarlet cord Rahab hung in her window saved her family just as the Passover blood saved Israel.",
+  "significance": "All of it points to the blood of Christ, without which there is no forgiveness (Hebrews 9:22). The whole Bible is stained — and saved — by this thread.",
+  "source_text": null,
+  "ot": {
+   "label": "Exodus 12:13; Joshua 2:18–21; Leviticus 17:11",
+   "refs": [
+    {
+     "book": "Exodus",
+     "chapter": 12
+    },
+    {
+     "book": "Joshua",
+     "chapter": 2
+    },
+    {
+     "book": "Leviticus",
+     "chapter": 17
+    }
+   ]
+  },
+  "nt": {
+   "label": "Hebrews 9:22; 1 Peter 1:18–19; Revelation 5:9",
+   "refs": [
+    {
+     "book": "Hebrews",
+     "chapter": 9
+    },
+    {
+     "book": "1 Peter",
+     "chapter": 1
+    },
+    {
+     "book": "Revelation",
+     "chapter": 5
+    }
+   ]
+  }
+ },
+ {
+  "id": "c23",
+  "kind": "connection",
+  "group": "Theme",
+  "category": "theme",
+  "title": "Mountains of God",
+  "description": "Moriah (Abraham's sacrifice), Sinai (the Law), Zion (God's city), Carmel (Elijah's fire), the Sermon on the Mount, Calvary, and the Mount of Olives — great turning points in redemptive history happen on mountains.",
+  "significance": "Mountains are where heaven meets earth — where God breaks through to humanity. Calvary is the mountain where the meeting becomes permanent.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 22:2; Exodus 19; 2 Samuel 24:18",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 22
+    },
+    {
+     "book": "Exodus",
+     "chapter": 19
+    },
+    {
+     "book": "2 Samuel",
+     "chapter": 24
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 5:1; Luke 23:33; Acts 1:12",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 5
+    },
+    {
+     "book": "Luke",
+     "chapter": 23
+    },
+    {
+     "book": "Acts",
+     "chapter": 1
+    }
+   ]
+  }
+ },
+ {
+  "id": "c24",
+  "kind": "connection",
+  "group": "Theme",
+  "category": "theme",
+  "title": "Wilderness and Testing",
+  "description": "The desert is where faith is tested: Adam in the garden, Israel for 40 years, Elijah fleeing Jezebel, and finally Jesus for 40 days. Each encounter with Satan or suffering in the wilderness reveals what is in the heart.",
+  "significance": "Where Israel failed in the wilderness (Deuteronomy 8:2), Jesus succeeded — becoming the obedient Son who went before us.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 3; Exodus 16; 1 Kings 19:4",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 3
+    },
+    {
+     "book": "Exodus",
+     "chapter": 16
+    },
+    {
+     "book": "1 Kings",
+     "chapter": 19
+    }
+   ]
+  },
+  "nt": {
+   "label": "Matthew 4:1–11; Mark 1:12–13; Hebrews 4:15",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 4
+    },
+    {
+     "book": "Mark",
+     "chapter": 1
+    },
+    {
+     "book": "Hebrews",
+     "chapter": 4
+    }
+   ]
+  }
+ },
+ {
+  "id": "c25",
+  "kind": "connection",
+  "group": "Theme",
+  "category": "theme",
+  "title": "Bread and Living Sustenance",
+  "description": "Melchizedek brings bread and wine to Abraham; manna falls in the wilderness; showbread stays on the golden table in the Tabernacle. Bread is always a picture of divine provision and presence.",
+  "significance": "Jesus is 'the bread of life' who feeds the multitudes and gives His own body as the ultimate sustenance at the Last Supper.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 14:18; Exodus 16; Leviticus 24:5–9",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 14
+    },
+    {
+     "book": "Exodus",
+     "chapter": 16
+    },
+    {
+     "book": "Leviticus",
+     "chapter": 24
+    }
+   ]
+  },
+  "nt": {
+   "label": "John 6:35; Matthew 26:26; Revelation 2:17",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 6
+    },
+    {
+     "book": "Matthew",
+     "chapter": 26
+    },
+    {
+     "book": "Revelation",
+     "chapter": 2
+    }
+   ]
+  }
+ },
+ {
+  "id": "c26",
+  "kind": "connection",
+  "group": "Theme",
+  "category": "theme",
+  "title": "Light Against Darkness",
+  "description": "God's first creation act was light (Genesis 1:3). A pillar of fire guided Israel. The Temple's lampstand burned continuously. Isaiah promised 'the people walking in darkness have seen a great light' (Isaiah 9:2).",
+  "significance": "Jesus is 'the light of the world' (John 8:12) — the one in whom no darkness exists, and in the New Creation there will be no sun, for He is its light (Revelation 22:5).",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 1:3; Exodus 13:21; Numbers 6:25",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 1
+    },
+    {
+     "book": "Exodus",
+     "chapter": 13
+    },
+    {
+     "book": "Numbers",
+     "chapter": 6
+    }
+   ]
+  },
+  "nt": {
+   "label": "John 1:4–5; John 8:12; 2 Corinthians 4:6; Revelation 22:5",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 1
+    },
+    {
+     "book": "John",
+     "chapter": 8
+    },
+    {
+     "book": "2 Corinthians",
+     "chapter": 4
+    },
+    {
+     "book": "Revelation",
+     "chapter": 22
+    }
+   ]
+  }
+ },
+ {
+  "id": "c27",
+  "kind": "connection",
+  "group": "Theme",
+  "category": "theme",
+  "title": "Water and the Spirit",
+  "description": "The Spirit hovers over water at creation. The Red Sea crossing is a baptism into Moses (1 Cor 10:2). Ezekiel's river flows from the Temple (Ezekiel 47). John baptises in water, pointing to the Spirit-baptism of Jesus.",
+  "significance": "Water consistently symbolises cleansing, new beginnings, and the Spirit's work. The river of the water of life in Revelation (22:1) flows from the throne — the story ends where it began, with Spirit and water.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 1:2; Exodus 14; Numbers 20:8",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 1
+    },
+    {
+     "book": "Exodus",
+     "chapter": 14
+    },
+    {
+     "book": "Numbers",
+     "chapter": 20
+    }
+   ]
+  },
+  "nt": {
+   "label": "John 3:5; John 7:38; Acts 2:1–4; Revelation 22:1",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 3
+    },
+    {
+     "book": "John",
+     "chapter": 7
+    },
+    {
+     "book": "Acts",
+     "chapter": 2
+    },
+    {
+     "book": "Revelation",
+     "chapter": 22
+    }
+   ]
+  }
+ },
+ {
+  "id": "c28",
+  "kind": "connection",
+  "group": "Theme",
+  "category": "theme",
+  "title": "The Faithful Remnant",
+  "description": "In every generation of apostasy, God preserves a remnant: Noah's family of eight, the 7,000 in Elijah's day who had not bowed to Baal, the returned exiles, the disciples who fled, the 144,000 in Revelation.",
+  "significance": "The remnant principle shows that God's purposes can never be defeated. When the majority falls away, He keeps His promises through a preserved few.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 7:1; 1 Kings 19:18; Isaiah 10:20–21",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 7
+    },
+    {
+     "book": "1 Kings",
+     "chapter": 19
+    },
+    {
+     "book": "Isaiah",
+     "chapter": 10
+    }
+   ]
+  },
+  "nt": {
+   "label": "Romans 9:27; 11:5; Revelation 7:4",
+   "refs": [
+    {
+     "book": "Romans",
+     "chapter": 9
+    },
+    {
+     "book": "Revelation",
+     "chapter": 7
+    }
+   ]
+  }
+ },
+ {
+  "id": "c29",
+  "kind": "connection",
+  "group": "Theme",
+  "category": "theme",
+  "title": "The Shepherd and the Flock",
+  "description": "Abel was a shepherd; Abraham, Isaac, Jacob, Moses, and David were all shepherds before their callings. Psalm 23 calls God 'my shepherd.' Ezekiel 34 condemns Israel's false shepherds and promises God Himself will shepherd His flock.",
+  "significance": "Jesus is 'the good shepherd' who lays down His life for the sheep — fulfilling Ezekiel's promise that God would come Himself as shepherd.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 4:2; Psalm 23; Ezekiel 34",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 4
+    },
+    {
+     "book": "Psalms",
+     "chapter": 23
+    },
+    {
+     "book": "Ezekiel",
+     "chapter": 34
+    }
+   ]
+  },
+  "nt": {
+   "label": "John 10:11–18; Hebrews 13:20; Revelation 7:17",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 10
+    },
+    {
+     "book": "Hebrews",
+     "chapter": 13
+    },
+    {
+     "book": "Revelation",
+     "chapter": 7
+    }
+   ]
+  }
+ },
+ {
+  "id": "c30",
+  "kind": "connection",
+  "group": "Theme",
+  "category": "theme",
+  "title": "The Temple: God Dwelling with Humanity",
+  "description": "Eden was the original sanctuary where God walked with man. The Tabernacle and Temple formalised this presence. Jesus's body is the Temple (John 2:21). Believers are now the Temple (1 Cor 3:16). In the New Jerusalem there is no temple — God Himself is the Temple.",
+  "significance": "The Bible's story is God coming to dwell with humanity: Eden → Tabernacle → Temple → Jesus → Church → New Jerusalem.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 2:8; Exodus 25:8; 1 Kings 6",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 2
+    },
+    {
+     "book": "Exodus",
+     "chapter": 25
+    },
+    {
+     "book": "1 Kings",
+     "chapter": 6
+    }
+   ]
+  },
+  "nt": {
+   "label": "John 1:14; John 2:19–21; 1 Corinthians 3:16; Revelation 21:22",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 1
+    },
+    {
+     "book": "John",
+     "chapter": 2
+    },
+    {
+     "book": "1 Corinthians",
+     "chapter": 3
+    },
+    {
+     "book": "Revelation",
+     "chapter": 21
+    }
+   ]
+  }
+ },
+ {
+  "id": "c31",
+  "kind": "connection",
+  "group": "Theme",
+  "category": "theme",
+  "title": "The New Creation",
+  "description": "The OT prophets envision a restored creation: no more thorns, wolf and lamb at peace, tears wiped away (Isaiah 25:8; 65:25). Paul says all creation 'groans' awaiting its redemption. Revelation 21–22 pictures the garden-city: Eden restored and glorified.",
+  "significance": "The last chapter of the Bible echoes the first: tree of life, river of life, God walking with His people. The New Creation shows that God's original intention was never abandoned.",
+  "source_text": null,
+  "ot": {
+   "label": "Genesis 1–2; Isaiah 65:17–25; Ezekiel 36:33–36",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 1
+    },
+    {
+     "book": "Isaiah",
+     "chapter": 65
+    },
+    {
+     "book": "Ezekiel",
+     "chapter": 36
+    }
+   ]
+  },
+  "nt": {
+   "label": "2 Corinthians 5:17; Romans 8:19–23; Revelation 21–22",
+   "refs": [
+    {
+     "book": "2 Corinthians",
+     "chapter": 5
+    },
+    {
+     "book": "Romans",
+     "chapter": 8
+    },
+    {
+     "book": "Revelation",
+     "chapter": 21
+    }
+   ]
+  }
+ }
+]

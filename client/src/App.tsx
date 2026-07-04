@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from './lib/AuthContext';
 import { isFirebaseConfigured } from './lib/firebase';
+import Connections from './pages/Connections';
 import Login from './pages/Login';
 import MapPage from './pages/Map';
 import Notes from './pages/Notes';
@@ -73,6 +74,14 @@ export default function App() {
         element={
           <RequireAuth>
             <Plans />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/connections"
+        element={
+          <RequireAuth>
+            <Connections />
           </RequireAuth>
         }
       />

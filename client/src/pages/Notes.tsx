@@ -106,6 +106,7 @@ export default function Notes() {
               key={selected?.id ?? 'new'}
               note={selected}
               initialAnchor={initialAnchor}
+              initialTitle={searchParams.get('title') ?? undefined}
               dark={dark}
               saving={saving}
               onSave={handleSave}

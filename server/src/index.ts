@@ -3,6 +3,7 @@ import './env.js';
 import cors from 'cors';
 import express, { type NextFunction, type Request, type Response } from 'express';
 import { ZodError } from 'zod';
+import { connectionsRouter } from './routes/connections.js';
 import { contextRouter } from './routes/context.js';
 import { meRouter } from './routes/me.js';
 import { notesRouter } from './routes/notes.js';
@@ -26,6 +27,7 @@ app.use('/api', contextRouter);
 app.use('/api', placesRouter);
 app.use('/api', notesRouter);
 app.use('/api', plansRouter);
+app.use('/api', connectionsRouter);
 
 app.use((_req, res) => {
   res.status(404).json({ error: 'Not found' });

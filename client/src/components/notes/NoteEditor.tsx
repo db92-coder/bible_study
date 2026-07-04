@@ -6,13 +6,14 @@ import { VerseAnchorPicker, type VerseAnchor } from './VerseAnchorPicker';
 interface NoteEditorProps {
   note: Note | null; // null = new note
   initialAnchor?: VerseAnchor;
+  initialTitle?: string;
   dark: boolean;
   saving: boolean;
   onSave: (input: NoteInput) => void;
   onDelete?: () => void;
 }
 
-export function NoteEditor({ note, initialAnchor, dark, saving, onSave, onDelete }: NoteEditorProps) {
+export function NoteEditor({ note, initialAnchor, initialTitle, dark, saving, onSave, onDelete }: NoteEditorProps) {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [tagsText, setTagsText] = useState('');
@@ -24,7 +25,7 @@ export function NoteEditor({ note, initialAnchor, dark, saving, onSave, onDelete
   });
 
   useEffect(() => {
-    setTitle(note?.title ?? '');
+    setTitle(note?.title ?? initialTitle ?? '');
     setBody(note?.body_md ?? '');
     setTagsText(note?.tags.join(', ') ?? '');
     setAnchor(
@@ -32,7 +33,7 @@ export function NoteEditor({ note, initialAnchor, dark, saving, onSave, onDelete
         ? { book: note.book, chapter: note.chapter, verse_start: note.verse_start, verse_end: note.verse_end }
         : (initialAnchor ?? { book: null, chapter: null, verse_start: null, verse_end: null }),
     );
-  }, [note, initialAnchor]);
+  }, [note, initialAnchor, initialTitle]);
 
   function handleSave() {
     onSave({
