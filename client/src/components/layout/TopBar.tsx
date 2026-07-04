@@ -7,6 +7,7 @@ import { VersionSwitcher } from '../reader/VersionSwitcher';
 
 const NAV_ITEMS = [
   { to: '/', label: 'Read' },
+  { to: '/learn', label: 'Learn' },
   { to: '/map', label: 'Map' },
   { to: '/notes', label: 'Notes' },
   { to: '/plans', label: 'Plans' },

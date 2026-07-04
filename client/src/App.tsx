@@ -4,6 +4,7 @@ import { isFirebaseConfigured } from './lib/firebase';
 import Connections from './pages/Connections';
 import Culture from './pages/Culture';
 import Graph from './pages/Graph';
+import Learn from './pages/Learn';
 import Login from './pages/Login';
 import MapPage from './pages/Map';
 import Notes from './pages/Notes';
@@ -100,6 +101,14 @@ export default function App() {
         element={
           <RequireAuth>
             <Culture />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/learn"
+        element={
+          <RequireAuth>
+            <Learn />
           </RequireAuth>
         }
       />

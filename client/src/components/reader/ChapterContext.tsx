@@ -1,5 +1,6 @@
 import MDEditor from '@uiw/react-md-editor';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../lib/api';
 import { createNode, TYPE_COLORS } from '../../lib/graphApi';
@@ -22,6 +23,14 @@ export function ChapterContext() {
   const chapter = useReaderStore((s) => s.chapter);
   const dark = useThemeStore((s) => s.dark);
   const navigate = useNavigate();
+  const [level, setLevel] = useState<'standard' | 'simple'>(
+    () => (localStorage.getItem('scribe-brief-level') as 'standard' | 'simple') ?? 'standard',
+  );
+
+  function switchLevel(next: 'standard' | 'simple') {
+    setLevel(next);
+    localStorage.setItem('scribe-brief-level', next);
+  }
 
   const placesQuery = useQuery({
     queryKey: ['chapter-places', book, chapter],
@@ -35,9 +44,13 @@ export function ChapterContext() {
   });
 
   const brief = useQuery({
-    queryKey: ['chapter-brief', book, chapter],
+    queryKey: ['chapter-brief', book, chapter, level],
     queryFn: async () =>
-      (await api.get<ChapterBrief>(`/context/${encodeURIComponent(book)}/${chapter}`)).data,
+      (
+        await api.get<ChapterBrief>(
+          `/context/${encodeURIComponent(book)}/${chapter}?level=${level}`,
+        )
+      ).data,
     staleTime: Infinity,
     retry: 1,
   });
@@ -98,6 +111,26 @@ export function ChapterContext() {
       )}
 
       <div className="mt-4">
+        <div className="mb-2 flex items-center justify-between">
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-ink-faint">
+            Background
+          </h3>
+          <div className="flex overflow-hidden rounded-md border border-parchment-300 text-[0.65rem] dark:border-parchment-700">
+            {(['standard', 'simple'] as const).map((l) => (
+              <button
+                key={l}
+                onClick={() => switchLevel(l)}
+                className={`px-2 py-1 font-medium capitalize transition ${
+                  level === l
+                    ? 'bg-parchment-200 text-ink dark:bg-parchment-700 dark:text-ink-invert'
+                    : 'bg-white text-ink-faint dark:bg-parchment-900'
+                }`}
+              >
+                {l}
+              </button>
+            ))}
+          </div>
+        </div>
         {brief.isLoading && (
           <div>
             <p className="text-xs italic text-ink-faint">Studying the background of this chapter…</p>

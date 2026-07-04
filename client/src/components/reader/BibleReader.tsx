@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { findBook, GENRE_INFO } from '../../data/books';
 import { api } from '../../lib/api';
 import { createNode, TYPE_COLORS } from '../../lib/graphApi';
 import { useNotes } from '../../lib/notesApi';
@@ -33,6 +34,8 @@ export function BibleReader() {
   const { book, chapter, version, selection, clearSelection, goToAdjacentChapter } =
     useReaderStore();
   const navigate = useNavigate();
+  const [showGenreHelp, setShowGenreHelp] = useState(false);
+  const genre = findBook(book) ? GENRE_INFO[findBook(book)!.genre] : null;
 
   const chapterNotes = useNotes({ book, chapter });
   const notedVerses = useMemo(() => {
@@ -80,9 +83,22 @@ export function BibleReader() {
   return (
     <article className="mx-auto max-w-[70ch] px-6 py-10">
       <header className="mb-8 flex items-end justify-between">
-        <h2 className="font-display text-4xl">
-          {book} <span className="text-gold">{chapter}</span>
-        </h2>
+        <div>
+          <h2 className="font-display text-4xl">
+            {book} <span className="text-gold">{chapter}</span>
+          </h2>
+          {genre && (
+            <button
+              onClick={() => setShowGenreHelp((s) => !s)}
+              title="How do I read this kind of writing?"
+              className="mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium text-white transition hover:opacity-85"
+              style={{ backgroundColor: genre.color }}
+            >
+              {genre.label}
+              <span className="opacity-75">?</span>
+            </button>
+          )}
+        </div>
         <div className="flex gap-1">
           <button
             onClick={() => goToAdjacentChapter(-1)}
@@ -100,6 +116,20 @@ export function BibleReader() {
           </button>
         </div>
       </header>
+
+      {showGenreHelp && genre && (
+        <div className="mb-6 rounded-lg border p-4 text-sm leading-relaxed" style={{ borderColor: genre.color, backgroundColor: `${genre.color}14` }}>
+          <p>
+            <strong>Reading {genre.label.toLowerCase()}:</strong> {genre.howToRead}
+          </p>
+          <button
+            onClick={() => navigate(`/learn?lesson=${genre.lessonSlug}`)}
+            className="mt-2 text-xs font-medium text-teal hover:underline dark:text-gold-soft"
+          >
+            Full lesson →
+          </button>
+        </div>
+      )}
 
       {selection && (
         <div className="mb-6 flex items-center justify-between rounded-lg border border-gold-soft bg-gold-soft/20 px-4 py-2 text-sm">

@@ -24,6 +24,22 @@ Format: markdown with exactly these three sections, nothing before or after:
 
 The last section is 2–3 bullet points connecting the cultural background to specific details in the chapter. Total length 220–320 words.`;
 
+const SIMPLE_SYSTEM_PROMPT = `You are the study assistant of Scribe, a Bible study app. You write chapter guides for people who are brand new to the Bible.
+
+Rules:
+- Plain, everyday language. No theological jargon — if a necessary term appears (covenant, prophet, Pharisee), explain it in a few words in parentheses.
+- Warm and clear, never condescending. Assume zero background knowledge.
+- Stick to the biblical text and mainstream scholarship; where Christians read something differently, say "Christians understand this differently" without picking a side.
+- No preaching or application — just help them understand what they're reading.
+- Reference verses inline like (v. 12).
+
+Format: markdown with exactly these three sections, nothing before or after:
+## What's happening
+## The bigger picture
+## Words & customs
+
+"What's happening" retells the chapter simply in 3–5 sentences. "The bigger picture" places it in the Bible's overall story in 2–3 sentences. "Words & customs" is 2–4 bullets explaining unfamiliar things a new reader would stumble on. Total length 170–250 words.`;
+
 // In-memory fallback cache for dev / until migration 003 is applied.
 const briefMemoryCache = new Map<string, string>();
 
@@ -40,6 +56,7 @@ contextRouter.get('/context/:book/:chapter', verifyFirebaseToken, async (req, re
     const params = z
       .object({ book: z.string().min(2).max(30), chapter: z.coerce.number().int().min(1) })
       .parse(req.params);
+    const level = z.enum(['standard', 'simple']).default('standard').parse(req.query.level);
     const bookInfo = findBook(params.book);
     if (!bookInfo || params.chapter > bookInfo.chapters) {
       res.status(400).json({ error: 'Unknown book or chapter' });
@@ -47,7 +64,7 @@ contextRouter.get('/context/:book/:chapter', verifyFirebaseToken, async (req, re
     }
     const { name: book } = bookInfo;
     const chapter = params.chapter;
-    const cacheKey = `${book}/${chapter}`;
+    const cacheKey = `${book}/${chapter}/${level}`;
 
     // 1. Permanent cache in Postgres
     if (supabase) {
@@ -56,15 +73,20 @@ contextRouter.get('/context/:book/:chapter', verifyFirebaseToken, async (req, re
         .select('brief_md')
         .eq('book', book)
         .eq('chapter', chapter)
+        .eq('level', level)
         .maybeSingle();
       if (cached.data?.brief_md) {
-        res.json({ book, chapter, brief_md: cached.data.brief_md, cached: true });
+        res.json({ book, chapter, level, brief_md: cached.data.brief_md, cached: true });
         return;
+      }
+      if (cached.error) {
+        // Migration 004 (level column) not applied yet — memory cache still works.
+        console.warn('[scribe] chapter_context read failed:', cached.error.message);
       }
     }
     // 2. Process-local fallback cache
     if (briefMemoryCache.has(cacheKey)) {
-      res.json({ book, chapter, brief_md: briefMemoryCache.get(cacheKey), cached: true });
+      res.json({ book, chapter, level, brief_md: briefMemoryCache.get(cacheKey), cached: true });
       return;
     }
 
@@ -90,7 +112,7 @@ contextRouter.get('/context/:book/:chapter', verifyFirebaseToken, async (req, re
     const message = await anthropic.messages.create({
       model: STUDY_MODEL,
       max_tokens: 1000,
-      system: BRIEF_SYSTEM_PROMPT,
+      system: level === 'simple' ? SIMPLE_SYSTEM_PROMPT : BRIEF_SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userPrompt }],
     });
 
@@ -108,11 +130,11 @@ contextRouter.get('/context/:book/:chapter', verifyFirebaseToken, async (req, re
     if (supabase) {
       const { error } = await supabase
         .from('chapter_context')
-        .upsert({ book, chapter, brief_md: brief, model: STUDY_MODEL });
+        .upsert({ book, chapter, level, brief_md: brief, model: STUDY_MODEL });
       if (error) console.warn('[scribe] chapter_context write failed:', error.message);
     }
 
-    res.json({ book, chapter, brief_md: brief, cached: false });
+    res.json({ book, chapter, level, brief_md: brief, cached: false });
   } catch (err) {
     next(err);
   }
