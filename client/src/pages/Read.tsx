@@ -18,6 +18,7 @@ export default function Read() {
       }
       if (e.key === 'j') goToAdjacentChapter(1);
       if (e.key === 'k') goToAdjacentChapter(-1);
+      if (e.key === 'g') navigate('/graph');
       if (e.key === 'n') {
         const { book, chapter, selection } = useReaderStore.getState();
         const params = new URLSearchParams({ new: '1', book, chapter: String(chapter) });

@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../lib/api';
+import { createNode, TYPE_COLORS } from '../../lib/graphApi';
 import { useNotes } from '../../lib/notesApi';
 import { useReaderStore } from '../../stores/useReaderStore';
 import { VerseRenderer, type Verse } from './VerseRenderer';
@@ -42,6 +43,20 @@ export function BibleReader() {
     }
     return set;
   }, [chapterNotes.data]);
+
+  async function addSelectionToGraph() {
+    if (!selection) return;
+    const range =
+      selection.end !== selection.start ? `${selection.start}–${selection.end}` : `${selection.start}`;
+    await createNode({
+      label: `${book} ${chapter}:${range}`,
+      type: 'verse',
+      body_md: '',
+      verse_ref: `${book} ${chapter}:${range}`,
+      color: TYPE_COLORS.verse,
+    });
+    navigate('/graph');
+  }
 
   function newNoteFromSelection() {
     const params = new URLSearchParams({ new: '1', book, chapter: String(chapter) });
@@ -101,6 +116,12 @@ export function BibleReader() {
               className="font-medium text-teal hover:underline dark:text-gold-soft"
             >
               Add note (n)
+            </button>
+            <button
+              onClick={addSelectionToGraph}
+              className="font-medium text-teal hover:underline dark:text-gold-soft"
+            >
+              Add to graph
             </button>
             <button onClick={clearSelection} className="text-ink-faint hover:underline">
               Clear

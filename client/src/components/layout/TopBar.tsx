@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { to: '/notes', label: 'Notes' },
   { to: '/plans', label: 'Plans' },
   { to: '/connections', label: 'Connections' },
+  { to: '/graph', label: 'Graph' },
 ];
 
 export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
