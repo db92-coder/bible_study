@@ -3,6 +3,11 @@
   "buildCommand": "npm run build",
   "outputDirectory": "client/dist",
   "regions": ["syd1"],
+  "functions": {
+    "api/index.ts": {
+      "maxDuration": 60
+    }
+  },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }

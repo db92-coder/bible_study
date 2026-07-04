@@ -3,6 +3,7 @@ import './env.js';
 import cors from 'cors';
 import express, { type NextFunction, type Request, type Response } from 'express';
 import { ZodError } from 'zod';
+import { chatRouter } from './routes/chat.js';
 import { connectionsRouter } from './routes/connections.js';
 import { contextRouter } from './routes/context.js';
 import { cultureRouter } from './routes/culture.js';
@@ -38,6 +39,7 @@ app.use('/api', lexiconRouter);
 app.use('/api', cultureRouter);
 app.use('/api', learnRouter);
 app.use('/api', storyRouter);
+app.use('/api', chatRouter);
 
 app.use((_req, res) => {
   res.status(404).json({ error: 'Not found' });

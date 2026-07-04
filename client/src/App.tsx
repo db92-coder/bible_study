@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { ChatPanel } from './components/chat/ChatPanel';
 import { useAuth } from './lib/AuthContext';
 import { isFirebaseConfigured } from './lib/firebase';
 import Connections from './pages/Connections';
@@ -47,7 +48,9 @@ export default function App() {
   if (!isFirebaseConfigured) return <SetupNotice />;
 
   return (
-    <Routes>
+    <>
+      <ChatPanel />
+      <Routes>
       <Route path="/login" element={<Login />} />
       <Route
         path="/"
@@ -122,6 +125,7 @@ export default function App() {
         }
       />
       <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+      </Routes>
+    </>
   );
 }
