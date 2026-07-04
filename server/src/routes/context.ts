@@ -21,8 +21,10 @@ contextRouter.get('/context/:book', async (req, res, next) => {
         .select('*')
         .eq('book', bookInfo.name)
         .maybeSingle();
-      if (error) throw error;
-      if (data) {
+      if (error) {
+        // Fall through to the in-code seed rather than failing the request.
+        console.warn('[scribe] book_context read failed:', error.message);
+      } else if (data) {
         res.json(data);
         return;
       }

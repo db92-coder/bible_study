@@ -1,4 +1,5 @@
 import { findBook } from '../data/books.js';
+import { envVar } from './env.js';
 import { supabase } from './supabase.js';
 
 export interface Verse {
@@ -21,7 +22,7 @@ export interface VersionInfo {
   language: string;
 }
 
-const API_BIBLE_KEY = process.env.API_BIBLE_KEY;
+const API_BIBLE_KEY = envVar('API_BIBLE_KEY');
 const API_BIBLE_BASE = 'https://rest.api.bible/v1';
 
 // Curated subset of API.Bible's English catalog — the full list has ~40 entries

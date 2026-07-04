@@ -1,7 +1,8 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+import { envVar } from './env.js';
 
-const url = process.env.SUPABASE_URL;
-const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const url = envVar('SUPABASE_URL');
+const serviceRoleKey = envVar('SUPABASE_SERVICE_ROLE_KEY');
 
 export const supabase: SupabaseClient | null =
   url && serviceRoleKey

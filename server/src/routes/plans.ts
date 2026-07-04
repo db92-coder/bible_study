@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { z } from 'zod';
 import { supabase } from '../lib/supabase.js';
+import { ensureProfile } from '../middleware/ensureProfile.js';
 import { verifyFirebaseToken } from '../middleware/verifyFirebaseToken.js';
 
 export const plansRouter = Router();
@@ -25,13 +26,18 @@ const planBody = z.object({
   days: z.array(daySchema).min(1).max(400),
 });
 
-plansRouter.use('/plans', verifyFirebaseToken, (_req, res, next) => {
-  if (!supabase) {
-    res.status(503).json({ error: 'Database is not configured' });
-    return;
-  }
-  next();
-});
+plansRouter.use(
+  '/plans',
+  verifyFirebaseToken,
+  (_req, res, next) => {
+    if (!supabase) {
+      res.status(503).json({ error: 'Database is not configured' });
+      return;
+    }
+    next();
+  },
+  ensureProfile,
+);
 
 // Mine + public starter plans, with day counts and my completion counts.
 plansRouter.get('/plans', async (req, res, next) => {

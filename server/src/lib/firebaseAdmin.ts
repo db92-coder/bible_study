@@ -1,10 +1,11 @@
 import { cert, getApps, initializeApp } from 'firebase-admin/app';
 import { getAuth, type Auth } from 'firebase-admin/auth';
+import { envVar } from './env.js';
 
-const projectId = process.env.FIREBASE_PROJECT_ID;
-const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+const projectId = envVar('FIREBASE_PROJECT_ID');
+const clientEmail = envVar('FIREBASE_CLIENT_EMAIL');
 // .env files store the key with literal \n sequences.
-const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+const privateKey = envVar('FIREBASE_PRIVATE_KEY')?.replace(/\\n/g, '\n');
 
 let adminAuth: Auth | null = null;
 

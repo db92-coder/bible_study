@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { z } from 'zod';
 import { findBook } from '../data/books.js';
 import { supabase } from '../lib/supabase.js';
+import { ensureProfile } from '../middleware/ensureProfile.js';
 import { verifyFirebaseToken } from '../middleware/verifyFirebaseToken.js';
 
 interface RefPoint {
@@ -104,7 +105,7 @@ connectionsRouter.get('/connections/mine', verifyFirebaseToken, async (req, res,
   }
 });
 
-connectionsRouter.post('/connections/mine', verifyFirebaseToken, async (req, res, next) => {
+connectionsRouter.post('/connections/mine', verifyFirebaseToken, ensureProfile, async (req, res, next) => {
   try {
     if (!requireDb(res)) return;
     const body = userConnBody.parse(req.body);

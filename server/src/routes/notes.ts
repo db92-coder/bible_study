@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { z } from 'zod';
 import { supabase } from '../lib/supabase.js';
+import { ensureProfile } from '../middleware/ensureProfile.js';
 import { verifyFirebaseToken } from '../middleware/verifyFirebaseToken.js';
 
 export const notesRouter = Router();
@@ -20,13 +21,18 @@ const listQuery = z.object({
   chapter: z.coerce.number().int().min(1).optional(),
 });
 
-notesRouter.use('/notes', verifyFirebaseToken, (_req, res, next) => {
-  if (!supabase) {
-    res.status(503).json({ error: 'Database is not configured' });
-    return;
-  }
-  next();
-});
+notesRouter.use(
+  '/notes',
+  verifyFirebaseToken,
+  (_req, res, next) => {
+    if (!supabase) {
+      res.status(503).json({ error: 'Database is not configured' });
+      return;
+    }
+    next();
+  },
+  ensureProfile,
+);
 
 notesRouter.get('/notes', async (req, res, next) => {
   try {
