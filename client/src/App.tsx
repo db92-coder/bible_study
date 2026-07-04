@@ -3,6 +3,8 @@ import { useAuth } from './lib/AuthContext';
 import { isFirebaseConfigured } from './lib/firebase';
 import Login from './pages/Login';
 import MapPage from './pages/Map';
+import Notes from './pages/Notes';
+import Plans from './pages/Plans';
 import Read from './pages/Read';
 
 function SetupNotice() {
@@ -55,6 +57,22 @@ export default function App() {
         element={
           <RequireAuth>
             <MapPage />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/notes"
+        element={
+          <RequireAuth>
+            <Notes />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/plans"
+        element={
+          <RequireAuth>
+            <Plans />
           </RequireAuth>
         }
       />

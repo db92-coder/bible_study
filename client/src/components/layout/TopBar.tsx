@@ -1,16 +1,19 @@
 import { signOut } from 'firebase/auth';
 import { NavLink } from 'react-router-dom';
-import { useDarkMode } from '../../hooks/useDarkMode';
+import { useThemeStore } from '../../stores/useThemeStore';
 import { auth } from '../../lib/firebase';
 import { VersionSwitcher } from '../reader/VersionSwitcher';
 
 const NAV_ITEMS = [
   { to: '/', label: 'Read' },
   { to: '/map', label: 'Map' },
+  { to: '/notes', label: 'Notes' },
+  { to: '/plans', label: 'Plans' },
 ];
 
 export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
-  const { dark, toggle } = useDarkMode();
+  const dark = useThemeStore((s) => s.dark);
+  const toggle = useThemeStore((s) => s.toggle);
 
   return (
     <header className="flex h-14 shrink-0 items-center gap-3 border-b border-parchment-300 bg-parchment-50 px-4 dark:border-parchment-700 dark:bg-parchment-800">

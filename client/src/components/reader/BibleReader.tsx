@@ -1,5 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { api } from '../../lib/api';
+import { useNotes } from '../../lib/notesApi';
 import { useReaderStore } from '../../stores/useReaderStore';
 import { VerseRenderer, type Verse } from './VerseRenderer';
 
@@ -28,6 +31,26 @@ function ChapterSkeleton() {
 export function BibleReader() {
   const { book, chapter, version, selection, clearSelection, goToAdjacentChapter } =
     useReaderStore();
+  const navigate = useNavigate();
+
+  const chapterNotes = useNotes({ book, chapter });
+  const notedVerses = useMemo(() => {
+    const set = new Set<number>();
+    for (const n of chapterNotes.data ?? []) {
+      if (n.verse_start == null) continue;
+      for (let v = n.verse_start; v <= (n.verse_end ?? n.verse_start); v++) set.add(v);
+    }
+    return set;
+  }, [chapterNotes.data]);
+
+  function newNoteFromSelection() {
+    const params = new URLSearchParams({ new: '1', book, chapter: String(chapter) });
+    if (selection) {
+      params.set('vs', String(selection.start));
+      params.set('ve', String(selection.end));
+    }
+    navigate(`/notes?${params}`);
+  }
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['scripture', version, book, chapter],
@@ -72,9 +95,17 @@ export function BibleReader() {
             </strong>{' '}
             <span className="text-ink-faint">(shift-click to extend)</span>
           </span>
-          <button onClick={clearSelection} className="text-teal hover:underline dark:text-gold-soft">
-            Clear
-          </button>
+          <span className="flex gap-3">
+            <button
+              onClick={newNoteFromSelection}
+              className="font-medium text-teal hover:underline dark:text-gold-soft"
+            >
+              Add note (n)
+            </button>
+            <button onClick={clearSelection} className="text-ink-faint hover:underline">
+              Clear
+            </button>
+          </span>
         </div>
       )}
 
@@ -88,7 +119,7 @@ export function BibleReader() {
         <>
           <p className="font-display text-lg leading-8">
             {data.verses.map((v) => (
-              <VerseRenderer key={v.verse} verse={v} />
+              <VerseRenderer key={v.verse} verse={v} hasNote={notedVerses.has(v.verse)} />
             ))}
           </p>
           {data.copyright && (
