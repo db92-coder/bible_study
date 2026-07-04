@@ -5,6 +5,7 @@ import express, { type NextFunction, type Request, type Response } from 'express
 import { ZodError } from 'zod';
 import { contextRouter } from './routes/context.js';
 import { meRouter } from './routes/me.js';
+import { placesRouter } from './routes/places.js';
 import { scriptureRouter } from './routes/scripture.js';
 import { versionsRouter } from './routes/versions.js';
 
@@ -20,6 +21,7 @@ app.use('/api', meRouter);
 app.use('/api', scriptureRouter);
 app.use('/api', versionsRouter);
 app.use('/api', contextRouter);
+app.use('/api', placesRouter);
 
 app.use((_req, res) => {
   res.status(404).json({ error: 'Not found' });

@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { useAuth } from './lib/AuthContext';
 import { isFirebaseConfigured } from './lib/firebase';
 import Login from './pages/Login';
+import MapPage from './pages/Map';
 import Read from './pages/Read';
 
 function SetupNotice() {
@@ -46,6 +47,14 @@ export default function App() {
         element={
           <RequireAuth>
             <Read />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/map"
+        element={
+          <RequireAuth>
+            <MapPage />
           </RequireAuth>
         }
       />

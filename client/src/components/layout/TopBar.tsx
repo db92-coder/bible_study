@@ -1,7 +1,13 @@
 import { signOut } from 'firebase/auth';
+import { NavLink } from 'react-router-dom';
 import { useDarkMode } from '../../hooks/useDarkMode';
 import { auth } from '../../lib/firebase';
 import { VersionSwitcher } from '../reader/VersionSwitcher';
+
+const NAV_ITEMS = [
+  { to: '/', label: 'Read' },
+  { to: '/map', label: 'Map' },
+];
 
 export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
   const { dark, toggle } = useDarkMode();
@@ -19,6 +25,25 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
       </button>
 
       <h1 className="font-display text-2xl tracking-tight">Scribe</h1>
+
+      <nav className="ml-4 flex items-center gap-1">
+        {NAV_ITEMS.map(({ to, label }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={to === '/'}
+            className={({ isActive }) =>
+              `rounded-lg px-3 py-1.5 text-sm font-medium transition ${
+                isActive
+                  ? 'bg-parchment-200 text-ink dark:bg-parchment-700 dark:text-ink-invert'
+                  : 'text-ink-faint hover:bg-parchment-100 hover:text-ink-soft dark:hover:bg-parchment-700'
+              }`
+            }
+          >
+            {label}
+          </NavLink>
+        ))}
+      </nav>
 
       <div className="ml-auto flex items-center gap-2">
         <VersionSwitcher />
