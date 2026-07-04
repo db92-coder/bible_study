@@ -1,7 +1,7 @@
 import MDEditor from '@uiw/react-md-editor';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createNode, TYPE_COLORS } from '../../lib/graphApi';
+import { autoLinkVersesToThemes, createNode, TYPE_COLORS } from '../../lib/graphApi';
 import { noteAnchorLabel, type Note, type NoteInput } from '../../lib/notesApi';
 import { VerseAnchorPicker, type VerseAnchor } from './VerseAnchorPicker';
 
@@ -49,13 +49,20 @@ export function NoteEditor({ note, initialAnchor, initialTitle, dark, saving, on
     const type = anchorRef ? 'verse' : 'idea';
     setAddingToGraph(true);
     try {
-      await createNode({
+      const node = await createNode({
         label: title.trim() || anchorRef || 'Note',
         type,
         body_md: body,
         verse_ref: anchorRef,
         color: TYPE_COLORS[type],
       });
+      if (anchorRef) {
+        try {
+          await autoLinkVersesToThemes([{ nodeId: node.id, ref: anchorRef, text: body.slice(0, 380) }]);
+        } catch {
+          /* non-fatal */
+        }
+      }
       navigate('/graph');
     } finally {
       setAddingToGraph(false);

@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { findBook, GENRE_INFO, parseOsisRef } from '../../data/books';
 import { api } from '../../lib/api';
-import { createNode, TYPE_COLORS } from '../../lib/graphApi';
+import { autoLinkVersesToThemes, createNode, TYPE_COLORS } from '../../lib/graphApi';
 import { useNotes } from '../../lib/notesApi';
 import { useReaderStore } from '../../stores/useReaderStore';
 import { VerseRenderer, type Verse } from './VerseRenderer';
@@ -51,13 +51,24 @@ export function BibleReader() {
     if (!selection) return;
     const range =
       selection.end !== selection.start ? `${selection.start}–${selection.end}` : `${selection.start}`;
-    await createNode({
-      label: `${book} ${chapter}:${range}`,
+    const ref = `${book} ${chapter}:${range}`;
+    const text = data?.verses
+      .filter((v) => v.verse >= selection.start && v.verse <= selection.end)
+      .map((v) => v.text)
+      .join(' ')
+      .slice(0, 380);
+    const node = await createNode({
+      label: ref,
       type: 'verse',
       body_md: '',
-      verse_ref: `${book} ${chapter}:${range}`,
+      verse_ref: ref,
       color: TYPE_COLORS.verse,
     });
+    try {
+      await autoLinkVersesToThemes([{ nodeId: node.id, ref, text }]);
+    } catch {
+      /* non-fatal */
+    }
     navigate('/graph');
   }
 

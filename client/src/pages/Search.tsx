@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TopBar } from '../components/layout/TopBar';
 import { api } from '../lib/api';
-import { createEdge, createNode, TYPE_COLORS } from '../lib/graphApi';
+import { autoLinkVersesToThemes, createEdge, createNode, TYPE_COLORS } from '../lib/graphApi';
 import { useReaderStore } from '../stores/useReaderStore';
 
 interface SearchResult {
@@ -76,6 +76,7 @@ export default function Search() {
         verse_ref: null,
         color: TYPE_COLORS.theme,
       });
+      const planted: Array<{ nodeId: string; ref: string; text?: string | null }> = [];
       for (const r of selected) {
         const verseNode = await createNode({
           label: r.label,
@@ -85,6 +86,13 @@ export default function Search() {
           color: TYPE_COLORS.verse,
         });
         await createEdge(theme.id, verseNode.id, topic);
+        planted.push({ nodeId: verseNode.id, ref: r.label, text: r.text });
+      }
+      // Cross-link the new verses to the user's other themes (best-effort).
+      try {
+        await autoLinkVersesToThemes(planted, [theme.id]);
+      } catch {
+        /* non-fatal */
       }
       navigate('/graph');
     } catch (err) {
