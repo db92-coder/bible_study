@@ -5,9 +5,11 @@ import { PlanBuilder } from '../components/plans/PlanBuilder';
 import { ProgressRing } from '../components/plans/ProgressRing';
 import {
   computeStreak,
+  generatePlan,
   usePlan,
   usePlanMutations,
   usePlans,
+  type PlanDetail,
   type PlanInput,
   type PlanSummary,
 } from '../lib/plansApi';
@@ -42,8 +44,42 @@ export default function Plans() {
   const [openId, setOpenId] = useState<string | null>(null);
   const [building, setBuilding] = useState(false);
   const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState<PlanDetail | null>(null);
+  const [wizardOpen, setWizardOpen] = useState(false);
+  const [goal, setGoal] = useState('');
+  const [knowledge, setKnowledge] = useState('');
+  const [ageGroup, setAgeGroup] = useState('');
+  const [generating, setGenerating] = useState(false);
+  const [wizardError, setWizardError] = useState<string | null>(null);
   const planQuery = usePlan(openId);
   const { create, update, remove, setProgress } = usePlanMutations();
+
+  async function handleGenerate() {
+    if (generating || (!goal.trim() && !knowledge)) return;
+    setGenerating(true);
+    setWizardError(null);
+    try {
+      const plan = await generatePlan({
+        goal: goal.trim() || undefined,
+        knowledge_level: (knowledge || undefined) as 'new' | 'some' | 'experienced' | undefined,
+        age_group: ageGroup || undefined,
+      });
+      setDraft({
+        id: '',
+        title: plan.title,
+        description: plan.description,
+        is_public: false,
+        is_mine: true,
+        plan_days: plan.days,
+      });
+      setWizardOpen(false);
+      setBuilding(true);
+    } catch (err) {
+      setWizardError(err instanceof Error ? err.message : 'Generation failed — try rephrasing');
+    } finally {
+      setGenerating(false);
+    }
+  }
 
   const streak = computeStreak(plansQuery.data?.progress ?? []);
 
@@ -54,6 +90,7 @@ export default function Plans() {
     } else {
       const plan = await create.mutateAsync(input);
       setBuilding(false);
+      setDraft(null);
       setOpenId(plan.id);
     }
   }
@@ -66,12 +103,13 @@ export default function Plans() {
       <main className="min-h-0 flex-1 overflow-y-auto">
         {building || (editing && detail) ? (
           <PlanBuilder
-            existing={editing ? (detail?.plan ?? null) : null}
+            existing={editing ? (detail?.plan ?? null) : draft}
             saving={create.isPending || update.isPending}
             onSave={handleSave}
             onCancel={() => {
               setBuilding(false);
               setEditing(false);
+              setDraft(null);
             }}
           />
         ) : openId && detail ? (
@@ -123,13 +161,76 @@ export default function Plans() {
                   </p>
                 )}
               </div>
-              <button
-                onClick={() => setBuilding(true)}
-                className="rounded-lg bg-teal px-4 py-2 text-sm font-medium text-white transition hover:bg-teal-deep dark:bg-gold dark:text-parchment-900"
-              >
-                + New plan
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setWizardOpen((o) => !o)}
+                  className="rounded-lg bg-teal px-4 py-2 text-sm font-medium text-white transition hover:bg-teal-deep dark:bg-gold dark:text-parchment-900"
+                >
+                  ✨ Create with AI
+                </button>
+                <button
+                  onClick={() => setBuilding(true)}
+                  className="rounded-lg border border-parchment-300 bg-white px-4 py-2 text-sm font-medium text-ink-soft transition hover:border-gold dark:border-parchment-700 dark:bg-parchment-800 dark:text-ink-invert"
+                >
+                  + Build by hand
+                </button>
+              </div>
             </div>
+
+            {wizardOpen && (
+              <div className="mt-5 rounded-xl border border-parchment-300 bg-white p-5 dark:border-parchment-700 dark:bg-parchment-800">
+                <h3 className="font-display text-xl">What would you like to do?</h3>
+                <textarea
+                  value={goal}
+                  onChange={(e) => setGoal(e.target.value)}
+                  rows={2}
+                  placeholder='e.g. "I want to read all 4 gospels in 1 month" — or leave blank for a starter plan matched to you'
+                  className="mt-3 w-full rounded-lg border border-parchment-300 bg-parchment-50 px-3 py-2 text-sm outline-none focus:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-ink-invert"
+                />
+                <div className="mt-3 flex flex-wrap gap-3">
+                  <label className="flex flex-col gap-1 text-xs font-medium text-ink-faint">
+                    How well do you know the Bible?
+                    <select
+                      value={knowledge}
+                      onChange={(e) => setKnowledge(e.target.value)}
+                      className="rounded-lg border border-parchment-300 bg-parchment-50 px-3 py-2 text-sm text-ink outline-none focus:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-ink-invert"
+                    >
+                      <option value="">No preference</option>
+                      <option value="new">I&apos;m new to it</option>
+                      <option value="some">Some familiarity</option>
+                      <option value="experienced">Very familiar</option>
+                    </select>
+                  </label>
+                  <label className="flex flex-col gap-1 text-xs font-medium text-ink-faint">
+                    Age group (optional)
+                    <select
+                      value={ageGroup}
+                      onChange={(e) => setAgeGroup(e.target.value)}
+                      className="rounded-lg border border-parchment-300 bg-parchment-50 px-3 py-2 text-sm text-ink outline-none focus:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-ink-invert"
+                    >
+                      <option value="">Prefer not to say</option>
+                      <option value="teenager">Teen</option>
+                      <option value="young adult (18-30)">18–30</option>
+                      <option value="adult (31-50)">31–50</option>
+                      <option value="over 50">50+</option>
+                    </select>
+                  </label>
+                </div>
+                {wizardError && <p className="mt-3 text-sm text-red-700">{wizardError}</p>}
+                <div className="mt-4 flex items-center justify-between">
+                  <p className="max-w-[32ch] text-xs text-ink-faint sm:max-w-none">
+                    You&apos;ll get a full draft to review and adjust before it becomes your plan.
+                  </p>
+                  <button
+                    onClick={handleGenerate}
+                    disabled={generating || (!goal.trim() && !knowledge)}
+                    className="shrink-0 rounded-lg bg-teal px-4 py-2 text-sm font-medium text-white transition hover:bg-teal-deep disabled:opacity-50 dark:bg-gold dark:text-parchment-900"
+                  >
+                    {generating ? 'Designing your plan…' : 'Generate plan'}
+                  </button>
+                </div>
+              </div>
+            )}
 
             {plansQuery.isLoading ? (
               <div className="mt-6 animate-pulse space-y-3">

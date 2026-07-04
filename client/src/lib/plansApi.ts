@@ -64,6 +64,16 @@ export function computeStreak(progress: ProgressRow[]): number {
   return streak;
 }
 
+export interface GeneratePlanInput {
+  goal?: string;
+  knowledge_level?: 'new' | 'some' | 'experienced';
+  age_group?: string;
+}
+
+export async function generatePlan(input: GeneratePlanInput): Promise<PlanInput> {
+  return (await api.post<{ plan: PlanInput }>('/plans/generate', input)).data.plan;
+}
+
 export function usePlans() {
   return useQuery({
     queryKey: ['plans'],

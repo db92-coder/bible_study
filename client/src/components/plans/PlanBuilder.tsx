@@ -86,7 +86,14 @@ export function PlanBuilder({
 
   return (
     <div className="mx-auto max-w-3xl space-y-4 p-6">
-      <h2 className="font-display text-2xl">{existing ? 'Edit plan' : 'Build a study plan'}</h2>
+      <h2 className="font-display text-2xl">
+        {existing ? (existing.id ? 'Edit plan' : 'Review your generated plan') : 'Build a study plan'}
+      </h2>
+      {existing && !existing.id && (
+        <p className="text-sm text-ink-faint">
+          Adjust anything you like — days, passages, prompts — then save it as your plan.
+        </p>
+      )}
 
       <input
         value={title}
@@ -183,7 +190,7 @@ export function PlanBuilder({
           disabled={saving || !title.trim() || days.every((d) => d.passages.length === 0)}
           className="rounded-lg bg-teal px-5 py-2 text-sm font-medium text-white transition hover:bg-teal-deep disabled:opacity-50 dark:bg-gold dark:text-parchment-900"
         >
-          {saving ? 'Saving…' : existing ? 'Save changes' : 'Create plan'}
+          {saving ? 'Saving…' : existing?.id ? 'Save changes' : 'Create plan'}
         </button>
       </div>
     </div>
