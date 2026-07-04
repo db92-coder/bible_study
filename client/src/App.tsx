@@ -10,6 +10,7 @@ import MapPage from './pages/Map';
 import Notes from './pages/Notes';
 import Plans from './pages/Plans';
 import Read from './pages/Read';
+import Story from './pages/Story';
 
 function SetupNotice() {
   return (
@@ -109,6 +110,14 @@ export default function App() {
         element={
           <RequireAuth>
             <Learn />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/story"
+        element={
+          <RequireAuth>
+            <Story />
           </RequireAuth>
         }
       />

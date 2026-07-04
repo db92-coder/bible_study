@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { findBook, GENRE_INFO } from '../../data/books';
+import { findBook, GENRE_INFO, parseOsisRef } from '../../data/books';
 import { api } from '../../lib/api';
 import { createNode, TYPE_COLORS } from '../../lib/graphApi';
 import { useNotes } from '../../lib/notesApi';
@@ -31,7 +31,7 @@ function ChapterSkeleton() {
 }
 
 export function BibleReader() {
-  const { book, chapter, version, selection, clearSelection, goToAdjacentChapter } =
+  const { book, chapter, version, selection, clearSelection, goToAdjacentChapter, setLocation } =
     useReaderStore();
   const navigate = useNavigate();
   const [showGenreHelp, setShowGenreHelp] = useState(false);
@@ -60,6 +60,32 @@ export function BibleReader() {
     });
     navigate('/graph');
   }
+
+  const crossrefs = useQuery({
+    queryKey: ['crossrefs', book, chapter],
+    queryFn: async () =>
+      (
+        await api.get<{ refs: Record<number, string[]> }>(
+          `/crossrefs/${encodeURIComponent(book)}/${chapter}`,
+        )
+      ).data.refs,
+    staleTime: Infinity,
+  });
+
+  const selectionRefs = useMemo(() => {
+    if (!selection || !crossrefs.data) return [];
+    const seen = new Set<string>();
+    const out: Array<{ osis: string; label: string; book: string; chapter: number }> = [];
+    for (let v = selection.start; v <= selection.end && out.length < 10; v++) {
+      for (const osis of crossrefs.data[v] ?? []) {
+        if (seen.has(osis) || out.length >= 10) continue;
+        seen.add(osis);
+        const parsed = parseOsisRef(osis);
+        if (parsed) out.push({ osis, label: parsed.label, book: parsed.book, chapter: parsed.chapter });
+      }
+    }
+    return out;
+  }, [selection, crossrefs.data]);
 
   function newNoteFromSelection() {
     const params = new URLSearchParams({ new: '1', book, chapter: String(chapter) });
@@ -157,6 +183,26 @@ export function BibleReader() {
               Clear
             </button>
           </span>
+        </div>
+      )}
+
+      {selection && selectionRefs.length > 0 && (
+        <div className="mb-6 rounded-lg border border-parchment-300 bg-parchment-50 px-4 py-3 dark:border-parchment-700 dark:bg-parchment-800">
+          <h4 className="text-xs font-semibold uppercase tracking-widest text-ink-faint">
+            Scripture connects here
+          </h4>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {selectionRefs.map((r) => (
+              <button
+                key={r.osis}
+                onClick={() => setLocation(r.book, r.chapter)}
+                title={`Read ${r.label}`}
+                className="rounded-md border border-parchment-300 bg-white px-2 py-0.5 font-display text-sm text-teal transition hover:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-gold-soft"
+              >
+                {r.label}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 

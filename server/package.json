@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc && mkdir -p dist/data && cp src/data/places.json src/data/connections.json src/data/lexicon.json dist/data/",
+    "build": "tsc && mkdir -p dist/data && cp src/data/places.json src/data/connections.json src/data/lexicon.json src/data/timeline.json src/data/crossrefs.json dist/data/",
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
     "seed:context": "tsx src/seed/seedBookContext.ts",

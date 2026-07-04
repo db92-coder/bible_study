@@ -56,6 +56,15 @@ export default function MapPage() {
   const places = placesQuery.data ?? [];
   const journeys = (scope === 'book' && journeysQuery.data) || [];
 
+  // Deep link from the Story page: /map?era=Kingdom
+  useEffect(() => {
+    const wantedEra = searchParams.get('era');
+    if (!wantedEra) return;
+    setEra(wantedEra);
+    setScope('all');
+    setSearchParams({}, { replace: true });
+  }, [searchParams, setSearchParams]);
+
   // Deep link from the reader's chapter place chips: /map?place=Name
   useEffect(() => {
     const wanted = searchParams.get('place');

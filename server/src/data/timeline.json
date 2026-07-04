@@ -1,0 +1,875 @@
+{
+ "eras": [
+  {
+   "name": "Creation",
+   "start": -4000,
+   "end": -2350,
+   "color": "#2d6a4f"
+  },
+  {
+   "name": "Patriarchs",
+   "start": -2350,
+   "end": -1446,
+   "color": "#8a6f3c"
+  },
+  {
+   "name": "Egypt & Exodus",
+   "start": -1446,
+   "end": -1400,
+   "color": "#c0392b"
+  },
+  {
+   "name": "Judges",
+   "start": -1400,
+   "end": -1050,
+   "color": "#6c3483"
+  },
+  {
+   "name": "United Kingdom",
+   "start": -1050,
+   "end": -930,
+   "color": "#d4a843"
+  },
+  {
+   "name": "Divided Kingdom",
+   "start": -930,
+   "end": -586,
+   "color": "#2874a6"
+  },
+  {
+   "name": "Exile",
+   "start": -605,
+   "end": -538,
+   "color": "#717d7e"
+  },
+  {
+   "name": "Return",
+   "start": -538,
+   "end": -430,
+   "color": "#1a8a5a"
+  },
+  {
+   "name": "Intertestamental",
+   "start": -430,
+   "end": -5,
+   "color": "#4a4a4a"
+  },
+  {
+   "name": "New Testament",
+   "start": -5,
+   "end": 33,
+   "color": "#c0392b"
+  },
+  {
+   "name": "Early Church",
+   "start": 33,
+   "end": 100,
+   "color": "#8e44ad"
+  }
+ ],
+ "events": [
+  {
+   "id": 1,
+   "title": "Creation",
+   "year": -4000,
+   "era": "Creation",
+   "scripture": "Genesis 1–2",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 1
+    }
+   ],
+   "description": "God creates the heavens, earth, and humanity in six days. Adam and Eve dwell in the Garden of Eden.",
+   "significance": "The foundation of all reality; establishes the Creator-creature relationship."
+  },
+  {
+   "id": 2,
+   "title": "The Fall",
+   "year": -3970,
+   "era": "Creation",
+   "scripture": "Genesis 3",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 3
+    }
+   ],
+   "description": "Adam and Eve disobey God, eating the forbidden fruit. Sin and death enter creation. God promises a Redeemer (3:15).",
+   "significance": "The wound that the rest of the Bible heals."
+  },
+  {
+   "id": 3,
+   "title": "Cain Murders Abel",
+   "year": -3900,
+   "era": "Creation",
+   "scripture": "Genesis 4",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 4
+    }
+   ],
+   "description": "The first murder: Cain kills his brother Abel out of jealousy. God places a mark on Cain.",
+   "significance": "Sin's spread in the first generation; Abel's blood cries out foreshadowing the Lamb."
+  },
+  {
+   "id": 4,
+   "title": "Enoch Walks with God",
+   "year": -3378,
+   "era": "Creation",
+   "scripture": "Genesis 5:21–24",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 5
+    }
+   ],
+   "description": "Enoch walked with God for 365 years and 'was not, for God took him' — he never died.",
+   "significance": "A preview of resurrection and translation; Hebrews 11:5."
+  },
+  {
+   "id": 5,
+   "title": "Noah and the Flood",
+   "year": -2348,
+   "era": "Patriarchs",
+   "scripture": "Genesis 6–9",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 6
+    }
+   ],
+   "description": "Global flood judges humanity's wickedness. Noah, his family, and animals are saved in the ark. The rainbow covenant is given.",
+   "significance": "Judgment and salvation; a type of baptism (1 Peter 3:20–21) and eschatological judgment."
+  },
+  {
+   "id": 6,
+   "title": "Tower of Babel",
+   "year": -2242,
+   "era": "Patriarchs",
+   "scripture": "Genesis 11:1–9",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 11
+    }
+   ],
+   "description": "Humanity unites to build a tower to heaven. God confuses their language and scatters them across the earth.",
+   "significance": "Origin of the nations; reversed at Pentecost (Acts 2) when all hear in their own language."
+  },
+  {
+   "id": 7,
+   "title": "Abraham's Call",
+   "year": -2000,
+   "era": "Patriarchs",
+   "scripture": "Genesis 12:1–3",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 12
+    }
+   ],
+   "description": "God calls Abram from Ur to leave for a land he would be shown. God makes three promises: land, seed, and blessing.",
+   "significance": "The pivot of the OT; the Abrahamic covenant drives the rest of the biblical story."
+  },
+  {
+   "id": 8,
+   "title": "Sodom and Gomorrah",
+   "year": -1900,
+   "era": "Patriarchs",
+   "scripture": "Genesis 19",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 19
+    }
+   ],
+   "description": "God destroys Sodom and Gomorrah with fire and brimstone for their wickedness. Lot is rescued.",
+   "significance": "A warning of final judgment; Jude 7 calls it 'an example of eternal fire.'"
+  },
+  {
+   "id": 9,
+   "title": "Isaac Born & Offered",
+   "year": -1900,
+   "era": "Patriarchs",
+   "scripture": "Genesis 21–22",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 21
+    }
+   ],
+   "description": "The child of promise is born to 100-year-old Abraham and 90-year-old Sarah. Abraham then offers Isaac on Moriah.",
+   "significance": "Isaac's 'resurrection' is the greatest OT preview of Christ's resurrection (Hebrews 11:17–19)."
+  },
+  {
+   "id": 10,
+   "title": "Jacob and the 12 Tribes",
+   "year": -1800,
+   "era": "Patriarchs",
+   "scripture": "Genesis 28–50",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 28
+    }
+   ],
+   "description": "Jacob fathers twelve sons who become the twelve tribes of Israel. He wrestles with God and is renamed Israel.",
+   "significance": "The twelve tribes are the nation through which the Messiah will come."
+  },
+  {
+   "id": 11,
+   "title": "Joseph in Egypt",
+   "year": -1700,
+   "era": "Patriarchs",
+   "scripture": "Genesis 37–50",
+   "refs": [
+    {
+     "book": "Genesis",
+     "chapter": 37
+    }
+   ],
+   "description": "Joseph is sold by his brothers, becomes Pharaoh's right hand, and saves Egypt and his family from famine.",
+   "significance": "Greatest OT type of Christ: betrayed, exalted, brings salvation to his people."
+  },
+  {
+   "id": 12,
+   "title": "Moses Born",
+   "year": -1526,
+   "era": "Egypt & Exodus",
+   "scripture": "Exodus 2",
+   "refs": [
+    {
+     "book": "Exodus",
+     "chapter": 2
+    }
+   ],
+   "description": "Moses is born to Levite parents during Pharaoh's genocide of Hebrew boys. He is hidden in a basket on the Nile.",
+   "significance": "Foreshadows Jesus's infancy: a powerful king tries to kill the deliverer-child."
+  },
+  {
+   "id": 13,
+   "title": "The Burning Bush",
+   "year": -1446,
+   "era": "Egypt & Exodus",
+   "scripture": "Exodus 3",
+   "refs": [
+    {
+     "book": "Exodus",
+     "chapter": 3
+    }
+   ],
+   "description": "God appears to Moses in a burning bush and reveals His name: I AM. Moses is commissioned to deliver Israel.",
+   "significance": "The first full revelation of God's covenant name (YHWH); Jesus will claim 'I AM' in John's Gospel."
+  },
+  {
+   "id": 14,
+   "title": "The Exodus",
+   "year": -1446,
+   "era": "Egypt & Exodus",
+   "scripture": "Exodus 12–15",
+   "refs": [
+    {
+     "book": "Exodus",
+     "chapter": 12
+    }
+   ],
+   "description": "Ten plagues culminate in the Passover. Israel escapes Egypt. The Red Sea parts; Israel crosses on dry ground.",
+   "significance": "The defining redemption event of the OT; a type of salvation from sin's bondage."
+  },
+  {
+   "id": 15,
+   "title": "Law Given at Sinai",
+   "year": -1446,
+   "era": "Egypt & Exodus",
+   "scripture": "Exodus 19–20",
+   "refs": [
+    {
+     "book": "Exodus",
+     "chapter": 19
+    }
+   ],
+   "description": "God descends on Mount Sinai in fire and smoke. He gives Moses the Ten Commandments and the whole Mosaic Law.",
+   "significance": "The Mosaic Covenant; reveals sin's seriousness and points to the need for Christ."
+  },
+  {
+   "id": 16,
+   "title": "Tabernacle Constructed",
+   "year": -1445,
+   "era": "Egypt & Exodus",
+   "scripture": "Exodus 25–40",
+   "refs": [
+    {
+     "book": "Exodus",
+     "chapter": 25
+    }
+   ],
+   "description": "God gives detailed instructions for the portable sanctuary. The glory cloud fills the completed Tabernacle.",
+   "significance": "God dwelling among His people; every element foreshadows Christ."
+  },
+  {
+   "id": 17,
+   "title": "Israel Enters Canaan",
+   "year": -1406,
+   "era": "Judges",
+   "scripture": "Joshua 3–4",
+   "refs": [
+    {
+     "book": "Joshua",
+     "chapter": 3
+    }
+   ],
+   "description": "After 40 years in the wilderness, Israel crosses the Jordan under Joshua and begins to take the Promised Land.",
+   "significance": "Joshua (same name as Jesus in Hebrew) leads Israel into rest — a picture of Christ."
+  },
+  {
+   "id": 18,
+   "title": "Period of the Judges",
+   "year": -1380,
+   "era": "Judges",
+   "scripture": "Judges 1–21",
+   "refs": [
+    {
+     "book": "Judges",
+     "chapter": 1
+    }
+   ],
+   "description": "A cycle of apostasy, oppression, crying out, and deliverance through judges. 'Everyone did what was right in their own eyes.'",
+   "significance": "Shows human inability to keep the covenant; points to the need for an eternal King."
+  },
+  {
+   "id": 19,
+   "title": "Ruth and Boaz",
+   "year": -1100,
+   "era": "Judges",
+   "scripture": "Ruth 1–4",
+   "refs": [
+    {
+     "book": "Ruth",
+     "chapter": 1
+    }
+   ],
+   "description": "Ruth, a Moabite widow, finds kinsman-redeemer Boaz in Bethlehem. They marry and become great-grandparents of David.",
+   "significance": "Greatest OT picture of redemption; Boaz is a type of Christ the kinsman-redeemer."
+  },
+  {
+   "id": 20,
+   "title": "Samuel and Saul",
+   "year": -1050,
+   "era": "United Kingdom",
+   "scripture": "1 Samuel 8–15",
+   "refs": [
+    {
+     "book": "1 Samuel",
+     "chapter": 8
+    }
+   ],
+   "description": "Israel demands a king. God gives them Saul, a tall man from Benjamin. He disobeys and is rejected by God.",
+   "significance": "Human kingship fails; it takes a man after God's own heart to bring peace."
+  },
+  {
+   "id": 21,
+   "title": "David Anointed King",
+   "year": -1010,
+   "era": "United Kingdom",
+   "scripture": "1 Samuel 16; 2 Samuel 2–5",
+   "refs": [
+    {
+     "book": "1 Samuel",
+     "chapter": 16
+    },
+    {
+     "book": "2 Samuel",
+     "chapter": 2
+    }
+   ],
+   "description": "David the shepherd boy is anointed by Samuel. After years of exile, he becomes king over all Israel. He conquers Jerusalem.",
+   "significance": "The Davidic covenant (2 Samuel 7) establishes the messianic lineage."
+  },
+  {
+   "id": 22,
+   "title": "Solomon's Temple Built",
+   "year": -966,
+   "era": "United Kingdom",
+   "scripture": "1 Kings 6–8",
+   "refs": [
+    {
+     "book": "1 Kings",
+     "chapter": 6
+    }
+   ],
+   "description": "Solomon builds the Temple in Jerusalem over seven years. The glory of God fills it at the dedication.",
+   "significance": "The permanent dwelling of God's presence; points to the ultimate temple — Jesus and the New Jerusalem."
+  },
+  {
+   "id": 23,
+   "title": "Kingdom Divides",
+   "year": -930,
+   "era": "Divided Kingdom",
+   "scripture": "1 Kings 12",
+   "refs": [
+    {
+     "book": "1 Kings",
+     "chapter": 12
+    }
+   ],
+   "description": "After Solomon's death, the kingdom splits: Israel (10 northern tribes) and Judah (2 southern tribes). Jeroboam leads the north into idolatry.",
+   "significance": "The beginning of the long road to exile; the prophetic period intensifies."
+  },
+  {
+   "id": 24,
+   "title": "Elijah and the Prophets",
+   "year": -860,
+   "era": "Divided Kingdom",
+   "scripture": "1 Kings 17–19; 2 Kings 1–2",
+   "refs": [
+    {
+     "book": "1 Kings",
+     "chapter": 17
+    },
+    {
+     "book": "2 Kings",
+     "chapter": 1
+    }
+   ],
+   "description": "Elijah confronts the Baal-worshipping king Ahab. Fire falls at Carmel. He is taken to heaven in a chariot of fire.",
+   "significance": "Elijah is the promised forerunner of the Messiah (Malachi 4:5); his 'return' is fulfilled in John the Baptist."
+  },
+  {
+   "id": 25,
+   "title": "Isaiah's Ministry",
+   "year": -740,
+   "era": "Divided Kingdom",
+   "scripture": "Isaiah 1–66",
+   "refs": [
+    {
+     "book": "Isaiah",
+     "chapter": 1
+    }
+   ],
+   "description": "Isaiah prophesies for 60 years under four kings. He sees the throne of God and gives the most detailed messianic prophecies in the OT.",
+   "significance": "Isaiah 53 describes the suffering servant with such precision it has been called 'the fifth Gospel.'"
+  },
+  {
+   "id": 26,
+   "title": "Northern Kingdom Falls",
+   "year": -722,
+   "era": "Divided Kingdom",
+   "scripture": "2 Kings 17",
+   "refs": [
+    {
+     "book": "2 Kings",
+     "chapter": 17
+    }
+   ],
+   "description": "Assyria under Shalmaneser V destroys Samaria. The ten northern tribes are deported and scattered — the 'lost tribes of Israel.'",
+   "significance": "Judgment on persistent idolatry; the ten tribes are largely absorbed into the nations."
+  },
+  {
+   "id": 27,
+   "title": "Josiah's Reformation",
+   "year": -621,
+   "era": "Divided Kingdom",
+   "scripture": "2 Kings 22–23",
+   "refs": [
+    {
+     "book": "2 Kings",
+     "chapter": 22
+    }
+   ],
+   "description": "Young King Josiah discovers the Book of the Law. He tears his robes, cleanses the Temple, and leads the greatest revival in Judah's history.",
+   "significance": "The last great revival before the Babylonian exile; shows that even revival cannot permanently reverse the covenant curse."
+  },
+  {
+   "id": 28,
+   "title": "Babylon Conquers Judah",
+   "year": -605,
+   "era": "Exile",
+   "scripture": "Daniel 1; 2 Kings 24–25",
+   "refs": [
+    {
+     "book": "Daniel",
+     "chapter": 1
+    },
+    {
+     "book": "2 Kings",
+     "chapter": 24
+    }
+   ],
+   "description": "Nebuchadnezzar defeats Judah in three waves (605, 597, 586 BC). Jerusalem and the Temple are destroyed. The people are exiled to Babylon.",
+   "significance": "The Davidic throne appears extinguished — making the messianic promises even more miraculous."
+  },
+  {
+   "id": 29,
+   "title": "Daniel in Babylon",
+   "year": -605,
+   "era": "Exile",
+   "scripture": "Daniel 1–12",
+   "refs": [
+    {
+     "book": "Daniel",
+     "chapter": 1
+    }
+   ],
+   "description": "Daniel and friends remain faithful in exile. Daniel interprets dreams and receives visions of four world empires and the Son of Man.",
+   "significance": "Daniel 9:25–26 gives the precise timetable for the Messiah's coming and death."
+  },
+  {
+   "id": 30,
+   "title": "Ezekiel's Visions",
+   "year": -593,
+   "era": "Exile",
+   "scripture": "Ezekiel 1–48",
+   "refs": [
+    {
+     "book": "Ezekiel",
+     "chapter": 1
+    }
+   ],
+   "description": "Ezekiel prophesies to the exiles. He sees the glory departing the Temple, the valley of dry bones, and the future Temple.",
+   "significance": "Ezekiel 37 (dry bones) and 36:26–27 (new heart and spirit) point to the New Covenant and resurrection."
+  },
+  {
+   "id": 31,
+   "title": "Cyrus Decrees Return",
+   "year": -538,
+   "era": "Return",
+   "scripture": "Ezra 1:1–4; Isaiah 44:28",
+   "refs": [
+    {
+     "book": "Ezra",
+     "chapter": 1
+    },
+    {
+     "book": "Isaiah",
+     "chapter": 44
+    }
+   ],
+   "description": "Persian King Cyrus issues a decree allowing the Jews to return to Israel and rebuild the Temple — named by Isaiah 150 years earlier!",
+   "significance": "Confirms the precision of biblical prophecy; the first wave returns under Zerubbabel."
+  },
+  {
+   "id": 32,
+   "title": "Temple Rebuilt",
+   "year": -516,
+   "era": "Return",
+   "scripture": "Ezra 3–6; Haggai; Zechariah",
+   "refs": [
+    {
+     "book": "Ezra",
+     "chapter": 3
+    },
+    {
+     "book": "Haggai",
+     "chapter": 1
+    },
+    {
+     "book": "Zechariah",
+     "chapter": 1
+    }
+   ],
+   "description": "After opposition and delay, the Second Temple is completed under Zerubbabel. The older priests weep, remembering Solomon's glory.",
+   "significance": "Haggai 2:9 promises 'the glory of this latter house shall be greater' — fulfilled when Jesus enters it."
+  },
+  {
+   "id": 33,
+   "title": "Ezra and Nehemiah",
+   "year": -458,
+   "era": "Return",
+   "scripture": "Ezra 7–10; Nehemiah 1–13",
+   "refs": [
+    {
+     "book": "Ezra",
+     "chapter": 7
+    },
+    {
+     "book": "Nehemiah",
+     "chapter": 1
+    }
+   ],
+   "description": "Ezra leads a spiritual revival; Nehemiah rebuilds Jerusalem's walls in 52 days despite opposition.",
+   "significance": "The decree of Nehemiah 2 is the starting point for Daniel's 70-weeks calculation."
+  },
+  {
+   "id": 34,
+   "title": "Malachi — Last Prophet",
+   "year": -430,
+   "era": "Return",
+   "scripture": "Malachi 1–4",
+   "refs": [
+    {
+     "book": "Malachi",
+     "chapter": 1
+    }
+   ],
+   "description": "The last OT prophet. Malachi rebukes Israel's half-hearted worship and promises a forerunner before 'the great day of the LORD.'",
+   "significance": "Closes the OT. After this, 400 years of prophetic silence before John the Baptist's voice."
+  },
+  {
+   "id": 35,
+   "title": "400 Years of Silence",
+   "year": -430,
+   "era": "Intertestamental",
+   "scripture": "Malachi 4:5–6",
+   "refs": [
+    {
+     "book": "Malachi",
+     "chapter": 4
+    }
+   ],
+   "description": "No new prophets arise. Israel suffers under Greek and then Roman rule. The Pharisees and Sadducees emerge.",
+   "significance": "The silence intensifies expectation for the Messiah. The world stage is set: Roman peace, Greek language, Jewish diaspora."
+  },
+  {
+   "id": 36,
+   "title": "Birth of John the Baptist",
+   "year": -5,
+   "era": "New Testament",
+   "scripture": "Luke 1:5–25, 57–80",
+   "refs": [
+    {
+     "book": "Luke",
+     "chapter": 1
+    }
+   ],
+   "description": "Gabriel announces to Zechariah that his barren wife Elizabeth will bear a son named John — the forerunner of the Lord.",
+   "significance": "Breaks the 400-year silence; the final OT-style prophet who bridges the two Testaments."
+  },
+  {
+   "id": 37,
+   "title": "Birth of Jesus",
+   "year": -4,
+   "era": "New Testament",
+   "scripture": "Luke 2:1–20; Matthew 1:18–2:23",
+   "refs": [
+    {
+     "book": "Luke",
+     "chapter": 2
+    },
+    {
+     "book": "Matthew",
+     "chapter": 1
+    }
+   ],
+   "description": "Jesus is born in Bethlehem to Mary, a virgin, during the census of Augustus. Angels announce to shepherds; Magi bring gifts.",
+   "significance": "The Incarnation: God becomes man. The Word made flesh (John 1:14)."
+  },
+  {
+   "id": 38,
+   "title": "Baptism of Jesus",
+   "year": 27,
+   "era": "New Testament",
+   "scripture": "Matthew 3:13–17; Mark 1:9–11",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 3
+    },
+    {
+     "book": "Mark",
+     "chapter": 1
+    }
+   ],
+   "description": "Jesus is baptised by John in the Jordan. The Spirit descends as a dove; the Father speaks: 'This is my beloved Son.'",
+   "significance": "The inauguration of Jesus's ministry; the Trinity is revealed; fulfils Isaiah 42:1."
+  },
+  {
+   "id": 39,
+   "title": "Temptation in the Desert",
+   "year": 27,
+   "era": "New Testament",
+   "scripture": "Matthew 4:1–11",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 4
+    }
+   ],
+   "description": "The Spirit leads Jesus into the wilderness for 40 days. Satan tests Him three times; Jesus rebuffs each with Scripture.",
+   "significance": "Where Israel failed 40 years in the wilderness, the Second Adam succeeds."
+  },
+  {
+   "id": 40,
+   "title": "Sermon on the Mount",
+   "year": 28,
+   "era": "New Testament",
+   "scripture": "Matthew 5–7",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 5
+    }
+   ],
+   "description": "Jesus delivers the magna carta of the Kingdom of God: Beatitudes, deeper law, prayer, and the two ways.",
+   "significance": "Jesus interprets the Law from the inside — as the New Moses giving a new Torah."
+  },
+  {
+   "id": 41,
+   "title": "Triumphal Entry",
+   "year": 30,
+   "era": "New Testament",
+   "scripture": "Matthew 21:1–11; Zechariah 9:9",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 21
+    },
+    {
+     "book": "Zechariah",
+     "chapter": 9
+    }
+   ],
+   "description": "Jesus enters Jerusalem on a donkey to crowds shouting Hosanna. Palm branches are laid in His path.",
+   "significance": "Fulfils Zechariah 9:9 precisely; announces His Kingship."
+  },
+  {
+   "id": 42,
+   "title": "The Last Supper",
+   "year": 30,
+   "era": "New Testament",
+   "scripture": "Luke 22:7–20; 1 Corinthians 11:23–26",
+   "refs": [
+    {
+     "book": "Luke",
+     "chapter": 22
+    },
+    {
+     "book": "1 Corinthians",
+     "chapter": 11
+    }
+   ],
+   "description": "Jesus eats the Passover with His disciples. He institutes the Lord's Supper, inaugurating the New Covenant with His blood.",
+   "significance": "The Passover Lamb and the New Covenant come together in one meal."
+  },
+  {
+   "id": 43,
+   "title": "Crucifixion",
+   "year": 30,
+   "era": "New Testament",
+   "scripture": "John 19; Isaiah 53; Psalm 22",
+   "refs": [
+    {
+     "book": "John",
+     "chapter": 19
+    },
+    {
+     "book": "Isaiah",
+     "chapter": 53
+    },
+    {
+     "book": "Psalms",
+     "chapter": 22
+    }
+   ],
+   "description": "Jesus is crucified at Golgotha. The veil of the Temple tears. Darkness for three hours. 'It is finished.'",
+   "significance": "The Suffering Servant prophecy (Isaiah 53) fulfilled in every detail; sins atoned for."
+  },
+  {
+   "id": 44,
+   "title": "Resurrection",
+   "year": 30,
+   "era": "New Testament",
+   "scripture": "Matthew 28; 1 Corinthians 15:3–8",
+   "refs": [
+    {
+     "book": "Matthew",
+     "chapter": 28
+    },
+    {
+     "book": "1 Corinthians",
+     "chapter": 15
+    }
+   ],
+   "description": "On the third day Jesus rises bodily from the tomb. He appears to Mary, the disciples, and over 500 people.",
+   "significance": "Vindicates Jesus's claims, defeats death, and guarantees the resurrection of believers."
+  },
+  {
+   "id": 45,
+   "title": "Ascension",
+   "year": 30,
+   "era": "New Testament",
+   "scripture": "Acts 1:9–11; Psalm 110:1",
+   "refs": [
+    {
+     "book": "Acts",
+     "chapter": 1
+    },
+    {
+     "book": "Psalms",
+     "chapter": 110
+    }
+   ],
+   "description": "Forty days after the resurrection, Jesus ascends bodily into heaven before witnesses.",
+   "significance": "Takes His seat at the Father's right hand (Psalm 110:1); intercedes for believers."
+  },
+  {
+   "id": 46,
+   "title": "Pentecost",
+   "year": 30,
+   "era": "Early Church",
+   "scripture": "Acts 2; Joel 2:28–32",
+   "refs": [
+    {
+     "book": "Acts",
+     "chapter": 2
+    },
+    {
+     "book": "Joel",
+     "chapter": 2
+    }
+   ],
+   "description": "The Holy Spirit descends on 120 disciples with fire and wind. 3,000 are baptised. The Church is born.",
+   "significance": "Reversal of Babel; the promised Spirit poured out; Church age begins."
+  },
+  {
+   "id": 47,
+   "title": "Paul's Conversion",
+   "year": 33,
+   "era": "Early Church",
+   "scripture": "Acts 9:1–19",
+   "refs": [
+    {
+     "book": "Acts",
+     "chapter": 9
+    }
+   ],
+   "description": "Saul of Tarsus, persecutor of Christians, is blinded by the risen Christ on the road to Damascus and converts.",
+   "significance": "The most dramatic conversion in history; Paul becomes the apostle to the Gentiles."
+  },
+  {
+   "id": 48,
+   "title": "Jerusalem Destroyed",
+   "year": 70,
+   "era": "Early Church",
+   "scripture": "Luke 21:20–24; Matthew 24:2",
+   "refs": [
+    {
+     "book": "Luke",
+     "chapter": 21
+    },
+    {
+     "book": "Matthew",
+     "chapter": 24
+    }
+   ],
+   "description": "Roman General Titus besieges and destroys Jerusalem and the Temple, as Jesus predicted in precise detail.",
+   "significance": "Fulfils Jesus's prophecy; the Mosaic age ends; Jewish worship is radically altered."
+  },
+  {
+   "id": 49,
+   "title": "Revelation Written",
+   "year": 95,
+   "era": "Early Church",
+   "scripture": "Revelation 1:9",
+   "refs": [
+    {
+     "book": "Revelation",
+     "chapter": 1
+    }
+   ],
+   "description": "The aged apostle John, exiled on Patmos, receives the final vision — the Revelation of Jesus Christ.",
+   "significance": "Completes the biblical canon; shows the triumph of Christ and the New Creation."
+  }
+ ]
+}
