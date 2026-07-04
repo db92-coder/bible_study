@@ -116,21 +116,31 @@ export function ArcDiagram({
         const dim = activeId !== null && !isActive;
         const rx = Math.max((a.x2 - a.x1) / 2, 6);
         const ry = Math.min(AXIS_Y - 30, rx * 0.75 + 24);
+        const d = `M ${a.x1} ${AXIS_Y} A ${rx} ${ry} 0 0 1 ${a.x2} ${AXIS_Y}`;
         return (
-          <path
-            key={a.conn.id}
-            d={`M ${a.x1} ${AXIS_Y} A ${rx} ${ry} 0 0 1 ${a.x2} ${AXIS_Y}`}
-            fill="none"
-            stroke={a.color}
-            strokeWidth={isActive ? 3.5 : 1.8}
-            strokeOpacity={dim ? 0.12 : isActive ? 1 : 0.55}
-            strokeDasharray={a.conn.kind === 'user' ? '6 4' : undefined}
-            strokeLinecap="round"
-            className="cursor-pointer transition-[stroke-opacity,stroke-width] duration-150"
-            onMouseEnter={() => setHoverId(a.conn.id)}
-            onMouseLeave={() => setHoverId(null)}
-            onClick={() => onSelect(a.conn)}
-          />
+          <g key={a.conn.id}>
+            <path
+              d={d}
+              fill="none"
+              stroke={a.color}
+              strokeWidth={isActive ? 3.5 : 1.8}
+              strokeOpacity={dim ? 0.12 : isActive ? 1 : 0.55}
+              strokeDasharray={a.conn.kind === 'user' ? '6 4' : undefined}
+              strokeLinecap="round"
+              className="pointer-events-none transition-[stroke-opacity,stroke-width] duration-150"
+            />
+            {/* Fat invisible twin: the touch/hover target */}
+            <path
+              d={d}
+              fill="none"
+              stroke="transparent"
+              strokeWidth={14}
+              className="cursor-pointer"
+              onMouseEnter={() => setHoverId(a.conn.id)}
+              onMouseLeave={() => setHoverId(null)}
+              onClick={() => onSelect(a.conn)}
+            />
+          </g>
         );
       })}
 

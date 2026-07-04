@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { TopBar } from '../components/layout/TopBar';
 import { ArcDiagram } from '../components/connections/ArcDiagram';
 import { ConnectionCard } from '../components/connections/ConnectionCard';
+import { ConnectionList } from '../components/connections/ConnectionList';
 import { NewConnectionForm } from '../components/connections/NewConnectionForm';
 import {
   GROUP_COLORS,
@@ -23,6 +24,12 @@ export default function Connections() {
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState<Connection | null>(null);
   const [adding, setAdding] = useState(false);
+  // Arcs are unreadable on phone widths — default small screens to the list.
+  const [view, setView] = useState<'diagram' | 'list'>(() =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches
+      ? 'list'
+      : 'diagram',
+  );
 
   const all = useMemo(
     () => [...(seeded.data ?? []), ...(mine.data?.connections ?? [])],
@@ -68,12 +75,29 @@ export default function Connections() {
                 covenants, and your own discoveries. Click an arc to explore it.
               </p>
             </div>
-            <button
-              onClick={() => setAdding(true)}
-              className="rounded-lg bg-teal px-4 py-2 text-sm font-medium text-white transition hover:bg-teal-deep dark:bg-gold dark:text-parchment-900"
-            >
-              + New connection
-            </button>
+            <div className="flex items-center gap-2">
+              <div className="flex overflow-hidden rounded-lg border border-parchment-300 dark:border-parchment-700">
+                {(['diagram', 'list'] as const).map((v) => (
+                  <button
+                    key={v}
+                    onClick={() => setView(v)}
+                    className={`px-3 py-2 text-sm font-medium capitalize transition ${
+                      view === v
+                        ? 'bg-parchment-200 text-ink dark:bg-parchment-700 dark:text-ink-invert'
+                        : 'bg-white text-ink-faint hover:text-ink-soft dark:bg-parchment-800'
+                    }`}
+                  >
+                    {v}
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={() => setAdding(true)}
+                className="rounded-lg bg-teal px-4 py-2 text-sm font-medium text-white transition hover:bg-teal-deep dark:bg-gold dark:text-parchment-900"
+              >
+                + New connection
+              </button>
+            </div>
           </div>
 
           <div className="mt-4 flex flex-wrap items-center gap-2">
@@ -100,19 +124,21 @@ export default function Connections() {
             />
           </div>
 
-          <div className="mt-4 overflow-x-auto rounded-2xl border border-parchment-300 bg-parchment-50 p-4 dark:border-parchment-700 dark:bg-parchment-800">
-            {seeded.isLoading ? (
-              <div className="h-64 animate-pulse rounded-xl bg-parchment-200 dark:bg-parchment-700" />
-            ) : (
-              <div className="min-w-[720px]">
-                <ArcDiagram
-                  connections={filtered}
-                  selectedId={selected?.id ?? null}
-                  onSelect={setSelected}
-                />
-              </div>
-            )}
-          </div>
+          {view === 'diagram' && (
+            <div className="mt-4 overflow-x-auto rounded-2xl border border-parchment-300 bg-parchment-50 p-4 dark:border-parchment-700 dark:bg-parchment-800">
+              {seeded.isLoading ? (
+                <div className="h-64 animate-pulse rounded-xl bg-parchment-200 dark:bg-parchment-700" />
+              ) : (
+                <div className="min-w-[720px]">
+                  <ArcDiagram
+                    connections={filtered}
+                    selectedId={selected?.id ?? null}
+                    onSelect={setSelected}
+                  />
+                </div>
+              )}
+            </div>
+          )}
 
           {mine.data?.unavailable && (
             <p className="mt-3 rounded-lg border border-gold-soft bg-gold-soft/15 px-4 py-2 text-sm">
@@ -121,7 +147,17 @@ export default function Connections() {
             </p>
           )}
 
-          <div className="mt-5 grid gap-5 lg:grid-cols-2">
+          <div className="mt-5 grid items-start gap-5 lg:grid-cols-2">
+            {view === 'list' && !seeded.isLoading && (
+              // On phones the detail card replaces the list; side-by-side on lg+
+              <div className={selected || adding ? 'hidden lg:block' : ''}>
+                <ConnectionList
+                  connections={filtered}
+                  selectedId={selected?.id ?? null}
+                  onSelect={setSelected}
+                />
+              </div>
+            )}
             {adding && (
               <NewConnectionForm
                 saving={create.isPending}
@@ -143,7 +179,7 @@ export default function Connections() {
                 }
               />
             )}
-            {!selected && !adding && (
+            {view === 'diagram' && !selected && !adding && (
               <div className="rounded-xl border border-dashed border-parchment-300 p-8 text-center text-sm text-ink-faint dark:border-parchment-700">
                 Hover the arcs to trace each thread; click one to read the full connection — the
                 verse chips jump straight into the reader.
