@@ -1,4 +1,5 @@
 import { signOut } from 'firebase/auth';
+import { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useThemeStore } from '../../stores/useThemeStore';
 import { auth } from '../../lib/firebase';
@@ -17,10 +18,15 @@ const NAV_ITEMS = [
 export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
   const dark = useThemeStore((s) => s.dark);
   const toggle = useThemeStore((s) => s.toggle);
-  const onReader = useLocation().pathname === '/';
+  const { pathname } = useLocation();
+  const onReader = pathname === '/';
+  const [menuOpen, setMenuOpen] = useState(false);
+  const currentLabel =
+    NAV_ITEMS.find((n) => (n.to === '/' ? pathname === '/' : pathname.startsWith(n.to)))?.label ??
+    'Scribe';
 
   return (
-    <header className="flex h-14 shrink-0 items-center gap-3 border-b border-parchment-300 bg-parchment-50 px-4 dark:border-parchment-700 dark:bg-parchment-800">
+    <header className="relative flex h-14 shrink-0 items-center gap-3 border-b border-parchment-300 bg-parchment-50 px-4 dark:border-parchment-700 dark:bg-parchment-800">
       <button
         onClick={onToggleSidebar}
         className="rounded-lg p-1.5 text-ink-soft hover:bg-parchment-200 md:hidden dark:text-ink-invert dark:hover:bg-parchment-700"
@@ -33,14 +39,61 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
 
       <h1 className="hidden font-display text-2xl tracking-tight sm:block">Scribe</h1>
 
-      <nav className="ml-1 flex min-w-0 items-center gap-1 overflow-x-auto whitespace-nowrap sm:ml-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      {/* Mobile: current page + chevron opens the full page menu */}
+      <button
+        onClick={() => setMenuOpen((o) => !o)}
+        aria-expanded={menuOpen}
+        aria-label="Open page menu"
+        className="flex items-center gap-1.5 rounded-lg bg-parchment-200 px-3 py-1.5 text-sm font-semibold sm:hidden dark:bg-parchment-700 dark:text-ink-invert"
+      >
+        {currentLabel}
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 20 20"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          className={`transition-transform ${menuOpen ? 'rotate-180' : ''}`}
+        >
+          <path d="M5 8l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      {menuOpen && (
+        <>
+          <div className="fixed inset-0 z-30 bg-ink/30 sm:hidden" onClick={() => setMenuOpen(false)} />
+          <nav className="absolute inset-x-0 top-14 z-40 border-b border-parchment-300 bg-parchment-50 p-2 shadow-xl sm:hidden dark:border-parchment-700 dark:bg-parchment-800">
+            {NAV_ITEMS.map(({ to, label }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end={to === '/'}
+                onClick={() => setMenuOpen(false)}
+                className={({ isActive }) =>
+                  `block rounded-lg px-4 py-3 text-base font-medium transition ${
+                    isActive
+                      ? 'bg-parchment-200 text-ink dark:bg-parchment-700 dark:text-ink-invert'
+                      : 'text-ink-soft hover:bg-parchment-100 dark:text-ink-invert dark:hover:bg-parchment-700'
+                  }`
+                }
+              >
+                {label}
+              </NavLink>
+            ))}
+          </nav>
+        </>
+      )}
+
+      {/* Desktop: inline nav */}
+      <nav className="ml-4 hidden items-center gap-1 sm:flex">
         {NAV_ITEMS.map(({ to, label }) => (
           <NavLink
             key={to}
             to={to}
             end={to === '/'}
             className={({ isActive }) =>
-              `rounded-lg px-2.5 py-1.5 text-sm font-medium transition sm:px-3 ${
+              `rounded-lg px-3 py-1.5 text-sm font-medium transition ${
                 isActive
                   ? 'bg-parchment-200 text-ink dark:bg-parchment-700 dark:text-ink-invert'
                   : 'text-ink-faint hover:bg-parchment-100 hover:text-ink-soft dark:hover:bg-parchment-700'

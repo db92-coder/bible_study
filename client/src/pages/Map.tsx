@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { BibleMap } from '../components/map/BibleMap';
 import { EraTimelineSlider } from '../components/map/EraTimelineSlider';
 import { PlaceCard } from '../components/map/PlaceCard';
@@ -31,6 +32,7 @@ export default function MapPage() {
   const [scope, setScope] = useState<Scope>('book');
   const [era, setEra] = useState('All');
   const [selectedPlace, setSelectedPlace] = useState<Place | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const placesQuery = useQuery({
     queryKey: ['places', scope === 'book' ? book : null, era],
@@ -53,6 +55,17 @@ export default function MapPage() {
 
   const places = placesQuery.data ?? [];
   const journeys = (scope === 'book' && journeysQuery.data) || [];
+
+  // Deep link from the reader's chapter place chips: /map?place=Name
+  useEffect(() => {
+    const wanted = searchParams.get('place');
+    if (!wanted || places.length === 0) return;
+    const match = places.find((p) => p.name === wanted);
+    if (match) {
+      setSelectedPlace(match);
+      setSearchParams({}, { replace: true });
+    }
+  }, [searchParams, places, setSearchParams]);
 
   return (
     <div className="flex h-screen flex-col dark:bg-parchment-900">

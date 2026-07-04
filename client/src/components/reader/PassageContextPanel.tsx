@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from '../../lib/api';
 import { useReaderStore } from '../../stores/useReaderStore';
+import { ChapterContext } from './ChapterContext';
 
 interface BookContext {
   book: string;
@@ -32,8 +33,10 @@ export function PassageContextPanel() {
   });
 
   return (
-    <div className="px-5 py-6">
-      <h2 className="font-display text-xl">About {book}</h2>
+    <div>
+      <ChapterContext />
+      <div className="px-5 py-6">
+        <h2 className="font-display text-xl">About {book}</h2>
 
       {isLoading && (
         <div className="mt-4 animate-pulse space-y-3">
@@ -66,6 +69,7 @@ export function PassageContextPanel() {
           )}
         </>
       )}
+      </div>
     </div>
   );
 }

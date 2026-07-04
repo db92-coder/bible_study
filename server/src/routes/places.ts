@@ -30,6 +30,7 @@ export const ERAS = [
 
 const querySchema = z.object({
   book: z.string().min(2).max(30).optional(),
+  chapter: z.coerce.number().int().min(1).optional(),
   era: z.string().max(30).optional(),
 });
 
@@ -37,7 +38,7 @@ export const placesRouter = Router();
 
 placesRouter.get('/places', (req, res, next) => {
   try {
-    const { book, era } = querySchema.parse(req.query);
+    const { book, chapter, era } = querySchema.parse(req.query);
 
     let results = PLACES;
     if (book) {
@@ -46,8 +47,11 @@ placesRouter.get('/places', (req, res, next) => {
         res.status(400).json({ error: `Unknown book '${book}'` });
         return;
       }
-      const prefix = `${bookInfo.osis}.`;
-      results = results.filter((p) => p.verse_refs.some((r) => r.startsWith(prefix)));
+      const prefix = chapter ? `${bookInfo.osis}.${chapter}.` : `${bookInfo.osis}.`;
+      const exact = chapter ? `${bookInfo.osis}.${chapter}` : null;
+      results = results.filter((p) =>
+        p.verse_refs.some((r) => r.startsWith(prefix) || (exact !== null && r === exact)),
+      );
     }
     if (era && era !== 'All') {
       results = results.filter((p) => p.era === era);
