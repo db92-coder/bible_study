@@ -1,6 +1,6 @@
 import { signOut } from 'firebase/auth';
 import { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useThemeStore } from '../../stores/useThemeStore';
 import { auth } from '../../lib/firebase';
 import { VersionSwitcher } from '../reader/VersionSwitcher';
@@ -21,6 +21,7 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
   const dark = useThemeStore((s) => s.dark);
   const toggle = useThemeStore((s) => s.toggle);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const onReader = pathname === '/';
   const [menuOpen, setMenuOpen] = useState(false);
   const currentLabel =
@@ -108,6 +109,17 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
       </nav>
 
       <div className="ml-auto flex shrink-0 items-center gap-2">
+        <button
+          onClick={() => navigate('/search')}
+          aria-label="Search the Scriptures"
+          title="Search the Scriptures"
+          className="rounded-lg p-1.5 text-ink-soft hover:bg-parchment-200 dark:text-ink-invert dark:hover:bg-parchment-700"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-3.5-3.5" strokeLinecap="round" />
+          </svg>
+        </button>
         <div className={onReader ? '' : 'hidden md:block'}>
           <VersionSwitcher />
         </div>

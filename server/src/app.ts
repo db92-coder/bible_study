@@ -15,6 +15,7 @@ import { notesRouter } from './routes/notes.js';
 import { placesRouter } from './routes/places.js';
 import { plansRouter } from './routes/plans.js';
 import { scriptureRouter } from './routes/scripture.js';
+import { searchRouter } from './routes/search.js';
 import { storyRouter } from './routes/story.js';
 import { versionsRouter } from './routes/versions.js';
 
@@ -40,6 +41,7 @@ app.use('/api', cultureRouter);
 app.use('/api', learnRouter);
 app.use('/api', storyRouter);
 app.use('/api', chatRouter);
+app.use('/api', searchRouter);
 
 app.use((_req, res) => {
   res.status(404).json({ error: 'Not found' });

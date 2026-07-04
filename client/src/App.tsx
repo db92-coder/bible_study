@@ -11,6 +11,7 @@ import MapPage from './pages/Map';
 import Notes from './pages/Notes';
 import Plans from './pages/Plans';
 import Read from './pages/Read';
+import Search from './pages/Search';
 import Story from './pages/Story';
 
 function SetupNotice() {
@@ -121,6 +122,14 @@ export default function App() {
         element={
           <RequireAuth>
             <Story />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/search"
+        element={
+          <RequireAuth>
+            <Search />
           </RequireAuth>
         }
       />
