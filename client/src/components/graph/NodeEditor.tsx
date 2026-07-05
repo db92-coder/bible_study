@@ -19,6 +19,7 @@ interface NodeEditorProps {
   onEdgeLabel: (edgeId: string, label: string | null) => void;
   onEdgeDelete: (edgeId: string) => void;
   onOpenVerse: (verseRef: string) => void;
+  onReleasePosition?: (id: string) => void;
   onClose: () => void;
 }
 
@@ -33,6 +34,7 @@ export function NodeEditor({
   onEdgeLabel,
   onEdgeDelete,
   onOpenVerse,
+  onReleasePosition,
   onClose,
 }: NodeEditorProps) {
   const [label, setLabel] = useState(node.label);
@@ -168,12 +170,23 @@ export function NodeEditor({
 
       <LinkSuggestions node={node} nodes={nodes} edges={edges} onConnect={onConnect} />
 
-      <button
-        onClick={() => onDelete(node.id)}
-        className="mt-auto self-start rounded-lg border border-red-300 px-3 py-1.5 text-sm text-red-700 transition hover:bg-red-50 dark:hover:bg-red-950"
-      >
-        Delete node
-      </button>
+      <div className="mt-auto flex items-center gap-3">
+        <button
+          onClick={() => onDelete(node.id)}
+          className="rounded-lg border border-red-300 px-3 py-1.5 text-sm text-red-700 transition hover:bg-red-50 dark:hover:bg-red-950"
+        >
+          Delete node
+        </button>
+        {onReleasePosition && (
+          <button
+            onClick={() => onReleasePosition(node.id)}
+            title="Unpin this node and let the layout place it"
+            className="rounded-lg border border-parchment-300 px-3 py-1.5 text-sm text-ink-soft transition hover:border-gold dark:border-parchment-700 dark:text-ink-invert"
+          >
+            Release position
+          </button>
+        )}
+      </div>
     </div>
   );
 }

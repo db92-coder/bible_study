@@ -9,6 +9,8 @@ export interface GraphNode {
   body_md: string;
   verse_ref: string | null;
   color: string | null;
+  x?: number | null;
+  y?: number | null;
 }
 
 export interface GraphEdge {
@@ -48,6 +50,14 @@ export async function updateNode(id: string, input: NodeInput): Promise<GraphNod
 
 export async function deleteNode(id: string): Promise<void> {
   await api.delete(`/graph/nodes/${id}`);
+}
+
+export async function updateNodePosition(
+  id: string,
+  x: number | null,
+  y: number | null,
+): Promise<void> {
+  await api.patch(`/graph/nodes/${id}/position`, { x, y });
 }
 
 export async function createEdge(

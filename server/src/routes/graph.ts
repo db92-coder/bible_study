@@ -86,6 +86,30 @@ graphRouter.put('/graph/nodes/:id', async (req, res, next) => {
   }
 });
 
+// Pin/unpin a node's layout position. Degrades gracefully (persisted: false)
+// until migration 007 adds the x/y columns.
+graphRouter.patch('/graph/nodes/:id/position', async (req, res, next) => {
+  try {
+    const id = z.string().uuid().parse(req.params.id);
+    const { x, y } = z
+      .object({ x: z.number().finite().nullable(), y: z.number().finite().nullable() })
+      .parse(req.body);
+    const { error } = await supabase!
+      .from('graph_nodes')
+      .update({ x, y })
+      .eq('id', id)
+      .eq('firebase_uid', req.user!.uid);
+    if (error) {
+      console.warn('[scribe] node position write failed (migration 007?):', error.message);
+      res.json({ persisted: false });
+      return;
+    }
+    res.json({ persisted: true });
+  } catch (err) {
+    next(err);
+  }
+});
+
 graphRouter.delete('/graph/nodes/:id', async (req, res, next) => {
   try {
     const id = z.string().uuid().parse(req.params.id);

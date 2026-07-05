@@ -30,9 +30,12 @@ interface KnowledgeGraphProps {
   selectedId: string | null;
   hiddenTypes: Set<NodeType>;
   search: string;
+  colorMode: 'type' | 'cluster';
+  clusterColors: Map<string, string>;
   onSelect: (id: string | null) => void;
   onOpenVerse: (node: RuntimeNode) => void;
   onLink: (sourceId: string, targetId: string) => void;
+  onPinNode: (id: string, x: number, y: number) => void;
 }
 
 export function KnowledgeGraph({
@@ -44,9 +47,12 @@ export function KnowledgeGraph({
   selectedId,
   hiddenTypes,
   search,
+  colorMode,
+  clusterColors,
   onSelect,
   onOpenVerse,
   onLink,
+  onPinNode,
 }: KnowledgeGraphProps) {
   const fgRef = useRef<ForceGraphMethods | undefined>(undefined);
   // Runtime node objects persist across renders so the simulation keeps
@@ -65,6 +71,18 @@ export function KnowledgeGraph({
       obj.type = n.type;
       obj.verse_ref = n.verse_ref;
       obj.color = n.color ?? TYPE_COLORS[n.type];
+      // Saved position → pinned; cleared position → released back to physics.
+      if (n.x != null && n.y != null) {
+        if (obj.fx == null) {
+          obj.x = n.x;
+          obj.y = n.y;
+        }
+        obj.fx = n.x;
+        obj.fy = n.y;
+      } else {
+        delete obj.fx;
+        delete obj.fy;
+      }
       runtime.current.set(n.id, obj);
       return obj;
     });
@@ -93,12 +111,22 @@ export function KnowledgeGraph({
       const selected = node.id === selectedId;
       const matched = matchesSearch(node);
       const r = selected ? 8 : 6;
+      const fill =
+        colorMode === 'cluster' ? (clusterColors.get(node.id) ?? node.color) : node.color;
 
       ctx.globalAlpha = matched ? 1 : 0.15;
       ctx.beginPath();
       ctx.arc(x, y, r, 0, 2 * Math.PI);
-      ctx.fillStyle = node.color;
+      ctx.fillStyle = fill;
       ctx.fill();
+
+      // Pinned nodes get a small anchor dot
+      if (node.fx != null) {
+        ctx.beginPath();
+        ctx.arc(x, y, 1.8, 0, 2 * Math.PI);
+        ctx.fillStyle = dark ? '#1d1a15' : '#f6f1e7';
+        ctx.fill();
+      }
 
       if (selected) {
         ctx.lineWidth = 2 / scale;
@@ -123,7 +151,7 @@ export function KnowledgeGraph({
       }
       ctx.globalAlpha = 1;
     },
-    [selectedId, matchesSearch, searchLower, dark],
+    [selectedId, matchesSearch, searchLower, dark, colorMode, clusterColors],
   );
 
   const linkCanvasObject = useCallback(
@@ -165,7 +193,14 @@ export function KnowledgeGraph({
         !hiddenTypes.has(((l as RuntimeLink).source as RuntimeNode).type) &&
         !hiddenTypes.has(((l as RuntimeLink).target as RuntimeNode).type)
       }
-      linkColor={() => (dark ? '#5a5346' : '#c9bda3')}
+      linkColor={(l) => {
+        if (colorMode === 'cluster') {
+          const src = (l as RuntimeLink).source as RuntimeNode;
+          const c = clusterColors.get(src.id);
+          if (c) return `${c}66`; // cluster color at ~40% opacity
+        }
+        return dark ? '#5a5346' : '#c9bda3';
+      }}
       linkWidth={1.2}
       linkCanvasObjectMode={() => 'after'}
       linkCanvasObject={linkCanvasObject}
@@ -200,6 +235,13 @@ export function KnowledgeGraph({
         }
         if (nearest && nearestDist < LINK_SNAP_DISTANCE) {
           onLink(node.id, nearest.id);
+          return;
+        }
+        // Otherwise: the user placed this node deliberately — pin it there.
+        if (node.x != null && node.y != null) {
+          node.fx = node.x;
+          node.fy = node.y;
+          onPinNode(node.id, node.x, node.y);
         }
       }}
     />

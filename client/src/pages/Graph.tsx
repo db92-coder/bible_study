@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TopBar } from '../components/layout/TopBar';
 import { KnowledgeGraph, type RuntimeNode } from '../components/graph/KnowledgeGraph';
@@ -14,6 +14,7 @@ import {
   TYPE_COLORS,
   updateEdge,
   updateNode,
+  updateNodePosition,
   type GraphEdge,
   type GraphNode,
   type NodeInput,
@@ -23,6 +24,51 @@ import { useReaderStore } from '../stores/useReaderStore';
 import { useThemeStore } from '../stores/useThemeStore';
 
 const ALL_TYPES: NodeType[] = ['idea', 'theme', 'person', 'place', 'verse'];
+
+// Distinct muted colors for connected clusters (largest cluster gets the first).
+const CLUSTER_PALETTE = [
+  '#b48a3c', '#2f6f6a', '#7a4a8b', '#8b3a3a', '#4a6fa5', '#5a8a4a',
+  '#b46a8b', '#8a6f3c', '#3c8a8a', '#a0522d', '#6b5aa5', '#4a8a6f',
+];
+
+/** Union-find over edges: every connected cluster gets one color. */
+function computeClusterColors(nodes: GraphNode[], edges: GraphEdge[]): Map<string, string> {
+  const parent = new Map<string, string>();
+  const find = (a: string): string => {
+    let root = a;
+    while (parent.get(root) !== root) root = parent.get(root)!;
+    let cur = a;
+    while (cur !== root) {
+      const next = parent.get(cur)!;
+      parent.set(cur, root);
+      cur = next;
+    }
+    return root;
+  };
+  for (const n of nodes) parent.set(n.id, n.id);
+  for (const e of edges) {
+    if (!parent.has(e.source_id) || !parent.has(e.target_id)) continue;
+    parent.set(find(e.source_id), find(e.target_id));
+  }
+  const clusters = new Map<string, string[]>();
+  for (const n of nodes) {
+    const root = find(n.id);
+    const members = clusters.get(root);
+    if (members) members.push(n.id);
+    else clusters.set(root, [n.id]);
+  }
+  // Assign palette colors to clusters, biggest first; sort by root id as a
+  // tiebreaker so colors stay stable across renders.
+  const ordered = [...clusters.entries()].sort(
+    (a, b) => b[1].length - a[1].length || (a[0] < b[0] ? -1 : 1),
+  );
+  const colors = new Map<string, string>();
+  ordered.forEach(([, members], i) => {
+    const color = CLUSTER_PALETTE[i % CLUSTER_PALETTE.length];
+    for (const id of members) colors.set(id, color);
+  });
+  return colors;
+}
 
 function parseVerseRef(ref: string): { book: string; chapter: number } | null {
   const m = ref.trim().match(/^((?:[123] )?[A-Za-z ]+?)\s+(\d+)/);
@@ -46,6 +92,28 @@ export default function Graph() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hiddenTypes, setHiddenTypes] = useState<Set<NodeType>>(new Set());
   const [search, setSearch] = useState('');
+  const [colorMode, setColorMode] = useState<'type' | 'cluster'>(
+    () => (localStorage.getItem('scribe-graph-colors') as 'type' | 'cluster') ?? 'type',
+  );
+
+  const clusterColors = useMemo(() => computeClusterColors(nodes, edges), [nodes, edges]);
+
+  function switchColorMode(mode: 'type' | 'cluster') {
+    setColorMode(mode);
+    localStorage.setItem('scribe-graph-colors', mode);
+  }
+
+  const handlePinNode = useCallback((id: string, x: number, y: number) => {
+    setNodes((ns) => ns.map((n) => (n.id === id ? { ...n, x, y } : n)));
+    updateNodePosition(id, x, y).catch(() => {
+      /* best-effort; position still holds for this session */
+    });
+  }, []);
+
+  const handleReleasePosition = useCallback(async (id: string) => {
+    setNodes((ns) => ns.map((n) => (n.id === id ? { ...n, x: null, y: null } : n)));
+    updateNodePosition(id, null, null).catch(() => {});
+  }, []);
 
   useEffect(() => {
     fetchGraph()
@@ -174,8 +242,29 @@ export default function Graph() {
             );
           })}
         </div>
+        <div className="flex overflow-hidden rounded-lg border border-parchment-300 text-xs dark:border-parchment-700">
+          {(
+            [
+              ['type', 'By type'],
+              ['cluster', 'By cluster'],
+            ] as Array<['type' | 'cluster', string]>
+          ).map(([mode, label]) => (
+            <button
+              key={mode}
+              onClick={() => switchColorMode(mode)}
+              title={mode === 'cluster' ? 'Linked nodes share a color' : 'Color by node type'}
+              className={`px-2.5 py-1.5 font-medium transition ${
+                colorMode === mode
+                  ? 'bg-parchment-200 text-ink dark:bg-parchment-700 dark:text-ink-invert'
+                  : 'bg-white text-ink-faint hover:text-ink-soft dark:bg-parchment-800'
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
         <span className="ml-auto hidden text-xs text-ink-faint md:block">
-          drag a node onto another to link · double-click a verse node to read it
+          drag to arrange (drops stay put) · drop onto a node to link · double-click a verse to read
         </span>
       </div>
 
@@ -211,9 +300,12 @@ export default function Graph() {
                 selectedId={selectedId}
                 hiddenTypes={hiddenTypes}
                 search={search}
+                colorMode={colorMode}
+                clusterColors={clusterColors}
                 onSelect={setSelectedId}
                 onOpenVerse={(n: RuntimeNode) => n.verse_ref && openVerse(n.verse_ref)}
                 onLink={handleLink}
+                onPinNode={handlePinNode}
               />
             )
           )}
@@ -233,6 +325,7 @@ export default function Graph() {
               onEdgeLabel={handleEdgeLabel}
               onEdgeDelete={handleEdgeDelete}
               onOpenVerse={openVerse}
+              onReleasePosition={selected.x != null ? handleReleasePosition : undefined}
               onClose={() => setSelectedId(null)}
             />
           </aside>
