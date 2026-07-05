@@ -190,6 +190,35 @@ Context never shrinks a verse. It roots it — and rooted promises hold weight.`
 
 You now have the whole toolkit. Read widely, read slowly, read prayerfully — and use every tool in this app as scaffolding around the real thing: meeting God in his word.`,
   },
+  {
+    slug: 'writing-a-devotional',
+    order: 9,
+    title: 'Writing your own devotional',
+    summary: 'Turn a verse that matters to you into a practice: observe, interpret, apply, pray — in your own words.',
+    exercise: {
+      prompt: 'Read Psalm 121 slowly, twice. Pick the line that catches you most. Then open the Devotional builder (the 🕊 button on your Notes page, or "Devotional" when you select verses in the reader) and walk it through the four steps. Your first one doesn\'t need to be good — it needs to be yours.',
+      book: 'Psalms',
+      chapter: 121,
+    },
+    body_md: `A devotional is not a book someone else wrote — at its heart, it's a *practice*: taking one passage and sitting with it until it has said something to you. Reading other people's devotionals is fine; writing your own changes you, because writing forces noticing.
+
+The classic shape (sometimes called **SOAP**) has four movements:
+
+**1. Observation — what does it say?** Read the passage twice, slowly. Who is speaking, to whom? Which words repeat? What surprises you? Don't rush to meaning; the discipline of plain *noticing* is where depth begins. Most shallow readings skip this step entirely.
+
+**2. Interpretation — what did it mean to them?** Everything you learned in lessons 3–7 works here: the passage meant something to its first hearers before it means something to you. Use the context panel, the chapter brief, the cross-references. This step is what separates a devotional from a mirror — without it, we only ever hear our own thoughts read back in a holy voice.
+
+**3. Application — what does it mean for me?** Now the bridge: if that's what it meant to them, what timeless truth carries across, and what does it look like in your actual week? Be concrete. "Trust God more" is a poster. "Bring Thursday's hard conversation to God before I have it" is an application.
+
+**4. Prayer — respond.** Turn what you saw into words to God: thanks, asking, confession, or simply sitting with it. The psalms prove that honesty outranks eloquence.
+
+**Three habits that make devotionals better:**
+- *Small text, deep well.* One to four verses beats a whole chapter. Depth over distance.
+- *Same verse, twice.* Returning to a passage weeks later — your saved devotionals live with your notes, anchored to the verse — shows you how it and you have both moved.
+- *Feelings anchored to meaning.* A verse can be precious for what it *did* in your life; let it also be precious for what it *says*. The two together are stronger than either alone.
+
+This app's Devotional builder walks you through all four movements, with a coach that only ever asks questions — because the point of a devotional is never that it's well written. It's that it's *yours*.`,
+  },
 ];
 
 export const LESSONS_BY_SLUG = new Map(LEARN_LESSONS.map((l) => [l.slug, l]));

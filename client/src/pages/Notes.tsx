@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { TopBar } from '../components/layout/TopBar';
 import { NoteEditor } from '../components/notes/NoteEditor';
 import { NoteList } from '../components/notes/NoteList';
@@ -9,6 +9,7 @@ import { useThemeStore } from '../stores/useThemeStore';
 
 export default function Notes() {
   const dark = useThemeStore((s) => s.dark);
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const notesQuery = useNotes();
   const { create, update, remove } = useNoteMutations();
@@ -72,6 +73,13 @@ export default function Notes() {
               placeholder="Search notes…"
               className="min-w-0 flex-1 rounded-lg border border-parchment-300 bg-white px-3 py-1.5 text-sm outline-none focus:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-ink-invert"
             />
+            <button
+              onClick={() => navigate('/devotional')}
+              title="Write a guided devotional"
+              className="shrink-0 rounded-lg border border-parchment-300 bg-white px-3 py-1.5 text-sm font-medium text-ink-soft transition hover:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-ink-invert"
+            >
+              🕊 Devotional
+            </button>
             <button
               onClick={() => {
                 setSelected(null);

@@ -4,6 +4,7 @@ import { useAuth } from './lib/AuthContext';
 import { isFirebaseConfigured } from './lib/firebase';
 import Connections from './pages/Connections';
 import Culture from './pages/Culture';
+import Devotional from './pages/Devotional';
 import Graph from './pages/Graph';
 import Learn from './pages/Learn';
 import Login from './pages/Login';
@@ -130,6 +131,14 @@ export default function App() {
         element={
           <RequireAuth>
             <Search />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/devotional"
+        element={
+          <RequireAuth>
+            <Devotional />
           </RequireAuth>
         }
       />

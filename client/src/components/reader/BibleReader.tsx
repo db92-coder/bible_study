@@ -190,6 +190,16 @@ export function BibleReader() {
             >
               Add to graph
             </button>
+            <button
+              onClick={() =>
+                navigate(
+                  `/devotional?book=${encodeURIComponent(book)}&chapter=${chapter}&vs=${selection!.start}&ve=${selection!.end}`,
+                )
+              }
+              className="font-medium text-teal hover:underline dark:text-gold-soft"
+            >
+              Devotional
+            </button>
             <button onClick={clearSelection} className="text-ink-faint hover:underline">
               Clear
             </button>
