@@ -105,6 +105,17 @@ export default function Graph() {
     localStorage.setItem('scribe-graph-size', String(value));
   }
 
+  const [showLinkLabels, setShowLinkLabels] = useState(
+    () => localStorage.getItem('scribe-graph-linklabels') === '1',
+  );
+
+  function toggleLinkLabels() {
+    setShowLinkLabels((v) => {
+      localStorage.setItem('scribe-graph-linklabels', v ? '0' : '1');
+      return !v;
+    });
+  }
+
   const clusterColors = useMemo(() => computeClusterColors(nodes, edges), [nodes, edges]);
 
   function switchColorMode(mode: 'type' | 'cluster') {
@@ -272,6 +283,17 @@ export default function Graph() {
             </button>
           ))}
         </div>
+        <button
+          onClick={toggleLinkLabels}
+          title={showLinkLabels ? 'Hide link labels' : 'Show link labels (visible when zoomed in)'}
+          className={`rounded-lg border px-2.5 py-1.5 text-xs font-medium transition ${
+            showLinkLabels
+              ? 'border-parchment-300 bg-parchment-200 text-ink dark:border-parchment-700 dark:bg-parchment-700 dark:text-ink-invert'
+              : 'border-parchment-300 bg-white text-ink-faint hover:text-ink-soft dark:border-parchment-700 dark:bg-parchment-800'
+          }`}
+        >
+          Link labels
+        </button>
         <label
           className="flex items-center gap-1.5 text-ink-faint"
           title="Node size"
@@ -329,6 +351,7 @@ export default function Graph() {
                 colorMode={colorMode}
                 clusterColors={clusterColors}
                 nodeScale={nodeScale}
+                showLinkLabels={showLinkLabels}
                 onSelect={setSelectedId}
                 onOpenVerse={(n: RuntimeNode) => n.verse_ref && openVerse(n.verse_ref)}
                 onLink={handleLink}

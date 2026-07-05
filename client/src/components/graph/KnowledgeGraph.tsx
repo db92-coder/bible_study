@@ -33,6 +33,7 @@ interface KnowledgeGraphProps {
   colorMode: 'type' | 'cluster';
   clusterColors: Map<string, string>;
   nodeScale: number;
+  showLinkLabels: boolean;
   onSelect: (id: string | null) => void;
   onOpenVerse: (node: RuntimeNode) => void;
   onLink: (sourceId: string, targetId: string) => void;
@@ -51,6 +52,7 @@ export function KnowledgeGraph({
   colorMode,
   clusterColors,
   nodeScale,
+  showLinkLabels,
   onSelect,
   onOpenVerse,
   onLink,
@@ -158,8 +160,9 @@ export function KnowledgeGraph({
 
   const linkCanvasObject = useCallback(
     (linkObj: LinkObject, ctx: CanvasRenderingContext2D, scale: number) => {
+      if (!showLinkLabels) return;
       const link = linkObj as RuntimeLink;
-      if (!link.label || scale < 1.4) return;
+      if (!link.label || scale < 1.2) return;
       const src = link.source as RuntimeNode;
       const tgt = link.target as RuntimeNode;
       if (src.x == null || tgt.x == null) return;
@@ -172,7 +175,7 @@ export function KnowledgeGraph({
       ctx.fillStyle = dark ? '#8a7d6a' : '#7a6f5f';
       ctx.fillText(link.label, mx, my - 3 / scale);
     },
-    [dark],
+    [dark, showLinkLabels],
   );
 
   return (
