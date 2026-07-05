@@ -95,6 +95,15 @@ export default function Graph() {
   const [colorMode, setColorMode] = useState<'type' | 'cluster'>(
     () => (localStorage.getItem('scribe-graph-colors') as 'type' | 'cluster') ?? 'type',
   );
+  const [nodeScale, setNodeScale] = useState(() => {
+    const saved = Number(localStorage.getItem('scribe-graph-size'));
+    return Number.isFinite(saved) && saved >= 0.35 && saved <= 1.4 ? saved : 0.7;
+  });
+
+  function changeNodeScale(value: number) {
+    setNodeScale(value);
+    localStorage.setItem('scribe-graph-size', String(value));
+  }
 
   const clusterColors = useMemo(() => computeClusterColors(nodes, edges), [nodes, edges]);
 
@@ -263,6 +272,23 @@ export default function Graph() {
             </button>
           ))}
         </div>
+        <label
+          className="flex items-center gap-1.5 text-ink-faint"
+          title="Node size"
+        >
+          <span className="inline-block h-1.5 w-1.5 rounded-full bg-current" />
+          <input
+            type="range"
+            min={0.35}
+            max={1.4}
+            step={0.05}
+            value={nodeScale}
+            onChange={(e) => changeNodeScale(Number(e.target.value))}
+            className="w-20 accent-gold"
+            aria-label="Node size"
+          />
+          <span className="inline-block h-3 w-3 rounded-full bg-current" />
+        </label>
         <span className="ml-auto hidden text-xs text-ink-faint md:block">
           drag to arrange (drops stay put) · drop onto a node to link · double-click a verse to read
         </span>
@@ -302,6 +328,7 @@ export default function Graph() {
                 search={search}
                 colorMode={colorMode}
                 clusterColors={clusterColors}
+                nodeScale={nodeScale}
                 onSelect={setSelectedId}
                 onOpenVerse={(n: RuntimeNode) => n.verse_ref && openVerse(n.verse_ref)}
                 onLink={handleLink}

@@ -32,6 +32,7 @@ interface KnowledgeGraphProps {
   search: string;
   colorMode: 'type' | 'cluster';
   clusterColors: Map<string, string>;
+  nodeScale: number;
   onSelect: (id: string | null) => void;
   onOpenVerse: (node: RuntimeNode) => void;
   onLink: (sourceId: string, targetId: string) => void;
@@ -49,6 +50,7 @@ export function KnowledgeGraph({
   search,
   colorMode,
   clusterColors,
+  nodeScale,
   onSelect,
   onOpenVerse,
   onLink,
@@ -110,7 +112,7 @@ export function KnowledgeGraph({
       const y = node.y ?? 0;
       const selected = node.id === selectedId;
       const matched = matchesSearch(node);
-      const r = selected ? 8 : 6;
+      const r = (selected ? 8 : 6) * nodeScale;
       const fill =
         colorMode === 'cluster' ? (clusterColors.get(node.id) ?? node.color) : node.color;
 
@@ -123,7 +125,7 @@ export function KnowledgeGraph({
       // Pinned nodes get a small anchor dot
       if (node.fx != null) {
         ctx.beginPath();
-        ctx.arc(x, y, 1.8, 0, 2 * Math.PI);
+        ctx.arc(x, y, 1.8 * nodeScale, 0, 2 * Math.PI);
         ctx.fillStyle = dark ? '#1d1a15' : '#f6f1e7';
         ctx.fill();
       }
@@ -142,7 +144,7 @@ export function KnowledgeGraph({
       }
 
       if (scale > 1.1 || selected || (searchLower !== '' && matched)) {
-        const fontSize = Math.max(11 / scale, 2.5);
+        const fontSize = Math.max(11 / scale, 2.5) * (0.75 + 0.25 * nodeScale);
         ctx.font = `${selected ? '600 ' : ''}${fontSize}px Inter, sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'top';
@@ -151,7 +153,7 @@ export function KnowledgeGraph({
       }
       ctx.globalAlpha = 1;
     },
-    [selectedId, matchesSearch, searchLower, dark, colorMode, clusterColors],
+    [selectedId, matchesSearch, searchLower, dark, colorMode, clusterColors, nodeScale],
   );
 
   const linkCanvasObject = useCallback(
@@ -184,7 +186,8 @@ export function KnowledgeGraph({
       nodePointerAreaPaint={(nodeObj, color, ctx) => {
         const node = nodeObj as RuntimeNode;
         ctx.beginPath();
-        ctx.arc(node.x ?? 0, node.y ?? 0, 10, 0, 2 * Math.PI);
+        // Hit area never shrinks below a comfortable tap size
+        ctx.arc(node.x ?? 0, node.y ?? 0, Math.max(10 * nodeScale, 7), 0, 2 * Math.PI);
         ctx.fillStyle = color;
         ctx.fill();
       }}
@@ -233,7 +236,7 @@ export function KnowledgeGraph({
             nearest = other;
           }
         }
-        if (nearest && nearestDist < LINK_SNAP_DISTANCE) {
+        if (nearest && nearestDist < LINK_SNAP_DISTANCE * Math.max(nodeScale, 0.6)) {
           onLink(node.id, nearest.id);
           return;
         }
