@@ -13,6 +13,7 @@ import Notes from './pages/Notes';
 import Plans from './pages/Plans';
 import Read from './pages/Read';
 import Search from './pages/Search';
+import Settings from './pages/Settings';
 import Story from './pages/Story';
 
 function SetupNotice() {
@@ -139,6 +140,14 @@ export default function App() {
         element={
           <RequireAuth>
             <Devotional />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/settings"
+        element={
+          <RequireAuth>
+            <Settings />
           </RequireAuth>
         }
       />

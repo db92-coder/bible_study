@@ -1,5 +1,7 @@
 import {
   createUserWithEmailAndPassword,
+  sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth';
@@ -14,6 +16,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
   if (!loading && user) return <Navigate to="/" replace />;
@@ -22,17 +25,39 @@ export default function Login() {
     e.preventDefault();
     if (!auth) return;
     setError(null);
+    setNotice(null);
     setBusy(true);
     try {
       if (mode === 'signin') {
         await signInWithEmailAndPassword(auth, email, password);
       } else {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const cred = await createUserWithEmailAndPassword(auth, email, password);
+        try {
+          await sendEmailVerification(cred.user);
+        } catch {
+          /* account still created; user can resend from Settings */
+        }
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Sign-in failed');
     } finally {
       setBusy(false);
+    }
+  }
+
+  async function handleForgotPassword() {
+    if (!auth) return;
+    setError(null);
+    setNotice(null);
+    if (!email.trim()) {
+      setError('Enter your email above first, then tap "Forgot password?" again.');
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email.trim());
+      setNotice(`Password reset email sent to ${email.trim()} — check your inbox.`);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not send reset email');
     }
   }
 
@@ -76,6 +101,7 @@ export default function Login() {
           </label>
 
           {error && <p className="text-sm text-red-700">{error}</p>}
+          {notice && <p className="text-sm text-teal dark:text-gold-soft">{notice}</p>}
 
           <button
             type="submit"
@@ -99,6 +125,15 @@ export default function Login() {
         >
           {mode === 'signin' ? 'New here? Create an account' : 'Have an account? Sign in'}
         </button>
+
+        {mode === 'signin' && (
+          <button
+            onClick={handleForgotPassword}
+            className="mt-2 w-full text-xs text-ink-faint hover:underline"
+          >
+            Forgot password?
+          </button>
+        )}
       </div>
     </div>
   );

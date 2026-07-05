@@ -141,6 +141,17 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
           )}
         </button>
         <button
+          onClick={() => navigate('/settings')}
+          aria-label="Account settings"
+          title="Account settings"
+          className="rounded-lg p-1.5 text-ink-soft hover:bg-parchment-200 dark:text-ink-invert dark:hover:bg-parchment-700"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
+            <circle cx="12" cy="8" r="4" />
+            <path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" strokeLinecap="round" />
+          </svg>
+        </button>
+        <button
           onClick={() => auth && signOut(auth)}
           title="Sign out"
           className="rounded-lg border border-parchment-300 bg-white p-1.5 text-ink-soft transition hover:bg-parchment-100 sm:px-3 sm:py-1.5 dark:border-parchment-700 dark:bg-parchment-800 dark:text-ink-invert dark:hover:bg-parchment-700"
