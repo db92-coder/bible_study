@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import MapPage from './pages/Map';
 import Notes from './pages/Notes';
 import Plans from './pages/Plans';
+import Prayer from './pages/Prayer';
 import Read from './pages/Read';
 import Search from './pages/Search';
 import Settings from './pages/Settings';
@@ -148,6 +149,14 @@ export default function App() {
         element={
           <RequireAuth>
             <Settings />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/prayer"
+        element={
+          <RequireAuth>
+            <Prayer />
           </RequireAuth>
         }
       />

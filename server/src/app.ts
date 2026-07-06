@@ -9,6 +9,7 @@ import { contextRouter } from './routes/context.js';
 import { cultureRouter } from './routes/culture.js';
 import { devotionalRouter } from './routes/devotional.js';
 import { exportRouter } from './routes/export.js';
+import { prayerRouter } from './routes/prayer.js';
 import { graphRouter } from './routes/graph.js';
 import { learnRouter } from './routes/learn.js';
 import { lexiconRouter } from './routes/lexicon.js';
@@ -46,6 +47,7 @@ app.use('/api', chatRouter);
 app.use('/api', searchRouter);
 app.use('/api', devotionalRouter);
 app.use('/api', exportRouter);
+app.use('/api', prayerRouter);
 
 app.use((_req, res) => {
   res.status(404).json({ error: 'Not found' });

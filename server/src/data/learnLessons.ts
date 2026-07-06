@@ -219,6 +219,32 @@ The classic shape (sometimes called **SOAP**) has four movements:
 
 This app's Devotional builder walks you through all four movements, with a coach that only ever asks questions — because the point of a devotional is never that it's well written. It's that it's *yours*.`,
   },
+  {
+    slug: 'learning-to-pray',
+    order: 10,
+    title: 'Learning to pray',
+    summary: 'Prayer is a skill you grow into, not a gift you either have or don\'t. Three patterns to borrow while you find your own voice.',
+    exercise: {
+      prompt: 'Read Matthew 6:9–13 slowly, out loud if you can. Then open the Prayer tab and try "The Lord\'s Prayer Pattern" — walk through all six movements in your own words. It will feel unfamiliar the first time. That\'s normal; so did reading, once.',
+      book: 'Matthew',
+      chapter: 6,
+    },
+    body_md: `If reading the Bible can feel intimidating to a beginner, prayer often feels more so — there's no page to look at, no structure to follow, just you and the silence. The good news: prayer is a skill, and skills are learned by practice and pattern, not conjured from nowhere.
+
+**Jesus gave his own disciples a pattern.** When they asked him to teach them to pray — not to explain prayer, but to *teach* them, like a skill — he gave them words (Matthew 6:9–13; Luke 11:1–4). That alone tells you something: even people who walked with Jesus daily needed a template. You're in good company.
+
+**Patterns are training wheels, not a cage.** Using a structure doesn't make prayer less personal — the words become the frame you pour your own honesty into. Over time you'll pray these patterns less rigidly and more like second nature, the way a musician needs scales at first and eventually just *plays*.
+
+**Three patterns worth knowing** (all three are built into this app's Prayer tab, with teaching at every step):
+
+1. **The Lord's Prayer pattern** — six movements straight from Matthew 6: adoration, surrender, provision, confession, protection, praise. The most direct answer to "how do I pray?" that exists, because it's the one Jesus himself gave.
+2. **ACTS** — Adoration, Confession, Thanksgiving, Supplication. A simple four-part shape many Christians default to, useful because the order matters: praise and honesty come before the wish list.
+3. **Praying a psalm** — when you don't have words, borrow some. The Psalms are Israel's own prayer book, and praying one back to God — noticing its movement, echoing its lines, adding your own response — is one of the oldest spiritual practices there is.
+
+**Planning matters too.** Prayer isn't only structure in the moment — it's also remembering what to bring. The Prayer tab keeps a running list of what you're praying for, organized simply (a person, a situation, the world, a thanksgiving), so requests don't get forgotten between Sundays. And when something is answered, mark it — building your own written record of God's faithfulness is one of the most quietly powerful habits in the Christian life. Years from now, that list will preach to you.
+
+**One last thing.** None of this is about performing eloquent prayers. Some of Scripture's shortest prayers are among its most honest — "Lord, save me" (Matthew 14:30), "God, be merciful to me, a sinner" (Luke 18:13). If a pattern ever feels like it's getting in the way of honesty, drop the pattern and just talk. That was always the point.`,
+  },
 ];
 
 export const LESSONS_BY_SLUG = new Map(LEARN_LESSONS.map((l) => [l.slug, l]));

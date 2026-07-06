@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   { to: '/story', label: 'Story' },
   { to: '/map', label: 'Map' },
   { to: '/notes', label: 'Notes' },
+  { to: '/prayer', label: 'Prayer' },
   { to: '/plans', label: 'Plans' },
   { to: '/connections', label: 'Connections' },
   { to: '/graph', label: 'Graph' },
