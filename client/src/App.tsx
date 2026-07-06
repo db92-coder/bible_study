@@ -58,8 +58,9 @@ export default function App() {
       <ChatPanel />
       <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Navigate to="/home" replace />} />
       <Route
-        path="/"
+        path="/read"
         element={
           <RequireAuth>
             <Read />
@@ -178,7 +179,7 @@ export default function App() {
           </RequireAuth>
         }
       />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to="/home" replace />} />
       </Routes>
     </>
   );

@@ -18,7 +18,7 @@ export function PlaceCard({ place, onClose }: { place: Place; onClose: () => voi
 
   function openRef(book: string, chapter: number) {
     setLocation(book, chapter);
-    navigate('/');
+    navigate('/read');
   }
 
   return (

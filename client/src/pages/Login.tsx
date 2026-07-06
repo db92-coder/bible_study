@@ -19,7 +19,7 @@ export default function Login() {
   const [notice, setNotice] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
-  if (!loading && user) return <Navigate to="/" replace />;
+  if (!loading && user) return <Navigate to="/home" replace />;
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();

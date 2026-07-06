@@ -50,7 +50,7 @@ export function SourceCitations({ text }: { text: string }) {
           onClick={() => {
             setLocation(c.book, c.chapter);
             setOpen(false);
-            navigate('/');
+            navigate('/read');
           }}
           title={`Open ${c.label} in the reader`}
           className="rounded-md border border-parchment-300 bg-white px-2 py-0.5 font-display text-xs text-teal transition hover:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-gold-soft"

@@ -51,7 +51,7 @@ export default function Story() {
 
   function openRef(book: string, chapter: number) {
     setLocation(book, chapter);
-    navigate('/');
+    navigate('/read');
   }
 
   const eras = data?.eras ?? [];

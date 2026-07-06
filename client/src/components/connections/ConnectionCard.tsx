@@ -17,7 +17,7 @@ export function ConnectionCard({
 
   function openRef(book: string, chapter: number) {
     setLocation(book, chapter);
-    navigate('/');
+    navigate('/read');
   }
 
   function addNote() {

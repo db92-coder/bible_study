@@ -199,7 +199,7 @@ export default function Search() {
                       <button
                         onClick={() => {
                           setLocation(r.book, r.chapter);
-                          navigate('/');
+                          navigate('/read');
                         }}
                         className="text-xs font-medium text-teal hover:underline dark:text-gold-soft"
                       >

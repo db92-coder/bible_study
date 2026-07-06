@@ -47,7 +47,7 @@ export default function Learn() {
 
   function openExercise(book: string, chapter: number) {
     setLocation(book, chapter);
-    navigate('/');
+    navigate('/read');
   }
 
   const current = lesson.data;

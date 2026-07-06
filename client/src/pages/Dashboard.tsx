@@ -42,7 +42,7 @@ function ContinueReading() {
 
   return (
     <Link
-      to="/"
+      to="/read"
       className="block rounded-xl border border-gold-soft bg-gold-soft/15 p-5 transition hover:border-gold"
     >
       <p className="text-xs font-semibold uppercase tracking-widest text-gold">Continue reading</p>
@@ -88,7 +88,7 @@ function FeaturedPlanDay({ planId }: { planId: string }) {
             key={i}
             onClick={() => {
               setLocation(p.book, p.chapter_start);
-              navigate('/');
+              navigate('/read');
             }}
             className="rounded-md border border-parchment-300 bg-white px-2.5 py-1 font-display text-sm transition hover:border-gold dark:border-parchment-700 dark:bg-parchment-800"
           >

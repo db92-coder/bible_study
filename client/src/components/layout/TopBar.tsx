@@ -7,7 +7,7 @@ import { VersionSwitcher } from '../reader/VersionSwitcher';
 
 const NAV_ITEMS = [
   { to: '/home', label: 'Home' },
-  { to: '/', label: 'Read' },
+  { to: '/read', label: 'Read' },
   { to: '/learn', label: 'Learn' },
   { to: '/story', label: 'Story' },
   { to: '/map', label: 'Map' },
@@ -24,11 +24,9 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
   const toggle = useThemeStore((s) => s.toggle);
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const onReader = pathname === '/';
+  const onReader = pathname === '/read';
   const [menuOpen, setMenuOpen] = useState(false);
-  const currentLabel =
-    NAV_ITEMS.find((n) => (n.to === '/' ? pathname === '/' : pathname.startsWith(n.to)))?.label ??
-    'Scribe';
+  const currentLabel = NAV_ITEMS.find((n) => pathname.startsWith(n.to))?.label ?? 'Scribe';
 
   return (
     <header className="relative flex h-14 shrink-0 items-center gap-3 border-b border-parchment-300 bg-parchment-50 px-4 dark:border-parchment-700 dark:bg-parchment-800">
@@ -78,7 +76,7 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
               <NavLink
                 key={to}
                 to={to}
-                end={to === '/'}
+                end
                 onClick={() => setMenuOpen(false)}
                 className={({ isActive }) =>
                   `block rounded-lg px-4 py-3 text-base font-medium transition ${
@@ -101,7 +99,7 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
           <NavLink
             key={to}
             to={to}
-            end={to === '/'}
+            end
             className={({ isActive }) =>
               `rounded-lg px-3 py-1.5 text-sm font-medium transition ${
                 isActive

@@ -210,7 +210,7 @@ export default function Graph() {
       const parsed = parseVerseRef(verseRef);
       if (!parsed) return;
       setLocation(parsed.book, parsed.chapter);
-      navigate('/');
+      navigate('/read');
     },
     [setLocation, navigate],
   );

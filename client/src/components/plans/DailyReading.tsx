@@ -55,7 +55,7 @@ export function DailyReading({
                       key={i}
                       onClick={() => {
                         setLocation(p.book, p.chapter_start);
-                        navigate('/');
+                        navigate('/read');
                       }}
                       className={`rounded-md border border-parchment-300 bg-parchment-50 px-2.5 py-1 font-display text-sm transition hover:border-gold dark:border-parchment-700 dark:bg-parchment-900 ${completed ? 'line-through' : ''}`}
                     >
