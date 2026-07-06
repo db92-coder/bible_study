@@ -1,11 +1,12 @@
 import { signOut } from 'firebase/auth';
 import { useState } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useThemeStore } from '../../stores/useThemeStore';
 import { auth } from '../../lib/firebase';
 import { VersionSwitcher } from '../reader/VersionSwitcher';
 
 const NAV_ITEMS = [
+  { to: '/home', label: 'Home' },
   { to: '/', label: 'Read' },
   { to: '/learn', label: 'Learn' },
   { to: '/story', label: 'Story' },
@@ -41,7 +42,12 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
         </svg>
       </button>
 
-      <h1 className="hidden font-display text-2xl tracking-tight sm:block">Scribe</h1>
+      <Link
+        to="/home"
+        className="hidden font-display text-2xl tracking-tight transition hover:text-gold sm:block"
+      >
+        Scribe
+      </Link>
 
       {/* Mobile: current page + chevron opens the full page menu */}
       <button
@@ -119,6 +125,18 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
             <circle cx="11" cy="11" r="7" />
             <path d="m20 20-3.5-3.5" strokeLinecap="round" />
+          </svg>
+        </button>
+        <button
+          onClick={() => navigate('/help')}
+          aria-label="Help"
+          title="Help"
+          className="rounded-lg p-1.5 text-ink-soft hover:bg-parchment-200 dark:text-ink-invert dark:hover:bg-parchment-700"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+            <circle cx="12" cy="12" r="9" />
+            <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 1.8-2.5 3.5" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="12" cy="16.7" r="0.6" fill="currentColor" stroke="none" />
           </svg>
         </button>
         <div className={onReader ? '' : 'hidden md:block'}>

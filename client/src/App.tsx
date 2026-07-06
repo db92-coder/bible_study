@@ -4,7 +4,9 @@ import { useAuth } from './lib/AuthContext';
 import { isFirebaseConfigured } from './lib/firebase';
 import Connections from './pages/Connections';
 import Culture from './pages/Culture';
+import Dashboard from './pages/Dashboard';
 import Devotional from './pages/Devotional';
+import Help from './pages/Help';
 import Graph from './pages/Graph';
 import Learn from './pages/Learn';
 import Login from './pages/Login';
@@ -157,6 +159,22 @@ export default function App() {
         element={
           <RequireAuth>
             <Prayer />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/home"
+        element={
+          <RequireAuth>
+            <Dashboard />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/help"
+        element={
+          <RequireAuth>
+            <Help />
           </RequireAuth>
         }
       />
