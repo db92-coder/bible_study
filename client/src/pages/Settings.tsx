@@ -53,6 +53,8 @@ export default function Settings() {
   const [changingPw, setChangingPw] = useState(false);
 
   const [verifyMsg, setVerifyMsg] = useState<string | null>(null);
+  const [exporting, setExporting] = useState(false);
+  const [exportError, setExportError] = useState<string | null>(null);
   const [deleteText, setDeleteText] = useState('');
   const [deleting, setDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState<string | null>(null);
@@ -115,6 +117,27 @@ export default function Settings() {
       });
     } finally {
       setChangingPw(false);
+    }
+  }
+
+  async function handleExport() {
+    if (exporting) return;
+    setExporting(true);
+    setExportError(null);
+    try {
+      const response = await api.get('/export/obsidian', { responseType: 'blob' });
+      const url = URL.createObjectURL(response.data as Blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'scribe-obsidian-export.zip';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      setExportError(err instanceof Error ? err.message : 'Export failed — try again.');
+    } finally {
+      setExporting(false);
     }
   }
 
@@ -221,6 +244,24 @@ export default function Settings() {
                 You signed in with Google, so your password is managed by your Google account.
               </p>
             )}
+          </Section>
+
+          <Section title="Export to Obsidian">
+            <p className="mt-2 text-sm leading-relaxed text-ink-faint">
+              Download your graph nodes and study plans as Obsidian-ready markdown notes. Graph
+              nodes link to each other with <code className="rounded bg-parchment-100 px-1 dark:bg-parchment-900">[[wikilinks]]</code>,
+              so they&apos;ll appear connected in Obsidian&apos;s own graph view. This is a
+              one-time snapshot — Obsidian vaults live on your device, so there&apos;s no live
+              sync, but you can export again any time for a fresh copy.
+            </p>
+            {exportError && <p className="mt-2 text-sm text-red-700">{exportError}</p>}
+            <button
+              onClick={handleExport}
+              disabled={exporting}
+              className="mt-3 rounded-lg bg-teal px-4 py-2 text-sm font-medium text-white transition hover:bg-teal-deep disabled:opacity-50 dark:bg-gold dark:text-parchment-900"
+            >
+              {exporting ? 'Preparing export…' : 'Download Obsidian export (.zip)'}
+            </button>
           </Section>
 
           <Section title="Danger zone">
