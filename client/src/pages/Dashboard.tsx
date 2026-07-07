@@ -24,12 +24,12 @@ function greeting(): string {
 
 function Card({ title, action, children }: { title: string; action?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <section className="rounded-xl border border-parchment-300 bg-white p-5 dark:border-parchment-700 dark:bg-parchment-800">
-      <div className="flex items-center justify-between">
-        <h2 className="font-display text-xl">{title}</h2>
-        {action}
+    <section className="min-w-0 rounded-xl border border-parchment-300 bg-white p-5 dark:border-parchment-700 dark:bg-parchment-800">
+      <div className="flex min-w-0 items-center justify-between gap-2">
+        <h2 className="min-w-0 flex-1 truncate font-display text-xl">{title}</h2>
+        {action && <span className="shrink-0">{action}</span>}
       </div>
-      <div className="mt-3">{children}</div>
+      <div className="mt-3 min-w-0">{children}</div>
     </section>
   );
 }
@@ -78,8 +78,8 @@ function FeaturedPlanDay({ planId }: { planId: string }) {
   if (!nextDay) return null;
 
   return (
-    <div className="mt-3 rounded-lg bg-parchment-100 p-3 dark:bg-parchment-900">
-      <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint">
+    <div className="mt-3 min-w-0 rounded-lg bg-parchment-100 p-3 dark:bg-parchment-900">
+      <p className="break-words text-xs font-semibold uppercase tracking-widest text-ink-faint">
         {data.plan.title} — Day {nextDay.day_number}
       </p>
       <div className="mt-1.5 flex flex-wrap gap-1.5">
@@ -249,7 +249,7 @@ export default function Dashboard() {
 
           <ContinueReading />
 
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <PlansWidget />
             <PrayerWidget />
           </div>
