@@ -12,7 +12,7 @@ const GROUPS: FeatureGroup[] = [
     features: [
       {
         name: 'Read',
-        body: 'The Bible reader — pick any book, chapter, and translation. Click a verse (or shift-click to extend) to select a range; a selection unlocks quick actions to add a note, plant it in the graph, start a devotional, or see cross-references. The context panel on the right shows the book\'s background and an AI-written brief for the chapter you\'re on, with a Standard/Simple toggle for the brief\'s reading level.',
+        body: 'The Bible reader — pick any book, chapter, and translation. Tap a verse to select it, then tap another to extend the range (works the same with a mouse or a finger); a popup appears at your selection with quick actions to add a note, plant it in the graph, start a devotional, or see cross-references. The context panel on the right shows the book\'s background and an AI-written brief for the chapter you\'re on, with a Standard/Simple toggle for the brief\'s reading level.',
       },
       {
         name: 'Learn',

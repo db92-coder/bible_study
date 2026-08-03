@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { findBook, GENRE_INFO, parseOsisRef } from '../../data/books';
 import { api } from '../../lib/api';
 import { autoLinkVersesToThemes, createNode, TYPE_COLORS } from '../../lib/graphApi';
 import { useNotes } from '../../lib/notesApi';
 import { useReaderStore } from '../../stores/useReaderStore';
+import { SelectionPopup } from './SelectionPopup';
 import { VerseRenderer, type Verse } from './VerseRenderer';
 
 interface ChapterContent {
@@ -31,11 +32,12 @@ function ChapterSkeleton() {
 }
 
 export function BibleReader() {
-  const { book, chapter, version, selection, clearSelection, goToAdjacentChapter, setLocation } =
+  const { book, chapter, version, selection, lastTapped, clearSelection, goToAdjacentChapter, setLocation } =
     useReaderStore();
   const navigate = useNavigate();
   const [showGenreHelp, setShowGenreHelp] = useState(false);
   const genre = findBook(book) ? GENRE_INFO[findBook(book)!.genre] : null;
+  const passageRef = useRef<HTMLParagraphElement>(null);
 
   const chapterNotes = useNotes({ book, chapter });
   const notedVerses = useMemo(() => {
@@ -169,48 +171,26 @@ export function BibleReader() {
       )}
 
       {selection && (
-        <div className="mb-6 flex items-center justify-between rounded-lg border border-gold-soft bg-gold-soft/20 px-4 py-2 text-sm">
-          <span>
-            Selected: <strong>
-              {book} {chapter}:{selection.start}
-              {selection.end !== selection.start ? `–${selection.end}` : ''}
-            </strong>{' '}
-            <span className="text-ink-faint">(shift-click to extend)</span>
-          </span>
-          <span className="flex gap-3">
-            <button
-              onClick={newNoteFromSelection}
-              className="font-medium text-teal hover:underline dark:text-gold-soft"
-            >
-              Add note (n)
-            </button>
-            <button
-              onClick={addSelectionToGraph}
-              className="font-medium text-teal hover:underline dark:text-gold-soft"
-            >
-              Add to graph
-            </button>
-            <button
-              onClick={() =>
-                navigate(
-                  `/devotional?book=${encodeURIComponent(book)}&chapter=${chapter}&vs=${selection!.start}&ve=${selection!.end}`,
-                )
-              }
-              className="font-medium text-teal hover:underline dark:text-gold-soft"
-            >
-              Devotional
-            </button>
-            <button onClick={clearSelection} className="text-ink-faint hover:underline">
-              Clear
-            </button>
-          </span>
-        </div>
+        <SelectionPopup
+          containerRef={passageRef}
+          anchorVerse={lastTapped ?? selection.end}
+          label={`${book} ${chapter}:${selection.start}${selection.end !== selection.start ? `–${selection.end}` : ''}`}
+          onNote={newNoteFromSelection}
+          onGraph={addSelectionToGraph}
+          onDevotional={() =>
+            navigate(
+              `/devotional?book=${encodeURIComponent(book)}&chapter=${chapter}&vs=${selection.start}&ve=${selection.end}`,
+            )
+          }
+          onClear={clearSelection}
+        />
       )}
 
       {selection && selectionRefs.length > 0 && (
         <div className="mb-6 rounded-lg border border-parchment-300 bg-parchment-50 px-4 py-3 dark:border-parchment-700 dark:bg-parchment-800">
           <h4 className="text-xs font-semibold uppercase tracking-widest text-ink-faint">
-            Scripture connects here
+            Scripture connects with {book} {chapter}:{selection.start}
+            {selection.end !== selection.start ? `–${selection.end}` : ''}
           </h4>
           <div className="mt-2 flex flex-wrap gap-1.5">
             {selectionRefs.map((r) => (
@@ -235,7 +215,7 @@ export function BibleReader() {
       )}
       {data && (
         <>
-          <p className="font-display text-lg leading-8">
+          <p ref={passageRef} className="font-display text-lg leading-8">
             {data.verses.map((v) => (
               <VerseRenderer key={v.verse} verse={v} hasNote={notedVerses.has(v.verse)} />
             ))}

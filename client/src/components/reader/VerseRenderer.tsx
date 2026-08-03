@@ -12,7 +12,8 @@ export function VerseRenderer({ verse, hasNote }: { verse: Verse; hasNote?: bool
 
   return (
     <span
-      onClick={(e) => selectVerse(verse.verse, e.shiftKey)}
+      data-verse={verse.verse}
+      onClick={() => selectVerse(verse.verse)}
       className={`cursor-pointer rounded px-0.5 transition-colors duration-150 ${
         selected
           ? 'bg-gold-soft/40 dark:bg-gold/30'
