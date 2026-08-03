@@ -7,6 +7,13 @@ interface Position {
   above: boolean;
 }
 
+interface CrossRef {
+  osis: string;
+  label: string;
+  book: string;
+  chapter: number;
+}
+
 interface SelectionPopupProps {
   containerRef: React.RefObject<HTMLElement | null>;
   anchorVerse: number;
@@ -15,6 +22,8 @@ interface SelectionPopupProps {
   onGraph: () => void;
   onDevotional: () => void;
   onClear: () => void;
+  crossRefs: CrossRef[];
+  onSelectRef: (book: string, chapter: number) => void;
 }
 
 const MARGIN = 10;
@@ -27,6 +36,8 @@ export function SelectionPopup({
   onGraph,
   onDevotional,
   onClear,
+  crossRefs,
+  onSelectRef,
 }: SelectionPopupProps) {
   const popupRef = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState<Position | null>(null);
@@ -72,7 +83,7 @@ export function SelectionPopup({
       scrollParent?.removeEventListener('scroll', reposition);
       window.removeEventListener('resize', reposition);
     };
-  }, [anchorVerse, containerRef, label]);
+  }, [anchorVerse, containerRef, label, crossRefs.length]);
 
   if (!pos) return null;
 
@@ -81,7 +92,7 @@ export function SelectionPopup({
       ref={popupRef}
       role="menu"
       style={{ top: pos.top, left: pos.left }}
-      className="fixed z-50 flex flex-col items-stretch rounded-xl border border-parchment-300 bg-white shadow-xl dark:border-parchment-700 dark:bg-parchment-800"
+      className="fixed z-50 flex w-72 max-w-[calc(100vw-20px)] flex-col items-stretch rounded-xl border border-parchment-300 bg-white shadow-xl dark:border-parchment-700 dark:bg-parchment-800"
     >
       <span
         aria-hidden
@@ -136,6 +147,25 @@ export function SelectionPopup({
           Devotional
         </button>
       </div>
+      {crossRefs.length > 0 && (
+        <div className="border-t border-parchment-200 p-2 dark:border-parchment-700">
+          <p className="mb-1.5 px-1 text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint">
+            Scripture connects with this
+          </p>
+          <div className="flex flex-wrap gap-1.5 px-1 pb-1">
+            {crossRefs.map((r) => (
+              <button
+                key={r.osis}
+                onClick={() => onSelectRef(r.book, r.chapter)}
+                title={`Read ${r.label}`}
+                className="rounded-md border border-parchment-300 bg-white px-2 py-0.5 font-display text-sm text-teal transition hover:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-gold-soft"
+              >
+                {r.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

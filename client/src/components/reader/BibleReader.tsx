@@ -183,28 +183,9 @@ export function BibleReader() {
             )
           }
           onClear={clearSelection}
+          crossRefs={selectionRefs}
+          onSelectRef={setLocation}
         />
-      )}
-
-      {selection && selectionRefs.length > 0 && (
-        <div className="mb-6 rounded-lg border border-parchment-300 bg-parchment-50 px-4 py-3 dark:border-parchment-700 dark:bg-parchment-800">
-          <h4 className="text-xs font-semibold uppercase tracking-widest text-ink-faint">
-            Scripture connects with {book} {chapter}:{selection.start}
-            {selection.end !== selection.start ? `–${selection.end}` : ''}
-          </h4>
-          <div className="mt-2 flex flex-wrap gap-1.5">
-            {selectionRefs.map((r) => (
-              <button
-                key={r.osis}
-                onClick={() => setLocation(r.book, r.chapter)}
-                title={`Read ${r.label}`}
-                className="rounded-md border border-parchment-300 bg-white px-2 py-0.5 font-display text-sm text-teal transition hover:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-gold-soft"
-              >
-                {r.label}
-              </button>
-            ))}
-          </div>
-        </div>
       )}
 
       {isLoading && <ChapterSkeleton />}
