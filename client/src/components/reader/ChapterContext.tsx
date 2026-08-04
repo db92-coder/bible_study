@@ -1,13 +1,20 @@
 import MDEditor from '@uiw/react-md-editor';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { defaultUrlTransform } from 'react-markdown';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../lib/api';
 import { createNode, TYPE_COLORS } from '../../lib/graphApi';
-import { useChapterWords, type LexiconWord } from '../../lib/lexiconApi';
+import { useChapterWords, useLexiconEntry, type LexiconWord } from '../../lib/lexiconApi';
 import { useReaderStore } from '../../stores/useReaderStore';
 import { useThemeStore } from '../../stores/useThemeStore';
 import { WordPopup } from './WordPopup';
+
+// The AI brief links Hebrew/Greek words like [charis](strongs:G5485); every
+// other scheme falls back to react-markdown's normal safe-protocol handling.
+function urlTransform(url: string) {
+  return url.startsWith('strongs:') ? url : defaultUrlTransform(url);
+}
 
 interface ChapterBrief {
   book: string;
@@ -29,8 +36,39 @@ export function ChapterContext() {
     () => (localStorage.getItem('scribe-brief-level') as 'standard' | 'simple') ?? 'standard',
   );
   const [openWord, setOpenWord] = useState<{ word: LexiconWord; anchor: HTMLElement } | null>(null);
+  const [openBriefWord, setOpenBriefWord] = useState<{ id: string; anchor: HTMLElement } | null>(null);
+  const briefWordEntry = useLexiconEntry(openBriefWord?.id ?? null);
 
-  useEffect(() => setOpenWord(null), [book, chapter]);
+  useEffect(() => {
+    setOpenWord(null);
+    setOpenBriefWord(null);
+  }, [book, chapter]);
+
+  const BriefLink = useMemo(() => {
+    function BriefLink({ href, children }: React.ComponentProps<'a'>) {
+      const m = href?.match(/^strongs:([HG]\d+)$/i);
+      if (!m) {
+        // A malformed strongs: link (e.g. missing id) shouldn't render as a
+        // dead anchor — fall back to plain text instead of a normal link.
+        if (href?.startsWith('strongs:')) return <>{children}</>;
+        return (
+          <a href={href} target="_blank" rel="noreferrer">
+            {children}
+          </a>
+        );
+      }
+      return (
+        <button
+          type="button"
+          onClick={(e) => setOpenBriefWord({ id: m[1].toUpperCase(), anchor: e.currentTarget })}
+          className="rounded px-0.5 font-medium text-teal underline decoration-dotted underline-offset-2 transition hover:bg-parchment-200/70 dark:text-gold-soft dark:hover:bg-parchment-700/60"
+        >
+          {children}
+        </button>
+      );
+    }
+    return BriefLink;
+  }, []);
 
   function switchLevel(next: 'standard' | 'simple') {
     setLevel(next);
@@ -182,10 +220,22 @@ export function ChapterContext() {
             data-color-mode={dark ? 'dark' : 'light'}
             className="[&_.wmde-markdown]:bg-transparent [&_.wmde-markdown]:font-sans [&_.wmde-markdown]:text-[0.85rem] [&_.wmde-markdown]:leading-relaxed [&_.wmde-markdown_h2]:mt-4 [&_.wmde-markdown_h2]:border-none [&_.wmde-markdown_h2]:pb-0 [&_.wmde-markdown_h2]:text-[0.7rem] [&_.wmde-markdown_h2]:font-semibold [&_.wmde-markdown_h2]:uppercase [&_.wmde-markdown_h2]:tracking-widest [&_.wmde-markdown_h2]:text-ink-faint"
           >
-            <MDEditor.Markdown source={brief.data.brief_md} />
+            <MDEditor.Markdown
+              source={brief.data.brief_md}
+              urlTransform={urlTransform}
+              components={{ a: BriefLink }}
+            />
           </div>
         )}
       </div>
+
+      {openBriefWord && briefWordEntry.data && (
+        <WordPopup
+          anchor={openBriefWord.anchor}
+          word={briefWordEntry.data}
+          onClose={() => setOpenBriefWord(null)}
+        />
+      )}
     </div>
   );
 }

@@ -59,6 +59,15 @@ export function useChapterWords(book: string, chapter: number) {
   });
 }
 
+export function useLexiconEntry(id: string | null) {
+  return useQuery({
+    queryKey: ['lexicon', 'entry', id],
+    enabled: id !== null,
+    queryFn: async () => (await api.get<{ entry: LexiconWord }>(`/lexicon/${id}`)).data.entry,
+    staleTime: Infinity,
+  });
+}
+
 export function useCultureArticles() {
   return useQuery({
     queryKey: ['culture'],

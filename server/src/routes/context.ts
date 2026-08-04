@@ -5,6 +5,7 @@ import { findBook } from '../data/books.js';
 import { anthropic, STUDY_MODEL } from '../lib/anthropic.js';
 import { supabase } from '../lib/supabase.js';
 import { verifyFirebaseToken } from '../middleware/verifyFirebaseToken.js';
+import { strongsIdMatchesWord } from './lexicon.js';
 import { PLACES } from './places.js';
 
 export const contextRouter = Router();
@@ -16,6 +17,7 @@ Rules:
 - Present differing interpretive traditions neutrally; say "interpretations differ" rather than picking a side on contested questions.
 - No devotional application, no sermonizing — historical, cultural, and geographical context only.
 - Reference verses inline like (v. 12) or (vv. 3–5).
+- When you name a specific Hebrew or Greek word by its transliteration, link it to its Strong's number like this: [charis](strongs:G5485) — only when you are certain of the exact number; otherwise just write the word with no link.
 
 Format: markdown with exactly these three sections, nothing before or after:
 ## Setting & geography
@@ -32,6 +34,7 @@ Rules:
 - Stick to the biblical text and mainstream scholarship; where Christians read something differently, say "Christians understand this differently" without picking a side.
 - No preaching or application — just help them understand what they're reading.
 - Reference verses inline like (v. 12).
+- When you name a specific Hebrew or Greek word by its transliteration, link it to its Strong's number like this: [charis](strongs:G5485) — only when you are certain of the exact number; otherwise just write the word with no link.
 
 Format: markdown with exactly these three sections, nothing before or after:
 ## What's happening
@@ -116,15 +119,23 @@ contextRouter.get('/context/:book/:chapter', verifyFirebaseToken, async (req, re
       messages: [{ role: 'user', content: userPrompt }],
     });
 
-    const brief = message.content
+    const rawBrief = message.content
       .filter((b) => b.type === 'text')
       .map((b) => b.text)
       .join('')
       .trim();
-    if (!brief) {
+    if (!rawBrief) {
       res.status(502).json({ error: 'Brief generation returned no text' });
       return;
     }
+
+    // Drop any [word](strongs:ID) link where the id is missing, malformed, or
+    // doesn't actually match the transliteration it's attached to, rather
+    // than showing a dead link or a wrong word-study popup for it.
+    const brief = rawBrief.replace(
+      /\[([^\]]+)\]\(strongs:([^)]*)\)/gi,
+      (full, text: string, id: string) => (strongsIdMatchesWord(id, text) ? full : text),
+    );
 
     briefMemoryCache.set(cacheKey, brief);
     if (supabase) {

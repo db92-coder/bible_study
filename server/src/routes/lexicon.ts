@@ -34,6 +34,25 @@ function normalizeId(raw: string): string | null {
   return m ? `${m[1]}${m[2]}` : null;
 }
 
+// Same consonant-skeleton fuzzy match as /lexicon/search, exposed so other
+// routes can check a model-supplied (Strong's id, transliteration) pairing
+// actually corresponds to a real lexicon entry before trusting it.
+export function strongsIdMatchesWord(rawId: string, displayText: string): boolean {
+  const id = normalizeId(rawId);
+  if (!id || !LEXICON[id]) return false;
+  const clean = (s: string) =>
+    s
+      .toLowerCase()
+      .replace(/ç/g, 's')
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z]/g, '');
+  const skeleton = (s: string) => clean(s).replace(/[aeiouwy]/g, '');
+  const a = skeleton(displayText);
+  const b = skeleton(LEXICON[id].translit ?? '');
+  return a.length >= 2 && a === b;
+}
+
 // The model sometimes pairs a real (non-hallucinated) Strong's id with the
 // wrong English gloss — e.g. picking a lookalike word from the same chapter.
 // kjv_def lists every KJV rendering of that entry, so require the gloss to
