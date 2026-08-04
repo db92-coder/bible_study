@@ -1,11 +1,13 @@
 import MDEditor from '@uiw/react-md-editor';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../../lib/api';
 import { createNode, TYPE_COLORS } from '../../lib/graphApi';
+import { useChapterWords, type LexiconWord } from '../../lib/lexiconApi';
 import { useReaderStore } from '../../stores/useReaderStore';
 import { useThemeStore } from '../../stores/useThemeStore';
+import { WordPopup } from './WordPopup';
 
 interface ChapterBrief {
   book: string;
@@ -26,6 +28,9 @@ export function ChapterContext() {
   const [level, setLevel] = useState<'standard' | 'simple'>(
     () => (localStorage.getItem('scribe-brief-level') as 'standard' | 'simple') ?? 'standard',
   );
+  const [openWord, setOpenWord] = useState<{ word: LexiconWord; anchor: HTMLElement } | null>(null);
+
+  useEffect(() => setOpenWord(null), [book, chapter]);
 
   function switchLevel(next: 'standard' | 'simple') {
     setLevel(next);
@@ -42,6 +47,8 @@ export function ChapterContext() {
       ).data.places,
     staleTime: Infinity,
   });
+
+  const wordsQuery = useChapterWords(book, chapter);
 
   const brief = useQuery({
     queryKey: ['chapter-brief', book, chapter, level],
@@ -108,6 +115,30 @@ export function ChapterContext() {
             )}
           </div>
         </div>
+      )}
+
+      {wordsQuery.data && wordsQuery.data.length > 0 && (
+        <div className="mt-4">
+          <h3 className="text-xs font-semibold uppercase tracking-widest text-ink-faint">
+            Key words in this chapter
+          </h3>
+          <div className="mt-1.5 flex flex-wrap gap-1.5">
+            {wordsQuery.data.map((w) => (
+              <button
+                key={w.id}
+                onClick={(e) => setOpenWord({ word: w, anchor: e.currentTarget })}
+                title={`${w.lemma ?? w.id} (${w.translit ?? w.language})`}
+                className="rounded-md border border-parchment-300 bg-white px-2 py-0.5 font-display text-sm text-teal transition hover:border-gold dark:border-parchment-700 dark:bg-parchment-900 dark:text-gold-soft"
+              >
+                {w.gloss ?? w.translit ?? w.id}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {openWord && (
+        <WordPopup anchor={openWord.anchor} word={openWord.word} onClose={() => setOpenWord(null)} />
       )}
 
       <div className="mt-4">

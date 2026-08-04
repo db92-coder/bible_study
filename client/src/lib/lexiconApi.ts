@@ -11,6 +11,7 @@ export interface LexiconWord {
   strongs_def: string | null;
   kjv_def: string | null;
   note?: string;
+  gloss?: string;
 }
 
 export interface ArticleSummary {
@@ -41,6 +42,20 @@ export function useLexiconSearch(q: string) {
       (await api.get<{ results: LexiconWord[] }>(`/lexicon/search?q=${encodeURIComponent(q)}`)).data
         .results,
     staleTime: 5 * 60_000,
+  });
+}
+
+export function useChapterWords(book: string, chapter: number) {
+  return useQuery({
+    queryKey: ['lexicon', 'chapter', book, chapter],
+    queryFn: async () =>
+      (
+        await api.get<{ words: LexiconWord[] }>(
+          `/lexicon/chapter/${encodeURIComponent(book)}/${chapter}`,
+        )
+      ).data.words,
+    staleTime: Infinity,
+    retry: 1,
   });
 }
 
