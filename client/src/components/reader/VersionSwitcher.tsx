@@ -39,8 +39,8 @@ export function VersionSwitcher() {
       className="max-w-44 rounded-lg border border-parchment-300 bg-white px-2 py-1.5 text-sm text-ink-soft outline-none focus:border-gold dark:border-parchment-700 dark:bg-parchment-800 dark:text-ink-invert"
     >
       {data.map((v) => (
-        <option key={v.id} value={v.id}>
-          {v.abbreviation} — {v.name}
+        <option key={v.id} value={v.id} title={v.name}>
+          {v.abbreviation}
         </option>
       ))}
     </select>
