@@ -93,15 +93,19 @@ export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
         </>
       )}
 
-      {/* Desktop: inline nav */}
-      <nav className="ml-4 hidden items-center gap-1 sm:flex">
+      {/* Desktop: inline nav. min-w-0 lets this shrink within the flex row
+          instead of forcing the header taller; overflow-x-auto plus
+          shrink-0/whitespace-nowrap on each link means a viewport too
+          narrow for every item scrolls horizontally instead of wrapping
+          text and blowing out the header's fixed height. */}
+      <nav className="ml-4 hidden min-w-0 items-center gap-1 overflow-x-auto sm:flex">
         {NAV_ITEMS.map(({ to, label }) => (
           <NavLink
             key={to}
             to={to}
             end
             className={({ isActive }) =>
-              `rounded-lg px-3 py-1.5 text-sm font-medium transition ${
+              `shrink-0 whitespace-nowrap rounded-lg px-3 py-1.5 text-sm font-medium transition ${
                 isActive
                   ? 'bg-parchment-200 text-ink dark:bg-parchment-700 dark:text-ink-invert'
                   : 'text-ink-faint hover:bg-parchment-100 hover:text-ink-soft dark:hover:bg-parchment-700'
