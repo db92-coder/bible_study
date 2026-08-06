@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "seed:context": "tsx src/seed/seedBookContext.ts",
     "seed:places": "tsx src/seed/seedPlaces.ts",
-    "seed:plans": "tsx src/seed/seedPlans.ts"
+    "seed:plans": "tsx src/seed/seedPlans.ts",
+    "seed:genealogy": "tsx src/seed/seedGenealogy.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",

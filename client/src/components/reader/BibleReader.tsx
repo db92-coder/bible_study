@@ -1,13 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { findBook, GENRE_INFO, parseOsisRef } from '../../data/books';
 import { api } from '../../lib/api';
+import { useGenealogyNames } from '../../lib/genealogyApi';
 import { autoLinkVersesToThemes, createNode, TYPE_COLORS } from '../../lib/graphApi';
 import { useNotes } from '../../lib/notesApi';
 import { useReaderStore } from '../../stores/useReaderStore';
+import { PersonPopup } from './PersonPopup';
 import { SelectionPopup } from './SelectionPopup';
-import { VerseRenderer, type Verse } from './VerseRenderer';
+import { VerseRenderer, type NameMatcher, type Verse } from './VerseRenderer';
+
+function escapeRegex(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 interface ChapterContent {
   version: string;
@@ -38,6 +44,19 @@ export function BibleReader() {
   const [showGenreHelp, setShowGenreHelp] = useState(false);
   const genre = findBook(book) ? GENRE_INFO[findBook(book)!.genre] : null;
   const passageRef = useRef<HTMLParagraphElement>(null);
+  const [openPerson, setOpenPerson] = useState<{ id: string; anchor: HTMLElement } | null>(null);
+
+  useEffect(() => setOpenPerson(null), [book, chapter]);
+
+  const genealogyNames = useGenealogyNames();
+  const nameMatcher = useMemo<NameMatcher | null>(() => {
+    const names = genealogyNames.data;
+    if (!names || names.length === 0) return null;
+    const idByName = new Map(names.map((n) => [n.name, n.id]));
+    const sorted = [...idByName.keys()].sort((a, b) => b.length - a.length);
+    const pattern = new RegExp(`\\b(${sorted.map(escapeRegex).join('|')})\\b`);
+    return { pattern, idByName };
+  }, [genealogyNames.data]);
 
   const chapterNotes = useNotes({ book, chapter });
   const notedVerses = useMemo(() => {
@@ -198,7 +217,13 @@ export function BibleReader() {
         <>
           <p ref={passageRef} className="font-display text-lg leading-8">
             {data.verses.map((v) => (
-              <VerseRenderer key={v.verse} verse={v} hasNote={notedVerses.has(v.verse)} />
+              <VerseRenderer
+                key={v.verse}
+                verse={v}
+                hasNote={notedVerses.has(v.verse)}
+                nameMatcher={nameMatcher}
+                onNameClick={(id, anchor) => setOpenPerson({ id, anchor })}
+              />
             ))}
           </p>
           {data.copyright && (
@@ -207,6 +232,15 @@ export function BibleReader() {
             </p>
           )}
         </>
+      )}
+
+      {openPerson && (
+        <PersonPopup
+          anchor={openPerson.anchor}
+          personId={openPerson.id}
+          onSelectPerson={(id) => setOpenPerson((cur) => (cur ? { ...cur, id } : cur))}
+          onClose={() => setOpenPerson(null)}
+        />
       )}
     </article>
   );

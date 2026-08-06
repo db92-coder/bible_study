@@ -6,6 +6,7 @@ import Connections from './pages/Connections';
 import Culture from './pages/Culture';
 import Dashboard from './pages/Dashboard';
 import Devotional from './pages/Devotional';
+import Families from './pages/Families';
 import Help from './pages/Help';
 import Graph from './pages/Graph';
 import Learn from './pages/Learn';
@@ -112,6 +113,14 @@ export default function App() {
         element={
           <RequireAuth>
             <Culture />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/families"
+        element={
+          <RequireAuth>
+            <Families />
           </RequireAuth>
         }
       />

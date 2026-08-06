@@ -17,6 +17,7 @@ const NAV_ITEMS = [
   { to: '/connections', label: 'Connections' },
   { to: '/graph', label: 'Graph' },
   { to: '/culture', label: 'Culture' },
+  { to: '/families', label: 'Families' },
 ];
 
 export function TopBar({ onToggleSidebar }: { onToggleSidebar: () => void }) {
