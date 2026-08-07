@@ -4,9 +4,16 @@ import { anthropic, STUDY_MODEL } from './anthropic.js';
 import { getChapter, resolveVersion } from './bibleApi.js';
 import { supabase } from './supabase.js';
 
-// Torah + Numbers focus: the classic genealogy-listing chapters, plus Ruth 4
-// (needed to connect the line down to David). 1 Chronicles and the Gospel
-// genealogies are deferred — denser, less reliable to auto-extract.
+// Torah + Numbers focus, plus Ruth 4 (connects the line down to David) and
+// Matthew 1 (connects David's line to Jesus). 1 Chronicles and Luke 3 are
+// deferred: both are long, dense generation-lists that reuse common
+// tribal/royal names (Joseph, Jacob, Manasseh, Eleazar, Levi, Simeon...) for
+// entirely different, much later individuals — Luke 3 was extracted once,
+// found to have merged several of these with their unrelated Genesis/Numbers
+// namesakes (and, worse, with different generations of themselves within its
+// own chain), and was rolled back by hand rather than shipped with wrong
+// data. See findOrCreatePerson's book-family check below, which prevents the
+// specific Matthew 1 version of this bug but wasn't in place for that run.
 export const GENEALOGY_PASSAGES: Array<{ book: string; chapter: number }> = [
   { book: 'Genesis', chapter: 4 },
   { book: 'Genesis', chapter: 5 },
@@ -20,6 +27,7 @@ export const GENEALOGY_PASSAGES: Array<{ book: string; chapter: number }> = [
   { book: 'Numbers', chapter: 3 },
   { book: 'Numbers', chapter: 26 },
   { book: 'Ruth', chapter: 4 },
+  { book: 'Matthew', chapter: 1 },
 ];
 
 const SYSTEM_PROMPT = `You are the genealogy-extraction assistant of Scribe, a Bible study app. Given the text of one Bible chapter, extract every explicit parent-child relationship stated in it.
@@ -46,14 +54,38 @@ function escapeRegex(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+const OT_GENEALOGY_BOOKS = new Set(['Genesis', 'Exodus', 'Numbers', 'Ruth']);
+
+function bookFamily(book: string): string {
+  return OT_GENEALOGY_BOOKS.has(book) ? 'ot' : book;
+}
+
+// The deliberate Genesis→Ruth→Matthew bridge — names that really are the
+// same person across that boundary. Anything else with a name collision
+// across a book-family boundary (Joseph, Jacob, Manasseh, Eleazar, Levi,
+// Simeon, Er, Judah all recur for unrelated later individuals in Matthew/
+// Luke) must never auto-merge; see GENEALOGY_PASSAGES' comment.
+const CROSS_ERA_BRIDGE_NAMES = new Set([
+  'Abraham', 'Isaac', 'Jacob', 'Judah', 'Tamar', 'Perez', 'Hezron', 'Ram',
+  'Amminadab', 'Nahshon', 'Salmon', 'Boaz', 'Obed', 'Jesse', 'David',
+]);
+
 async function findOrCreatePerson(
   name: string,
   gender: 'male' | 'female' | 'unknown',
   ref: string,
+  book: string,
 ): Promise<string | null> {
   if (!supabase) return null;
-  const existing = await supabase.from('genealogy_people').select('id').eq('name', name).maybeSingle();
-  if (existing.data?.id) return existing.data.id;
+  const candidates = await supabase.from('genealogy_people').select('id, primary_ref').eq('name', name);
+  if (candidates.error) {
+    console.warn(`[scribe] genealogy_people lookup failed for "${name}":`, candidates.error.message);
+  }
+  const match = (candidates.data ?? []).find((c) => {
+    const existingBook = c.primary_ref.split(' ')[0];
+    return bookFamily(existingBook) === bookFamily(book) || CROSS_ERA_BRIDGE_NAMES.has(name);
+  });
+  if (match) return match.id;
 
   const inserted = await supabase
     .from('genealogy_people')
@@ -113,8 +145,8 @@ export async function extractChapter(
   let count = 0;
   for (const p of valid) {
     const ref = `${bookInfo.name} ${chapter}:${p.verse}`;
-    const parentId = await findOrCreatePerson(p.parent, p.parent_gender, ref);
-    const childId = await findOrCreatePerson(p.child, p.child_gender, ref);
+    const parentId = await findOrCreatePerson(p.parent, p.parent_gender, ref, bookInfo.name);
+    const childId = await findOrCreatePerson(p.child, p.child_gender, ref, bookInfo.name);
     if (!parentId || !childId || parentId === childId) continue;
 
     const { error } = await supabase

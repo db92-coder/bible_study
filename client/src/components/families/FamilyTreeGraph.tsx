@@ -1,10 +1,21 @@
-import { useCallback, useMemo, useRef } from 'react';
+import { forceCollide } from 'd3-force-3d';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
 import ForceGraph2D, { type ForceGraphMethods, type LinkObject, type NodeObject } from 'react-force-graph-2d';
 import type { FamilyTree } from '../../lib/genealogyApi';
 
 interface RuntimeNode extends NodeObject {
   id: string;
   name: string;
+}
+
+// Node circles are tiny (5-7px) — it's the text label below each one that
+// actually needs the breathing room, so size the collision radius off the
+// name length rather than the circle. A parent with a dozen children (the
+// Table of Nations, the tribal lists) needs this or siblings' labels stack
+// on top of each other.
+function collideRadius(nodeObj: NodeObject): number {
+  const name = (nodeObj as RuntimeNode).name ?? '';
+  return 12 + name.length * 3.4;
 }
 
 interface RuntimeLink extends LinkObject {
@@ -35,6 +46,16 @@ export function FamilyTreeGraph({ tree, width, height, dark, rootId, search, onS
       }));
     return { nodes: [...nodeById.values()], links };
   }, [tree]);
+
+  useEffect(() => {
+    const fg = fgRef.current;
+    if (!fg) return;
+    // Stronger repulsion than the default, plus an explicit collision force
+    // sized to each label — the default charge alone isn't enough to keep
+    // wide sibling groups (a parent with 10+ children) from overlapping.
+    fg.d3Force('charge')?.strength(-160);
+    fg.d3Force('collide', forceCollide<NodeObject>(collideRadius).strength(0.9).iterations(2));
+  }, [graphData]);
 
   const searchLower = search.trim().toLowerCase();
   const matchesSearch = useCallback(
@@ -90,7 +111,7 @@ export function FamilyTreeGraph({ tree, width, height, dark, rootId, search, onS
       graphData={graphData}
       backgroundColor="rgba(0,0,0,0)"
       dagMode="td"
-      dagLevelDistance={70}
+      dagLevelDistance={110}
       nodeCanvasObject={nodeCanvasObject}
       nodePointerAreaPaint={(nodeObj, color, ctx) => {
         const node = nodeObj as RuntimeNode;
